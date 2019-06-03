@@ -1,9 +1,11 @@
 from flask import Flask
 from flask_login import LoginManager
 from config import Config
+from flask_mongoengine import MongoEngine
 
 
 login = LoginManager()
+db = MongoEngine()
 
 
 def create_app(config_class=Config):
@@ -11,5 +13,9 @@ def create_app(config_class=Config):
     app.config.from_object(config_class)
 
     login.init_app(app)
+    db.init_app(app)
 
     return app
+
+
+from app import models
