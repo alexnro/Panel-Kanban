@@ -3,19 +3,24 @@ import React, { Component } from 'react';
 class Header extends Component {
     render() {
         return (
-            <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-            <ul class="navbar-nav">
-              <li class="nav-item active">
-              <a class="navbar-brand" href="/">Logo</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/panel">Panel</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/login">Login</a>
-              </li>
-            </ul>
-          </nav>
+            <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+                <a class="navbar-brand" href="/">Logo</a>
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/login">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/panel">Panel</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
         );
     }
 }
