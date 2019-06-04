@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-const panel = (props) => {
+class Panel extends Component {
+    render() {
+        return (
+            <h3>Holitas</h3>
+        );
+    };
+}
 
-};
-
-export default panel;
+export default Panel;
