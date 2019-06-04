@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 
 import './Panel.css';
 
@@ -8,7 +8,6 @@ class Panel extends Component {
     render() {
 
         let columnas = (
-            <Container>
                 <Row>
                     <Col>
                         <div className="table-responsive">
@@ -20,7 +19,9 @@ class Panel extends Component {
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>Mark</td>
+                                        <td>
+                                            
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -91,7 +92,6 @@ class Panel extends Component {
                         </div>
                     </Col>
                 </Row>
-            </Container>
         );
 
         return (
