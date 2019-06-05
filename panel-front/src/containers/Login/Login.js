@@ -10,15 +10,24 @@ class Login extends Component {
         password: ''
     }
 
+    inputHandler = event => {
+        console.log(event.target.value);
+        this.setState({
+            ...this.state,
+            email: event.target.value
+        });
+        console.log(this.state)
+    }
+
     submitHandler = event => {
+        console.log(this.state);
         event.preventDefault();
         const data = {
-            Username: this.state.username,
             Email: this.state.email,
+            Password: this.state.password
         }
-        const url = 'http://localhost:5000/login';
-        axios
-            .post(url, data)
+        const url = '/login';
+        axios.post(url, data)
             .then(data => {
                 console.log(data);
             })
@@ -35,7 +44,7 @@ class Login extends Component {
                 <form onSubmit={this.submitHandler}>
                     <div className="form-group">
                         <label htmlFor="email">Correo electrónico</label>
-                        <input id="email" type="email" name="email" className="form-control" aria-describedby="emailHelp" placeholder="Correo electrónico" required />
+                        <input onChange={this.inputHandler} id="email" type="email" name="email" className="form-control" aria-describedby="emailHelp" placeholder="Correo electrónico" required />
                     </div>
                     <div className="form-group">
                         <label htmlFor="password">Contraseña</label>
