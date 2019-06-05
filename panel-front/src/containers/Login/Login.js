@@ -10,17 +10,21 @@ class Login extends Component {
         password: ''
     }
 
-    inputHandler = event => {
-        console.log(event.target.value);
+    emailHandler = event => {
         this.setState({
             ...this.state,
             email: event.target.value
         });
-        console.log(this.state)
+    }
+    
+    passwordHandler = event => {
+        this.setState({
+            ...this.state,
+            password: event.target.value
+        });
     }
 
     submitHandler = event => {
-        console.log(this.state);
         event.preventDefault();
         const data = {
             Email: this.state.email,
@@ -44,11 +48,11 @@ class Login extends Component {
                 <form onSubmit={this.submitHandler}>
                     <div className="form-group">
                         <label htmlFor="email">Correo electrónico</label>
-                        <input onChange={this.inputHandler} id="email" type="email" name="email" className="form-control" aria-describedby="emailHelp" placeholder="Correo electrónico" required />
+                        <input onChange={this.emailHandler} id="email" type="email" name="email" className="form-control" aria-describedby="emailHelp" placeholder="Correo electrónico" required />
                     </div>
                     <div className="form-group">
                         <label htmlFor="password">Contraseña</label>
-                        <input id="password" type="password" name="password" className="form-control" placeholder="Contraseña" required />
+                        <input onChange={this.passwordHandler} id="password" type="password" name="password" className="form-control" placeholder="Contraseña" required />
                     </div>
                     <button type="submit" className="btn btn-primary">Iniciar sesión</button>
                 </form>
