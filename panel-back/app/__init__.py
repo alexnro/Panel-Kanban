@@ -2,6 +2,7 @@ from flask import Flask
 from flask_login import LoginManager
 from config import Config
 from flask_mongoengine import MongoEngine
+from flask_cors import CORS
 
 
 login = LoginManager()
@@ -10,6 +11,7 @@ db = MongoEngine()
 
 def create_app(config_class=Config):
     app = Flask(__name__)
+    CORS(app)
     app.config.from_object(config_class)
 
     login.init_app(app)
