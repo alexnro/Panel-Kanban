@@ -31,7 +31,7 @@ class Login extends Component {
             Password: this.state.password
         }
         const url = '/login';
-        axios.post(url, data)
+        axios.get(url, data)
             .then(data => {
                 console.log(data);
             })
