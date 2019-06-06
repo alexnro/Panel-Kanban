@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import axios from '../../axios-users';
+import axios from 'axios';
 
 class Register extends Component {
 
@@ -49,8 +49,8 @@ class Register extends Component {
         }
         const url = '/register';
         axios.post(url, data)
-            .then(response => {
-                console.log(response);
+            .then(data => {
+                console.log(data);
             })
             .catch(error => {
                 console.log(error);
