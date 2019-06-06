@@ -2,13 +2,20 @@ import React, { Component } from 'react';
 
 import axios from '../../axios-users';
 
-import './Login.css';
-
-class Login extends Component {
+class Register extends Component {
 
     state = {
+        username: '',
         email: '',
-        password: ''
+        password: '',
+        confirmPassword: ''
+    }
+
+    usernameHandler = event => {
+        this.setState({
+            ...this.state,
+            username: event.target.value
+        })
     }
 
     emailHandler = event => {
@@ -25,14 +32,23 @@ class Login extends Component {
         });
     }
 
+    confirmPasswordHandler = event => {
+        this.setState({
+            ...this.state,
+            confirmPassword: event.target.value
+        });
+    }
+
     submitHandler = event => {
         event.preventDefault();
         const data = {
+            Username: this.state.username,
             Email: this.state.email,
-            Password: this.state.password
+            Password: this.state.password,
+            ConfirmPassword: this.state.confirmPassword
         }
         const url = '/login';
-        axios.get(url, data)
+        axios.post(url, data)
             .then(data => {
                 console.log(data);
             })
@@ -41,16 +57,15 @@ class Login extends Component {
                 console.log(data);
             });
     }
-    
-    linkToRegister = () => {
-        window.location='/register';
-    }
 
     render() {
-
         return (
             <div className="formulario">
                 <form onSubmit={this.submitHandler}>
+                    <div className="form-group">
+                        <label htmlFor="username">Nombre de usuario</label>
+                        <input onChange={this.usernameHandler} id="username" type="text" name="username" className="form-control" aria-describedby="emailHelp" placeholder="Nombre de usuario" required />
+                    </div>
                     <div className="form-group">
                         <label htmlFor="email">Correo electrónico</label>
                         <input onChange={this.emailHandler} id="email" type="email" name="email" className="form-control" aria-describedby="emailHelp" placeholder="Correo electrónico" required />
@@ -59,12 +74,15 @@ class Login extends Component {
                         <label htmlFor="password">Contraseña</label>
                         <input onChange={this.passwordHandler} id="password" type="password" name="password" className="form-control" placeholder="Contraseña" required />
                     </div>
-                    <button type="submit" className="btn btn-primary">Iniciar sesión</button>
-                    <input type="button" id="registerButton" className="btn btn-secondary" onClick={this.linkToRegister} value="Registrarse" />
+                    <div className="form-group">
+                        <label htmlFor="confirmPpassword">Confirmar contraseña</label>
+                        <input onChange={this.confirmPasswordHandler} id="confirmPassword" type="password" name="confirmPassword" className="form-control" placeholder="Confirmar contraseña" required />
+                    </div>
+                    <button type="submit" className="btn btn-primary">Registrarse</button>
                 </form>
             </div>
         );
-    };
-}
+    }
+};
 
-export default Login;
+export default Register;
