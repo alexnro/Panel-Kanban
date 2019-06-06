@@ -14,11 +14,11 @@ class KanbanBoard extends Component {
 		this.handleOnDragEnter = this.handleOnDragEnter.bind(this);
 		this.handleOnDragEnd = this.handleOnDragEnd.bind(this);
 		this.columns = [
-			{name: 'Planning', stage: 1},
-			{name: 'Design', stage: 2},
-			{name: 'In Progress', stage: 3},
-			{name: 'Testing', stage: 4},
-			{name: 'Launch', stage: 5},
+			{ name: 'Planning', stage: 1 },
+			{ name: 'Design', stage: 2 },
+			{ name: 'In Progress', stage: 3 },
+			{ name: 'Testing', stage: 4 },
+			{ name: 'Launch', stage: 5 },
 		];
 	}
 
@@ -34,7 +34,7 @@ class KanbanBoard extends Component {
 	//this is called when a Kanban card dropped over a column (called by card)
 	handleOnDragEnd(e, project) {
 		const updatedProjects = this.state.projects.slice(0);
-		updatedProjects.find((projectObject) => {return projectObject.name === project.name;}).project_stage = this.state.draggedOverCol;
+		updatedProjects.find((projectObject) => { return projectObject.name === project.name; }).project_stage = this.state.draggedOverCol;
 		this.setState({ projects: updatedProjects });
 	}
 
@@ -43,21 +43,21 @@ class KanbanBoard extends Component {
 			return (<h3>Loading...</h3>);
 		}
 
-		return  (
-      <div>
+		return (
+			<div>
 				{this.columns.map((column) => {
 					return (
 						<KanbanColumn
-							name={ column.name }
-							stage={ column.stage }
-							projects={ this.state.projects.filter((project) => {return parseInt(project.project_stage, 10) === column.stage;}) }
-							onDragEnter={ this.handleOnDragEnter }
-							onDragEnd={ this.handleOnDragEnd }
-							key={ column.stage }
+							name={column.name}
+							stage={column.stage}
+							projects={this.state.projects.filter((project) => { return parseInt(project.project_stage, 10) === column.stage; })}
+							onDragEnter={this.handleOnDragEnter}
+							onDragEnd={this.handleOnDragEnd}
+							key={column.stage}
 						/>
 					);
 				})}
-      </div>
+			</div>
 		);
 	}
 }
