@@ -7,11 +7,12 @@ from flask_cors import CORS
 
 login = LoginManager()
 db = MongoEngine()
+cors = CORS()
 
 
 def create_app(config_class=Config):
     app = Flask(__name__)
-    CORS(app)
+    cors.init_app(app)
     app.config.from_object(config_class)
 
     login.init_app(app)

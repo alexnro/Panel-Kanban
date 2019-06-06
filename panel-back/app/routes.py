@@ -4,4 +4,9 @@ import app
 
 @app.route('/login')
 def login():
-    return request.args
+    return True
+
+
+@app.route('/register')
+def register():
+    return True
