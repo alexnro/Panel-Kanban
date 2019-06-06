@@ -22,6 +22,44 @@ class KanbanBoard extends Component {
 		];
 	}
 
+	projectList = [
+		{
+		  name: 'Project 1',
+		  description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
+		  project_stage: 1
+		},
+		{
+		  name: 'Project 2',
+		  description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
+		  project_stage: 1
+		},
+		{
+		  name: 'Project 3',
+		  description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
+		  project_stage: 1
+		},
+		{
+		  name: 'Project 4',
+		  description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
+		  project_stage: 2
+		},
+		{
+		  name: 'Project 5',
+		  description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
+		  project_stage: 3
+		},
+		{
+		  name: 'Project 6',
+		  description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
+		  project_stage: 3
+		},
+		{
+		  name: 'Project 7',
+		  description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
+		  project_stage: 4
+		},
+	  ];
+
 	componentDidMount() {
 		this.setState({ projects: projectList, isLoading: false });
 	}
@@ -50,7 +88,7 @@ class KanbanBoard extends Component {
 						<KanbanColumn
 							name={column.name}
 							stage={column.stage}
-							projects={this.state.projects.filter((project) => { return parseInt(project.project_stage, 10) === column.stage; })}
+							projects={this.setState().projects.filter((project) => { return parseInt(project.project_stage, 10) === column.stage; })}
 							onDragEnter={this.handleOnDragEnter}
 							onDragEnd={this.handleOnDragEnd}
 							key={column.stage}
