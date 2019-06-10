@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { Row, Col } from 'react-bootstrap';
 
 import './Panel.css';
+import Ventana from '../../components/UI/Modal/Ventana';
 
 class Panel extends Component {
 
     render() {
-
         let columnas = (
                 <Row>
                     <Col>
@@ -97,6 +97,7 @@ class Panel extends Component {
         return (
             <div className="Contenedor">
                 {columnas}
+                <Ventana />
             </div>
         );
     };
