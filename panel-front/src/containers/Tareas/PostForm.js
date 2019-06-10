@@ -34,11 +34,11 @@ class PostForm extends Component {
                     <label>
                         Seleccione una columna donde añadirla<br/>
                         <select>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
+                            <option value="1" id="1">1</option>
+                            <option value="2" id="2">2</option>
+                            <option value="3" id="3">3</option>
+                            <option value="4" id="4">4</option>
+                            <option value="5" id="5">5</option>
                         </select>
                     </label><br /><br />
                     <button>¡Añadir!</button>

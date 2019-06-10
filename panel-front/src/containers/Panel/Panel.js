@@ -18,9 +18,7 @@ class Panel extends Component {
                                     <th scope="col">#</th>
                                 </tr>
                             </thead>
-                            <tbody>
                                 <AllPost />
-                            </tbody>
                         </table>
                     </div>
                 </Col>
@@ -32,9 +30,7 @@ class Panel extends Component {
                                     <th scope="col">#</th>
                                 </tr>
                             </thead>
-                            <tbody>
                                 <AllPost />
-                            </tbody>
                         </table>
                     </div>
                 </Col>
@@ -46,9 +42,7 @@ class Panel extends Component {
                                     <th scope="col">#</th>
                                 </tr>
                             </thead>
-                            <tbody>
                                 <AllPost />
-                            </tbody>
                         </table>
                     </div>
                 </Col>
@@ -60,9 +54,7 @@ class Panel extends Component {
                                     <th scope="col">#</th>
                                 </tr>
                             </thead>
-                            <tbody>
                                <AllPost /> 
-                            </tbody>
                         </table>
                     </div>
                 </Col>
@@ -74,9 +66,7 @@ class Panel extends Component {
                                     <th scope="col">#</th>
                                 </tr>
                             </thead>
-                            <tbody>
                                 <AllPost />
-                            </tbody>
                         </table>
                     </div>
                 </Col>

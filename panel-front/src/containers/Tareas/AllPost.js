@@ -7,14 +7,14 @@ import EditComponent from './EditComponent';
 class AllPost extends Component {
     render() {
         return (
-            <div>
+            <tbody>
                 {this.props.posts.map((post) => (
-                    <div key={post.id}>
+                    <tr key={post.id}>
                         {post.editing ? <EditComponent post={post} key={post.id} /> :
-                            <tr><Post key={post.id} post={post} /></tr>}
-                    </div>
+                            <Post key={post.id} post={post} />}
+                    </tr>
                 ))}
-            </div>
+            </tbody>
         );
     }
 }
