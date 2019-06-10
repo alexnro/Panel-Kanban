@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Modal, Button, Form} from 'react-bootstrap';
+import {Modal, Button} from 'react-bootstrap';
 import PostForm from '../../../containers/Tareas/PostForm';
 
 class Ventana extends Component {
@@ -12,6 +12,23 @@ class Ventana extends Component {
       this.state = {
         show: false,
       };
+    }
+
+    handleSubmit = (e) => {
+        e.preventDefault();
+        const title = this.getTitle.value;
+        const message = this.getMessage.value;
+        const data = {
+            id: new Date(),
+            title,
+            message,
+            editing: false
+        }
+        this.props.dispatch({
+            type:'ADD_POST', data
+        });
+        this.getTitle.value = '';
+        this.getMessage.value = '';
     }
   
     handleClose() {
@@ -31,16 +48,8 @@ class Ventana extends Component {
   
           <Modal show={this.state.show} onHide={this.handleClose}>
             <Modal.Body>
-                <PostForm />
+                <PostForm/>
             </Modal.Body>
-            <Modal.Footer>
-              <Button variant="secondary" onClick={this.handleClose}>
-                Close
-              </Button>
-              <Button variant="primary" onClick={this.handleClose}>
-                Save Changes
-              </Button>
-            </Modal.Footer>
           </Modal>
         </>
       );

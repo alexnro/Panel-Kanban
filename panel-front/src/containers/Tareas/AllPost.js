@@ -8,11 +8,10 @@ class AllPost extends Component {
     render() {
         return (
             <div>
-                <h1>Tareas</h1>
                 {this.props.posts.map((post) => (
                     <div key={post.id}>
                         {post.editing ? <EditComponent post={post} key={post.id} /> :
-                            <Post key={post.id} post={post} />}
+                            <tr><Post key={post.id} post={post} /></tr>}
                     </div>
                 ))}
             </div>

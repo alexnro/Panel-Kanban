@@ -22,12 +22,27 @@ class PostForm extends Component {
     render() {
         return(
             <div>
-               <h1>Añade una tarea</h1>
-               <form onSubmit={this.handleSubmit}>
-                   <input required type="text" ref={(input)=>this.getTitle = input} placeholder="Titulo tarea" /><br /><br />
-                   <textarea ref={(input)=>this.getMessage = input} placeholder="Descripción tarea" /><br /><br />
-                   <button>¡Añadir!</button>
-               </form>
+                <form onSubmit={this.handleSubmit}>
+                    <label>
+                        Inserte un título para la tarea<br/>
+                        <input required type="text" ref={(input)=>this.getTitle = input} placeholder="Titulo tarea" />
+                    </label><br /><br />
+                    <label>
+                        Inserte una descripción para la tarea<br/>
+                        <textarea ref={(input)=>this.getMessage = input} placeholder="Descripción tarea" /><br /><br />
+                    </label><br /><br />
+                    <label>
+                        Seleccione una columna donde añadirla<br/>
+                        <select>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </label><br /><br />
+                    <button>¡Añadir!</button>
+                </form>
             </div>
         );
     }
