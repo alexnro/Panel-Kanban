@@ -33,9 +33,7 @@ class Panel extends Component {
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <AllPost />
-                                </tr>
+                                <AllPost />
                             </tbody>
                         </table>
                     </div>
@@ -49,9 +47,7 @@ class Panel extends Component {
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <AllPost />
-                                </tr>
+                                <AllPost />
                             </tbody>
                         </table>
                     </div>
@@ -65,9 +61,7 @@ class Panel extends Component {
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <AllPost /> 
-                                </tr>
+                               <AllPost /> 
                             </tbody>
                         </table>
                     </div>
@@ -81,9 +75,7 @@ class Panel extends Component {
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <AllPost />
-                                </tr>
+                                <AllPost />
                             </tbody>
                         </table>
                     </div>
