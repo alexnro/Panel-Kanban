@@ -17,7 +17,7 @@ class User(db.Document, UserMixin):
 
 @login.user_loader
 def load_user(username):
-    user = db.users.findOne({'username': username})
+    user = User.objects(username=username)
     if not user:
         return None
     return User(user['username'])

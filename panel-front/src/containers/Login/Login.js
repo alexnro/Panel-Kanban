@@ -8,7 +8,8 @@ class Login extends Component {
 
     state = {
         email: '',
-        password: ''
+        password: '',
+        isValid: false
     }
 
     emailHandler = event => {
@@ -32,14 +33,26 @@ class Login extends Component {
             Password: this.state.password
         }
         const url = '/login';
-        axios.get(url, data)
-            .then(data => {
+        axios.post(url, data)
+            .then(response => {
                 console.log(data);
+                console.log(response);
+                if (response.data === "Válido") {
+                    this.setState({
+                        ...this.state,
+                        isValid: true
+                    });
+                    this.loginHandler();
+                }
             })
             .catch(error => {
                 console.log(error);
                 console.log(data);
             });
+    }
+
+    loginHandler = () => {
+        console.log(this.state.isValid);
     }
     
     linkToRegister = () => {
