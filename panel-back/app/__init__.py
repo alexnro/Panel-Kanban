@@ -2,17 +2,15 @@ from flask import Flask
 from flask_login import LoginManager
 from config import Config
 from flask_mongoengine import MongoEngine
-from flask_cors import CORS
+from mongoengine import connect
 
 
 login = LoginManager()
 db = MongoEngine()
-cors = CORS()
 
 
 def create_app(config_class=Config):
     app = Flask(__name__)
-    cors.init_app(app)
     app.config.from_object(config_class)
 
     from app.auth import bp as auth_bp
@@ -24,4 +22,4 @@ def create_app(config_class=Config):
     return app
 
 
-from app import models
+from app.auth import models
