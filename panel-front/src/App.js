@@ -15,7 +15,6 @@ const App = () => (
     <Route exact path="/login" component={Login} />
     <Route path="/panel" component={Panel} />
     <Route path="/kanban" component={Kanban} />
-    <Route path="/ventana" component={Ventana} />
   </div>
 
 )

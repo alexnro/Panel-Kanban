@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Modal, Button, Form} from 'react-bootstrap';
+import PostForm from '../../../containers/Tareas/PostForm';
 
 class Ventana extends Component {
     constructor(props, context) {
@@ -30,26 +31,7 @@ class Ventana extends Component {
   
           <Modal show={this.state.show} onHide={this.handleClose}>
             <Modal.Body>
-                <Form>
-                    <Form.Group controlId="exampleForm.ControlInput1">
-                        <Form.Label>Introduzca un título para esta tarjeta</Form.Label>
-                        <Form.Control type="text" placeholder="Título" />
-                    </Form.Group>
-                    <Form.Group controlId="exampleForm.ControlTextarea1">
-                        <Form.Label>Añada una descripción</Form.Label>
-                        <Form.Control as="textarea" rows="3" />
-                    </Form.Group>
-                    <Form.Group controlId="exampleForm.ControlSelect1">
-                        <Form.Label>Columna donde insertarla</Form.Label>
-                        <Form.Control as="select">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                        </Form.Control>
-                    </Form.Group>
-                </Form>
+                <PostForm />
             </Modal.Body>
             <Modal.Footer>
               <Button variant="secondary" onClick={this.handleClose}>

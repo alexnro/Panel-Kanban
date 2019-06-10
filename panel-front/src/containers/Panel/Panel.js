@@ -20,7 +20,7 @@ class Panel extends Component {
                                 <tbody>
                                     <tr>
                                         <td>
-                                            
+                                            hola
                                         </td>
                                     </tr>
                                 </tbody>
