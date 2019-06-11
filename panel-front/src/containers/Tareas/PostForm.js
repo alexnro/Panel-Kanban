@@ -18,7 +18,6 @@ class PostForm extends Component {
         this.getTitle.value = '';
         this.getMessage.value = '';
     }
-
     render() {
         return(
             <div>

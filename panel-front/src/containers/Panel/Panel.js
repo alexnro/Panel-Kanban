@@ -12,7 +12,7 @@ class Panel extends Component {
             <Row>
                 <Col>
                     <div className="table-responsive">
-                        <table className="table table-hover">
+                        <table className="table table-hover" id="1">
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
@@ -24,49 +24,49 @@ class Panel extends Component {
                 </Col>
                 <Col>
                     <div className="table-responsive">
-                        <table className="table table-hover">
+                        <table className="table table-hover" id="2">
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
                                 </tr>
                             </thead>
-                                <AllPost />
+                                {/* <AllPost /> */}
                         </table>
                     </div>
                 </Col>
                 <Col>
                     <div className="table-responsive">
-                        <table className="table table-hover">
+                        <table className="table table-hover" id="3">
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
                                 </tr>
                             </thead>
-                                <AllPost />
+                                {/* <AllPost /> */}
                         </table>
                     </div>
                 </Col>
                 <Col>
                     <div className="table-responsive">
-                        <table className="table table-hover">
+                        <table className="table table-hover" id="4">
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
                                 </tr>
                             </thead>
-                               <AllPost /> 
+                               {/* <AllPost />  */}
                         </table>
                     </div>
                 </Col>
                 <Col>
                     <div className="table-responsive">
-                        <table className="table table-hover">
+                        <table className="table table-hover" id="5">
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
                                 </tr>
                             </thead>
-                                <AllPost />
+                                {/* <AllPost /> */}
                         </table>
                     </div>
                 </Col>
