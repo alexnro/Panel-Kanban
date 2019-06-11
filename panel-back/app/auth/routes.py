@@ -1,8 +1,8 @@
 from flask import request
 from app.auth import bp
-from app.auth.models import User
+from app.models import User
 from werkzeug.security import generate_password_hash
-from flask_login import login_user
+from flask_login import login_user, current_user
 
 
 @bp.route('/login', methods=['POST', 'GET'])
@@ -15,7 +15,8 @@ def login():
         return "Usuario incorrecto"
     else:
         login_user(user)
-        return "Válido"
+        user_token = user.encode_auth_token(user)
+        return user_token
 
 
 @bp.route('/register', methods=['POST', 'GET'])

@@ -2,8 +2,6 @@ from flask import Flask
 from flask_login import LoginManager
 from config import Config
 from flask_mongoengine import MongoEngine
-from mongoengine import connect
-
 
 login = LoginManager()
 db = MongoEngine()
@@ -14,7 +12,10 @@ def create_app(config_class=Config):
     app.config.from_object(config_class)
 
     from app.auth import bp as auth_bp
-    app.register_blueprint(auth_bp)
+    app.register_blueprint(auth_bp, url_prefix='/auth')
+
+    from app.api import bp as api_bp
+    app.register_blueprint(api_bp, url_prefix='/api')
 
     login.init_app(app)
     db.init_app(app)
@@ -22,4 +23,4 @@ def create_app(config_class=Config):
     return app
 
 
-from app.auth import models
+from app import models
