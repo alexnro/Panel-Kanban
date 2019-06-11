@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
 
-class Post extends Component {
+class Tareas extends Component {
     render() {
         return(
             <td>
@@ -19,4 +19,4 @@ class Post extends Component {
     }
 }
 
-export default connect()(Post);
+export default connect()(Tareas);

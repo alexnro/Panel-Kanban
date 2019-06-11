@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Modal, Button} from 'react-bootstrap';
-import PostForm from '../../../containers/Tareas/PostForm';
+import Formulario from '../../../containers/Tareas/Formulario';
 
 class Ventana extends Component {
     constructor(props, context) {
@@ -48,7 +48,7 @@ class Ventana extends Component {
   
           <Modal show={this.state.show} onHide={this.handleClose}>
             <Modal.Body>
-                <PostForm/>
+                <Formulario/>
             </Modal.Body>
           </Modal>
         </>

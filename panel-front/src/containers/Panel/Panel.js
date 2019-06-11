@@ -3,7 +3,7 @@ import { Row, Col } from 'react-bootstrap';
 
 import './Panel.css';
 import Ventana from '../../components/UI/Modal/Ventana';
-import AllPost from '../Tareas/AllPost';
+import ListadoTareas from '../Tareas/ListadoTareas';
 
 class Panel extends Component {
 
@@ -18,7 +18,7 @@ class Panel extends Component {
                                     <th scope="col">#</th>
                                 </tr>
                             </thead>
-                                <AllPost />
+                                <ListadoTareas />
                         </table>
                     </div>
                 </Col>

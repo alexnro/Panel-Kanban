@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-class EditComponent extends Component {
+class EditComponente extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         const newTitle = this.getTitle.value;
@@ -29,4 +29,4 @@ class EditComponent extends Component {
     }
 }
 
-export default connect()(EditComponent);
+export default connect()(EditComponente);

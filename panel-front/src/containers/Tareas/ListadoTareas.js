@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import Post from './Post';
-import EditComponent from './EditComponent';
+import Tareas from './Tareas';
+import EditComponente from './EditComponente';
 
-class AllPost extends Component {
+class ListadoTareas extends Component {
 
     render() {
         return (
             <tbody>
                 {this.props.posts.map((post) => (
                     <tr key={post.id}>
-                        {post.editing ? <EditComponent post={post} key={post.id} /> :
-                            <Post key={post.id} post={post} />}
+                        {post.editing ? <EditComponente post={post} key={post.id} /> :
+                            <Tareas key={post.id} post={post} />}
                     </tr>
                 ))}
             </tbody>
@@ -26,4 +26,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(AllPost);
+export default connect(mapStateToProps)(ListadoTareas);
