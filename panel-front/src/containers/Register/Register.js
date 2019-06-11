@@ -58,6 +58,10 @@ class Register extends Component {
             });
     }
 
+    linkToLogin = () => {
+        window.location = '/login';
+    }
+
     render() {
         return (
             <div className="formulario">
@@ -78,7 +82,7 @@ class Register extends Component {
                         <label htmlFor="confirmPpassword">Confirmar contraseña</label>
                         <input onChange={this.confirmPasswordHandler} id="confirmPassword" type="password" name="confirmPassword" className="form-control" placeholder="Confirmar contraseña" required />
                     </div>
-                    <button type="submit" className="btn btn-primary">Registrarse</button>
+                    <button type="submit" className="btn btn-primary" onClick={this.linkToLogin}>Registrarse</button>
                 </form>
             </div>
         );

@@ -52,11 +52,11 @@ class Login extends Component {
     }
 
     loginHandler = () => {
-        console.log(this.state.isValid);
+        window.location = '/panel'
     }
     
     linkToRegister = () => {
-        window.location='/register';
+        window.location = '/register';
     }
 
     render() {
