@@ -1,9 +1,8 @@
 from app import db, login
 from flask_login import UserMixin
 from werkzeug.security import check_password_hash
-import jwt
-import datetime
-import app
+from flask_jwt_extended import create_access_token, create_refresh_token
+from json import dumps
 
 
 class User(db.Document, UserMixin):
@@ -17,39 +16,10 @@ class User(db.Document, UserMixin):
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
 
-    def encode_auth_token(self, user_id):
-        """
-        Generates the Auth Token
-        :return: string
-        """
-        try:
-            payload = {
-                'exp': datetime.datetime.utcnow() + datetime.timedelta(days=0, seconds=5),
-                'iat': datetime.datetime.utcnow(),
-                'sub': user_id
-            }
-            return jwt.encode(
-                payload,
-                app.config.get('SECRET_KEY'),
-                algorithm='HS256'
-            )
-        except Exception as e:
-            return e
-
-    @staticmethod
-    def decode_auth_token(auth_token):
-        """
-        Decodes the auth token
-        :param auth_token:
-        :return: integer|string
-        """
-        try:
-            payload = jwt.decode(auth_token, app.config.get('SECRET_KEY'))
-            return payload['sub']
-        except jwt.ExpiredSignatureError:
-            return 'Signature expired. Please log in again.'
-        except jwt.InvalidTokenError:
-            return 'Invalid token. Please log in again.'
+    def create_token(self):
+        access_token = create_access_token(identity=self.username)
+        refresh_token = create_refresh_token(identity=self.username)
+        return dumps({'access_token': access_token, 'refresh_token': refresh_token})
 
 
 @login.user_loader
