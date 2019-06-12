@@ -18,9 +18,6 @@ class Header extends Component {
                         <li className="nav-item">
                             <a className="nav-link" href="/panel">Panel</a>
                         </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="/kanban">Kanban</a>
-                        </li>
                     </ul>
                 </div>
             </nav>

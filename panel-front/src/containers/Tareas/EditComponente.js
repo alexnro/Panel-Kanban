@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-class EditComponent extends Component {
+class EditComponente extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         const newTitle = this.getTitle.value;
@@ -18,15 +18,15 @@ class EditComponent extends Component {
 
     render() {
         return (
-            <div>
+            <td>
                <form onSubmit={this.handleSubmit}>
                    <input required type="text" ref={(input)=>this.getTitle = input} defaultValue={this.props.post.title} placeholder="Titulo tarea" /><br /><br />
                    <textarea ref={(input)=>this.getMessage = input} defaultValue={this.props.post.message} placeholder="Descripción tarea" /><br /><br />
                    <button>Actualizar</button>
                </form>
-            </div>
+            </td>
         );
     }
 }
 
-export default connect()(EditComponent);
+export default connect()(EditComponente);
