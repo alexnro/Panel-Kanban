@@ -11,8 +11,8 @@ class ListadoTareas extends Component {
             <tbody>
                 {this.props.posts.map((post) => (
                     <tr key={post.id}>
-                        {post.editing ? <EditComponente post={post} key={post.id} /> :
-                            <Tareas key={post.id} post={post} />}
+                        {post.editing ? <EditComponente post={post} key={post.id} column={post.column} /> :
+                            <Tareas key={post.id} post={post} column={post.column} />}
                     </tr>
                 ))}
             </tbody>

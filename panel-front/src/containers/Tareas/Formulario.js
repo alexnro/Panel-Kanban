@@ -2,22 +2,30 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
 class Formulario extends Component {
+    state= {
+        value: ''
+    }
+
     handleSubmit = (e) => {
         e.preventDefault();
+        console.log(this.state.value);
         const title = this.getTitle.value;
         const message = this.getMessage.value;
         const data = {
             id: new Date(),
             title,
             message,
-            editing: false
+            editing: false,
+            column: this.state.value
         }
         this.props.dispatch({
             type:'ADD_POST', data
         });
         this.getTitle.value = '';
         this.getMessage.value = '';
+
     }
+
     render() {
         return(
             <div>
@@ -32,12 +40,12 @@ class Formulario extends Component {
                     </label><br /><br />
                     <label>
                         Seleccione una columna donde añadirla<br/>
-                        <select>
-                            <option value="1" id="1">1</option>
-                            <option value="2" id="2">2</option>
-                            <option value="3" id="3">3</option>
-                            <option value="4" id="4">4</option>
-                            <option value="5" id="5">5</option>
+                        <select onChange ={(e) => this.setState({...this.state, value: e.target.value})}>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
                         </select>
                     </label><br /><br />
                     <button>¡Añadir!</button>

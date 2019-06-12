@@ -10,7 +10,7 @@ class Ventana extends Component {
       this.handleClose = this.handleClose.bind(this);
   
       this.state = {
-        show: false,
+        show: false
       };
     }
 
