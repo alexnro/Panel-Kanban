@@ -2,7 +2,12 @@ from flask import request
 from app.auth import bp
 from app.models import User
 from werkzeug.security import generate_password_hash
-from flask_login import login_user
+from flask_login import login_user, current_user
+from flask_httpauth import HTTPBasicAuth, HTTPTokenAuth
+
+
+basic_auth = HTTPBasicAuth()
+token_auth = HTTPTokenAuth()
 
 
 @bp.route('/login', methods=['POST', 'GET'])
@@ -11,13 +16,11 @@ def login():
     email = request_data.get("Email")
     password = request_data.get("Password")
     user = User.objects(email=email).first()
-    print(user.to_json())
     if user is None or not user.check_password(password):
         return "Usuario incorrecto"
     else:
         login_user(user)
         tokens = user.create_token()
-        print(tokens)
         return tokens
 
 
@@ -30,4 +33,9 @@ def register():
     password_hash = generate_password_hash(password)
     user = User(username=username, email=email, password_hash=password_hash)
     user.save()
-    return user.to_json()
+    return user.email
+
+
+@bp.route('/checkToken')
+def get_token():
+    return User(current_user).get_token()
