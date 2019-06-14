@@ -5,12 +5,21 @@ import Tareas from './Tareas';
 import EditComponente from './EditComponente';
 
 class ListadoTareas extends Component {
+<<<<<<< HEAD
 
     render() {
         return (
             <tbody>
                 {this.props.posts.map((post) => (
                     <tr key={post.id}>
+=======
+    
+    render() {
+         return (
+            <tbody>
+                {this.props.posts.map((post) => (
+                    <tr key={post.id} column={post.column}>
+>>>>>>> panelPrueba
                         {post.editing ? <EditComponente post={post} key={post.id} column={post.column} /> :
                             <Tareas key={post.id} post={post} column={post.column} />}
                     </tr>
