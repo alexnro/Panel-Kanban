@@ -15,13 +15,16 @@ def login():
     request_data = request.get_json()
     email = request_data.get("Email")
     password = request_data.get("Password")
-    user = User.objects(email=email).first()
+    user = User.objects.get(email=email)
+    print(user.username)
     if user is None or not user.check_password(password):
         return "Usuario incorrecto"
     else:
         login_user(user)
         tokens = user.create_token()
-        return tokens
+        print(tokens.get("access_token"))
+        user.update(access_token=tokens.get("access_token"))
+        return str(tokens)
 
 
 @bp.route('/register', methods=['POST', 'GET'])
