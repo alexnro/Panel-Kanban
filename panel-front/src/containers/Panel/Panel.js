@@ -9,29 +9,41 @@ import Tareas from '../Tareas/Tareas';
 import withAuth from '../../withAuth';
 
 class Panel extends Component {
+    constructor(props) {
+        super();
+        this.state = {
+            columna1: [],
+            columna2: [],
+            columna3: [],
+            columna4: [],
+            columna5: []
+        };
+    }
 
-    // state = {
-    //     columna1: [],
-    //     columna2: [],
-    //     columna3: [],
-    //     columna4: [],
-    //     columna5: []
-    // }
-
-    // switch (key) {
-    //     case value:
-
-    //         break; 
-    //     default:
-    //         break;
-    // }
+    añadir() {
+        if (this.post.column === "1") {
+            this.columna1.push(<Tareas />)
+        }
+        if (this.post.column === "2") {
+            this.columna2.push(<Tareas />)
+        }
+        if (this.post.column === "3") {
+            this.columna3.push(<Tareas />)
+        }
+        if (this.post.column === "4") {
+            this.columna4.push(<Tareas />)
+        }
+        if (this.post.column === "5") {
+            this.columna5.push(<Tareas />)
+        }
+    }
 
     render() {
         let columnas = (
             <Row>
                 <Col>
-                    <div className="table-responsive">
-                        <table className="table table-hover" id="1">
+                    <div className="table-responsive" column="1">
+                        <table className="table table-hover">
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
@@ -39,9 +51,10 @@ class Panel extends Component {
                             </thead>
                             <tbody>
                                 {this.props.posts.map((post) => (
-                                    <tr key={post.id}>
-                                        {post.editing ? <EditComponente post={post} key={post.id} /> :
-                                            <Tareas key={post.id} post={post} value="1" />}
+                                    post.column === "1" &&
+                                    <tr key={post.id} column={post.column}>
+                                        {post.editing ? <EditComponente post={post} key={post.id} column={post.column} /> :
+                                            <Tareas key={post.id} post={post} column={post.column} />}
                                     </tr>
                                 ))}
                             </tbody>
@@ -49,77 +62,81 @@ class Panel extends Component {
                     </div>
                 </Col>
                 <Col>
-                    <div className="table-responsive">
-                        <table className="table table-hover" id="2">
+                    <div className="table-responsive" column="2">
+                        <table className="table table-hover">
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {/* {this.props.posts.map((post) => (
-                                    <tr key={post.id}>
-                                        {post.editing ? <EditComponente post={post} key={post.id} /> :
-                                            <Tareas key={post.id} post={post} value="2" />}
+                                {this.props.posts.map((post) => (
+                                    post.column === "2" && 
+                                    <tr key={post.id} column={post.column}>
+                                        {post.editing ? <EditComponente post={post} key={post.id} column={post.column} /> :
+                                            <Tareas key={post.id} post={post} column={post.column} />}
                                     </tr>
-                                ))} */}
+                                ))}
                             </tbody>
                         </table>
                     </div>
                 </Col>
                 <Col>
-                    <div className="table-responsive">
-                        <table className="table table-hover" id="3">
+                    <div className="table-responsive" column="3">
+                        <table className="table table-hover">
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {/* {this.props.posts.map((post) => (
-                                    <tr key={post.id}>
-                                        {post.editing ? <EditComponente post={post} key={post.id} /> :
-                                            <Tareas key={post.id} post={post} value="3" />}
+                                {this.props.posts.map((post) => (
+                                    post.column === "3" &&
+                                    <tr key={post.id} column={post.column}>
+                                        {post.editing ? <EditComponente post={post} key={post.id} column={post.column} /> :
+                                            <Tareas key={post.id} post={post} column={post.column} />}
                                     </tr>
-                                ))} */}
+                                ))}
                             </tbody>
                         </table>
                     </div>
                 </Col>
                 <Col>
-                    <div className="table-responsive">
-                        <table className="table table-hover" id="4">
+                    <div className="table-responsive" column="4">
+                        <table className="table table-hover">
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {/* {this.props.posts.map((post) => (
-                                    <tr key={post.id}>
-                                        {post.editing ? <EditComponente post={post} key={post.id} /> :
-                                            <Tareas key={post.id} post={post} value="4" />}
+                                {this.props.posts.map((post) => (
+                                    post.column === "4" &&
+                                    <tr key={post.id} column={post.column}>
+                                        {post.editing ? <EditComponente post={post} key={post.id} column={post.column} /> :
+                                            <Tareas key={post.id} post={post} column={post.column} />}
                                     </tr>
-                                ))} */}
+                                ))}
                             </tbody>
                         </table>
                     </div>
                 </Col>
                 <Col>
-                    <div className="table-responsive">
-                        <table className="table table-hover" id="5">
+                    <div className="table-responsive" column="5">
+                        <table className="table table-hover">
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {/* {this.props.posts.map((post) => (
-                                    <tr key={post.id}>
-                                        {post.editing ? <EditComponente post={post} key={post.id} /> :
-                                            <Tareas key={post.id} post={post} value="5" />}
+                                {this.props.posts.map((post) => (
+                                    post.column === "5" &&
+                                    <tr key={post.id} column={post.column}>
+                                        {post.editing ? <EditComponente post={post} key={post.id} column={post.column} /> :
+                                            <Tareas key={post.id} post={post} column={post.column} />}
                                     </tr>
-                                ))} */}
+                                ))}
                             </tbody>
                         </table>
                     </div>

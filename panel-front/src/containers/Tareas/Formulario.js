@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 
 class Formulario extends Component {
     state= {
-        value: ''
+        value: '1'
     }
 
     handleSubmit = (e) => {
