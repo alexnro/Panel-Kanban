@@ -9,7 +9,7 @@ class EditComponente extends Component {
         const data = {
             id: new Date(),
             newTitle,
-            newMessage,
+            newMessage
         }
         this.props.dispatch({
             type:'UPDATE', id: this.props.post.id, data: data
