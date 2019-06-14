@@ -49,7 +49,8 @@ class Register extends Component {
         }
         const url = '/register';
         axios.post(url, data)
-            .then(data => {
+            .then(response => {
+                console.log(response);
                 console.log(data);
             })
             .catch(error => {
@@ -82,7 +83,7 @@ class Register extends Component {
                         <label htmlFor="confirmPpassword">Confirmar contraseña</label>
                         <input onChange={this.confirmPasswordHandler} id="confirmPassword" type="password" name="confirmPassword" className="form-control" placeholder="Confirmar contraseña" required />
                     </div>
-                    <button type="submit" className="btn btn-primary" onClick={this.linkToLogin}>Registrarse</button>
+                    <button type="submit" className="btn btn-primary">Registrarse</button>
                 </form>
             </div>
         );

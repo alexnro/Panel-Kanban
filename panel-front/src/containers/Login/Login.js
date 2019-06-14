@@ -37,12 +37,14 @@ class Login extends Component {
             .then(response => {
                 console.log(data);
                 console.log(response);
-                if (response.data === "Válido") {
+                if (response.data !== "Usuario incorrecto") {
                     this.setState({
                         ...this.state,
                         isValid: true
                     });
                     this.loginHandler();
+                    console.log(response.data);
+                    localStorage.setItem('token', response.data);
                 }
             })
             .catch(error => {
@@ -52,7 +54,7 @@ class Login extends Component {
     }
 
     loginHandler = () => {
-        window.location = '/panel'
+        window.location = '/panel';
     }
     
     linkToRegister = () => {
