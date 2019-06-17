@@ -8,7 +8,6 @@ class Tareas extends Component {
             <td>
                 <h2>{this.props.post.title}</h2>
                 <p>{this.props.post.message}</p>
-                <p>Columna: {this.props.post.column}</p>
                 <button
                     onClick={() => this.props.dispatch({ type: 'EDIT_POST', id: this.props.post.id })}>
                     Editar</button>
