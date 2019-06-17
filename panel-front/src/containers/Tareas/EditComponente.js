@@ -28,14 +28,14 @@ class EditComponente extends Component {
                 <form onSubmit={this.handleSubmit}>
                     <label>
                         Inserte un título para la tarea<br/>
-                        <input required type="text" ref={(input)=>this.getTitle = input} placeholder="Titulo tarea" />
+                        <input required type="text" ref={(input)=>this.getTitle = input} defaultValue={this.props.post.title} placeholder="Titulo tarea" /><br /><br />
                     </label><br /><br />
                     <label>
                         Inserte una descripción para la tarea<br/>
-                        <textarea ref={(input)=>this.getMessage = input} placeholder="Descripción tarea" /><br /><br />
+                        <textarea ref={(input)=>this.getMessage = input} defaultValue={this.props.post.message} placeholder="Descripción tarea" /><br /><br />
                     </label><br /><br />
                     <label>
-                        Seleccione una columna donde añadirla<br/>
+                        Seleccione una columna donde cambiarla<br/>
                         <select onChange ={(e) => this.setState({...this.state, value: e.target.value})}>
                             <option value="1">1</option>
                             <option value="2">2</option>
@@ -44,7 +44,7 @@ class EditComponente extends Component {
                             <option value="5">5</option>
                         </select>
                     </label><br /><br />
-                    <button>¡Añadir!</button>
+                    <button>Actualizar</button>
                 </form>
             </td>
         );
