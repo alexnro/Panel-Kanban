@@ -19,6 +19,11 @@ class Header extends Component {
                             <a className="nav-link" href="/panel">Panel</a>
                         </li>
                     </ul>
+                    <ul className="nav navbar-nav ml-auto">
+                        <li className="nav-item">
+                            <a className="nav-link" href="/logout">Logout</a>
+                        </li>
+                    </ul>
                 </div>
             </nav>
         );
