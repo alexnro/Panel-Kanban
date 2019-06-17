@@ -13,7 +13,8 @@ const postReducer = (state = [], action) => {
                         ...post,
                         title: action.data.newTitle,
                         message: action.data.newMessage,
-                        editing: !post.editing
+                        editing: !post.editing,
+                        column: action.data.newColumn
                     }
                 } else return post;
             })

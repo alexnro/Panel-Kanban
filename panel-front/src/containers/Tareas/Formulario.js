@@ -8,7 +8,6 @@ class Formulario extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        console.log(this.state.value);
         const title = this.getTitle.value;
         const message = this.getMessage.value;
         const data = {
@@ -21,8 +20,6 @@ class Formulario extends Component {
         this.props.dispatch({
             type:'ADD_POST', data
         });
-        this.getTitle.value = '';
-        this.getMessage.value = '';
 
     }
 
