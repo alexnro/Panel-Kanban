@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 class Formulario extends Component {
-    state= {
+    state = {
         value: '1'
     }
 
@@ -18,26 +18,26 @@ class Formulario extends Component {
             column: this.state.value
         }
         this.props.dispatch({
-            type:'ADD_POST', data
+            type: 'ADD_POST', data
         });
 
     }
 
     render() {
-        return(
+        return (
             <div>
                 <form onSubmit={this.handleSubmit}>
                     <label>
-                        Inserte un título para la tarea<br/>
-                        <input required type="text" ref={(input)=>this.getTitle = input} placeholder="Titulo tarea" />
+                        Inserte un título para la tarea<br />
+                        <input required type="text" ref={(input) => this.getTitle = input} placeholder="Titulo tarea" />
                     </label><br /><br />
                     <label>
-                        Inserte una descripción para la tarea<br/>
-                        <textarea ref={(input)=>this.getMessage = input} placeholder="Descripción tarea" /><br /><br />
+                        Inserte una descripción para la tarea<br />
+                        <textarea ref={(input) => this.getMessage = input} placeholder="Descripción tarea" /><br /><br />
                     </label><br /><br />
                     <label>
-                        Seleccione una columna donde añadirla<br/>
-                        <select onChange ={(e) => this.setState({...this.state, value: e.target.value})}>
+                        Seleccione una columna donde añadirla<br />
+                        <select onChange={(e) => this.setState({ ...this.state, value: e.target.value })}>
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -45,7 +45,7 @@ class Formulario extends Component {
                             <option value="5">5</option>
                         </select>
                     </label><br /><br />
-                    <button>¡Añadir!</button>
+                    <button>Añadir</button>
                 </form>
             </div>
         );

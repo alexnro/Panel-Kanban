@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Modal, Button} from 'react-bootstrap';
+
 import Formulario from '../../../containers/Tareas/Formulario';
 
 class Ventana extends Component {
@@ -10,27 +11,27 @@ class Ventana extends Component {
       this.handleClose = this.handleClose.bind(this);
   
       this.state = {
-        show: false
+        show: false,
+        value: '1'
       };
     }
 
     handleSubmit = (e) => {
-        e.preventDefault();
-        const title = this.getTitle.value;
-        const message = this.getMessage.value;
-        const data = {
-            id: new Date(),
-            title,
-            message,
-            editing: false
-        }
-        this.props.dispatch({
-            type:'ADD_POST', data
-        });
-        this.getTitle.value = '';
-        this.getMessage.value = '';
+      e.preventDefault();
+      const title = this.getTitle;
+      const message = this.getMessage;
+      const data = {
+          id: new Date(),
+          title,
+          message,
+          editing: false,
+          column: this.state.value
+      }
+      this.props.dispatch({
+          type: 'ADD_POST', data
+      });
     }
-  
+
     handleClose() {
       this.setState({ show: false });
     }
@@ -47,6 +48,9 @@ class Ventana extends Component {
           </Button>
   
           <Modal show={this.state.show} onHide={this.handleClose}>
+            <Modal.Header closeButton>
+              Añadir Tarea
+            </Modal.Header>
             <Modal.Body>
                 <Formulario/>
             </Modal.Body>
@@ -54,6 +58,7 @@ class Ventana extends Component {
         </>
       );
     }
-  }
+}
+ 
 
 export default Ventana;

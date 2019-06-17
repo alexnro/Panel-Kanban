@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { Row, Col } from 'react-bootstrap';
 import { connect } from 'react-redux';
-// import { DragDropContextProvider } from 'react-dnd';
-// import HTML5Backend from 'react-dnd-html5-backend';
 
 import './Panel.css';
 import Ventana from '../../components/UI/Modal/Ventana';
@@ -117,12 +115,10 @@ class Panel extends Component {
             </Row>
         );
         return (
-            // <DragDropContextProvider backend={HTML5Backend}>
                 <div className="Contenedor">
                     {columnas}
                     <Ventana />
                 </div>
-            // </DragDropContextProvider>
         );
     };
 }
