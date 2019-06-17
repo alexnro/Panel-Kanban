@@ -28,9 +28,6 @@ class User(Document, UserMixin):
         self.refresh_token = create_refresh_token(identity=self.username)
         return {'access_token': self.access_token, 'refresh_token': self.refresh_token}
 
-    # def get_access_token(self):
-    #     return self.access_token
-
     def get_token(self, expires_in=3600):
         now = datetime.utcnow()
         if self.access_token and self.token_expiration > now + timedelta(seconds=60):
