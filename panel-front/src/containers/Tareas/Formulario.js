@@ -14,12 +14,13 @@ class Formulario extends Component {
             id: new Date(),
             title,
             message,
-            editing: false,
             column: this.state.value
         }
         this.props.dispatch({
             type: 'ADD_POST', data
         });
+        this.getTitle.value = '';	
+        this.getMessage.value = '';
 
     }
 

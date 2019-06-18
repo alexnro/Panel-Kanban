@@ -11,25 +11,8 @@ class Ventana extends Component {
       this.handleClose = this.handleClose.bind(this);
   
       this.state = {
-        show: false,
-        value: '1'
+        show: false
       };
-    }
-
-    handleSubmit = (e) => {
-      e.preventDefault();
-      const title = this.getTitle;
-      const message = this.getMessage;
-      const data = {
-          id: new Date(),
-          title,
-          message,
-          editing: false,
-          column: this.state.value
-      }
-      this.props.dispatch({
-          type: 'ADD_POST', data
-      });
     }
 
     handleClose() {
@@ -43,7 +26,7 @@ class Ventana extends Component {
     render() {
       return (
         <>
-          <Button variant="primary" onClick={this.handleShow}>
+          <Button variant="secondary" onClick={this.handleShow}>
             Añadir Tarea
           </Button>
   
@@ -52,13 +35,12 @@ class Ventana extends Component {
               Añadir Tarea
             </Modal.Header>
             <Modal.Body>
-                <Formulario/>
+              <Formulario/>
             </Modal.Body>
           </Modal>
         </>
       );
     }
 }
- 
 
 export default Ventana;
