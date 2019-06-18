@@ -9,34 +9,6 @@ import Tareas from '../Tareas/Tareas';
 import withAuth from '../../withAuth';
 
 class Panel extends Component {
-    constructor(props) {
-        super();
-        this.state = {
-            columna1: [],
-            columna2: [],
-            columna3: [],
-            columna4: [],
-            columna5: []
-        };
-    }
-
-    añadir() {
-        if (this.post.column === "1") {
-            this.columna1.push(<Tareas />)
-        }
-        if (this.post.column === "2") {
-            this.columna2.push(<Tareas />)
-        }
-        if (this.post.column === "3") {
-            this.columna3.push(<Tareas />)
-        }
-        if (this.post.column === "4") {
-            this.columna4.push(<Tareas />)
-        }
-        if (this.post.column === "5") {
-            this.columna5.push(<Tareas />)
-        }
-    }
 
     render() {
         let columnas = (
@@ -71,7 +43,7 @@ class Panel extends Component {
                             </thead>
                             <tbody>
                                 {this.props.posts.map((post) => (
-                                    post.column === "2" && 
+                                    post.column === "2" &&
                                     <tr key={post.id} column={post.column}>
                                         {post.editing ? <EditComponente post={post} key={post.id} column={post.column} /> :
                                             <Tareas key={post.id} post={post} column={post.column} />}
@@ -144,10 +116,10 @@ class Panel extends Component {
             </Row>
         );
         return (
-            <div className="Contenedor">
-                {columnas}
-                <Ventana />
-            </div>
+                <div className="Contenedor">
+                    {columnas}
+                    <Ventana />
+                </div>
         );
     };
 }

@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Modal, Button} from 'react-bootstrap';
+
 import Formulario from '../../../containers/Tareas/Formulario';
 
 class Ventana extends Component {
@@ -15,22 +16,12 @@ class Ventana extends Component {
     }
 
     handleSubmit = (e) => {
-        e.preventDefault();
-        const title = this.getTitle.value;
-        const message = this.getMessage.value;
-        const data = {
-            id: new Date(),
-            title,
-            message,
-            editing: false
-        }
-        this.props.dispatch({
-            type:'ADD_POST', data
-        });
-        this.getTitle.value = '';
-        this.getMessage.value = '';
+      e.preventDefault();
+      this.props.dispatch({
+        type: 'ADD_POST'
+    });
     }
-  
+
     handleClose() {
       this.setState({ show: false });
     }
@@ -42,18 +33,21 @@ class Ventana extends Component {
     render() {
       return (
         <>
-          <Button variant="primary" onClick={this.handleShow}>
+          <Button variant="secondary" onClick={this.handleShow}>
             Añadir Tarea
           </Button>
   
           <Modal show={this.state.show} onHide={this.handleClose}>
+            <Modal.Header closeButton>
+              Añadir Tarea
+            </Modal.Header>
             <Modal.Body>
-                <Formulario/>
+              <Formulario/>
             </Modal.Body>
           </Modal>
         </>
       );
     }
-  }
+}
 
 export default Ventana;
