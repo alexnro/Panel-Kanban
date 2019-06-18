@@ -15,6 +15,13 @@ class Ventana extends Component {
       };
     }
 
+    handleSubmit = (e) => {
+      e.preventDefault();
+      this.props.dispatch({
+        type: 'ADD_POST'
+    });
+    }
+
     handleClose() {
       this.setState({ show: false });
     }

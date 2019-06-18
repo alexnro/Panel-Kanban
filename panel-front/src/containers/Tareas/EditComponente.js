@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Panel from '../Panel/Panel';
+import {Form, Button} from 'react-bootstrap';
 
 class EditComponente extends Component {
     state= {
-        value: '1'
+        value: '',
+        column: ''
     }
 
     handleSubmit = (e) => {
@@ -12,6 +13,7 @@ class EditComponente extends Component {
         const newTitle = this.getTitle.value;
         const newMessage = this.getMessage.value;
         const newColumn = this.state.value;
+        this.setState({...this.state, column: newColumn})
         const data = {
             id: new Date(),
             newTitle,
@@ -26,27 +28,27 @@ class EditComponente extends Component {
     render() {
         return (
             <td>
-                <form onSubmit={this.handleSubmit}>
-                    <label>
-                        Inserte un título para la tarea<br/>
-                        <input required type="text" ref={(input)=>this.getTitle = input} defaultValue={this.props.post.title} placeholder="Titulo tarea" /><br /><br />
-                    </label><br /><br />
-                    <label>
-                        Inserte una descripción para la tarea<br/>
-                        <textarea ref={(input)=>this.getMessage = input} defaultValue={this.props.post.message} placeholder="Descripción tarea" /><br /><br />
-                    </label><br /><br />
-                    <label>
-                        Seleccione una columna donde cambiarla<br/>
-                        <select onChange ={(e) => this.setState({...this.state, value: e.target.value})}>
+                <Form onSubmit={this.handleSubmit}>
+                    <Form.Group>
+                        <Form.Label>Inserte un título para la tarea</Form.Label>
+                        <Form.Control type="text" ref={(input)=>this.getTitle = input} defaultValue={this.props.post.title} placeholder="Titulo tarea" />
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label>Inserte una descripción para la tarea</Form.Label>
+                        <Form.Control as="textarea" ref={(input)=>this.getMessage = input} defaultValue={this.props.post.message} placeholder="Descripción tarea" />
+                    </Form.Group>
+                    <Form.Group onChange={(e) => this.setState({ ...this.state, value: this.state.column })}>
+                        <Form.Label>Seleccione una columna donde añadir la tarea</Form.Label><br />
+                        <Form.Control as="select">
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
                             <option value="4">4</option>
                             <option value="5">5</option>
-                        </select>
-                    </label><br /><br />
-                    <button onClick={Panel}>Actualizar</button>
-                </form>
+                        </Form.Control>
+                    </Form.Group>
+                    <Button variant="outline-secondary" type="submit">Añadir</Button>
+                </Form>
             </td>
         );
     }

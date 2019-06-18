@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import { Form, Button } from 'react-bootstrap';
+
+
 class Formulario extends Component {
     state = {
         value: '1'
@@ -19,34 +22,34 @@ class Formulario extends Component {
         this.props.dispatch({
             type: 'ADD_POST', data
         });
-        this.getTitle.value = '';	
+        this.getTitle.value = '';
         this.getMessage.value = '';
     }
 
     render() {
         return (
             <div>
-                <form onSubmit={this.handleSubmit}>
-                    <label>
-                        Inserte un título para la tarea<br />
-                        <input required type="text" ref={(input) => this.getTitle = input} placeholder="Titulo tarea" />
-                    </label><br /><br />
-                    <label>
-                        Inserte una descripción para la tarea<br />
-                        <textarea ref={(input) => this.getMessage = input} placeholder="Descripción tarea" /><br /><br />
-                    </label><br /><br />
-                    <label>
-                        Seleccione una columna donde añadirla<br />
-                        <select onChange={(e) => this.setState({ ...this.state, value: e.target.value })}>
+                <Form onSubmit={this.handleSubmit}>
+                    <Form.Group>
+                        <Form.Label>Inserte un título para la tarea</Form.Label>
+                        <Form.Control required type="text" ref={(input) => this.getTitle = input} placeholder="Titulo tarea" />
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label>Inserte una descripción para la tarea</Form.Label>
+                        <Form.Control required as="textarea" ref={(input) => this.getMessage = input} placeholder="Descripción tarea" />
+                    </Form.Group>
+                    <Form.Group onChange={(e) => this.setState({ ...this.state, value: e.target.value })}>
+                        <Form.Label>Seleccione una columna donde añadir la tarea</Form.Label><br />
+                        <Form.Control as="select">
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
                             <option value="4">4</option>
                             <option value="5">5</option>
-                        </select>
-                    </label><br /><br />
-                    <button>Añadir</button>
-                </form>
+                        </Form.Control>
+                    </Form.Group>
+                    <Button variant="outline-secondary" type="submit">Añadir</Button>
+                </Form>
             </div>
         );
     }
