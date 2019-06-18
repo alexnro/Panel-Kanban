@@ -21,7 +21,6 @@ class Formulario extends Component {
         });
         this.getTitle.value = '';	
         this.getMessage.value = '';
-
     }
 
     render() {

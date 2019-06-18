@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Panel from '../Panel/Panel';
 
 class EditComponente extends Component {
     state= {
@@ -44,7 +45,7 @@ class EditComponente extends Component {
                             <option value="5">5</option>
                         </select>
                     </label><br /><br />
-                    <button>Actualizar</button>
+                    <button onClick={Panel}>Actualizar</button>
                 </form>
             </td>
         );
