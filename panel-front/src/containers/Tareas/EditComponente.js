@@ -4,7 +4,7 @@ import {Form, Button} from 'react-bootstrap';
 
 class EditComponente extends Component {
     state= {
-        value: '',
+        value: '1',
         column: ''
     }
 
@@ -37,7 +37,7 @@ class EditComponente extends Component {
                         <Form.Label>Inserte una descripción para la tarea</Form.Label>
                         <Form.Control as="textarea" ref={(input)=>this.getMessage = input} defaultValue={this.props.post.message} placeholder="Descripción tarea" />
                     </Form.Group>
-                    <Form.Group onChange={(e) => this.setState({ ...this.state, value: this.state.column })}>
+                    <Form.Group onChange={(e) => this.setState({ ...this.state, value: e.target.value })}>
                         <Form.Label>Seleccione una columna donde añadir la tarea</Form.Label><br />
                         <Form.Control as="select">
                             <option value="1">1</option>
