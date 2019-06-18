@@ -2,7 +2,7 @@ from flask import request
 from app.auth import bp
 from app.models import User
 from werkzeug.security import generate_password_hash
-from flask_login import login_user, current_user
+from flask_login import login_user, current_user, logout_user
 from flask_httpauth import HTTPBasicAuth, HTTPTokenAuth
 
 
@@ -39,6 +39,15 @@ def register():
     return user.email
 
 
-@bp.route('/checkToken')
-def get_token():
-    return User(current_user).get_token()
+@bp.route('/logout', methods=['POST', 'GET'])
+def logout():
+    email = request.args.get("email")
+    print(email)
+    User.objects.get(email=email).update(unset__access_token=1)
+    logout_user()
+    return ''
+
+
+# @bp.route('/checkToken')
+# def get_token():
+#     return User(current_user).get_token()

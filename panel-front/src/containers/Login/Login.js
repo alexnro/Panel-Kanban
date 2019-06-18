@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import axios from 'axios';
 
@@ -26,6 +27,12 @@ class Login extends Component {
         });
     }
 
+    getJSON = a => {
+        if (typeof a !== "string" || !a || a == null) return null;
+        a = a.replace(/\r\n|\r|\n|\t/g, '').replace(/\\/g, '/');
+        return new Function("return " + a)();
+    }
+
     submitHandler = event => {
         event.preventDefault();
         const data = {
@@ -35,16 +42,15 @@ class Login extends Component {
         const url = '/login';
         axios.post(url, data)
             .then(response => {
-                console.log(data);
-                console.log(response);
+                let token_data = this.getJSON(response.data);
                 if (response.data !== "Usuario incorrecto") {
                     this.setState({
                         ...this.state,
                         isValid: true
                     });
                     this.loginHandler();
-                    console.log(response.data);
-                    localStorage.setItem('token', response.data);
+                    localStorage.setItem('token', token_data);
+                    localStorage.setItem('email', this.state.email);
                 }
             })
             .catch(error => {
@@ -54,9 +60,9 @@ class Login extends Component {
     }
 
     loginHandler = () => {
-        window.location = '/panel';
+        // window.location = '/panel';
     }
-    
+
     linkToRegister = () => {
         window.location = '/register';
     }

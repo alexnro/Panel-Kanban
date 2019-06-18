@@ -5,7 +5,9 @@ import axios from 'axios';
 class Logout extends Component {
     
     deleteTokenHandler = () => {
-        axios.post('/logout', localStorage.getItem("token"))
+        let email = localStorage.getItem("email");
+        const queryParams = '?email=' + email;
+        axios.post('/logout' + queryParams)
             .then(response => {
                 console.log(response);
             })
@@ -17,6 +19,7 @@ class Logout extends Component {
     render() {
         this.deleteTokenHandler();
         localStorage.removeItem("token");
+        localStorage.removeItem("email");
         return <Redirect to="/" />
     }
 }
