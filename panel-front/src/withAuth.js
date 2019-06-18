@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 
@@ -11,21 +11,19 @@ export default function withAuth(ComponentToProtect) {
                 redirect: false,
             };
         }
+
         componentDidMount() {
-            axios.get('/checkToken')
-                .then(res => {
-                    if (res.status === 200) {
-                        this.setState({ loading: false });
-                    } else {
-                        const error = new Error(res.error);
-                        throw error;
-                    }
+            let queryParams = '?email=' + localStorage.getItem("email");
+            axios.get('/checkToken' + queryParams)
+                .then(response => {
+                    this.setState({ loading: false });
                 })
                 .catch(err => {
                     console.error(err);
                     this.setState({ loading: false, redirect: true });
                 });
         }
+
         render() {
             const { loading, redirect } = this.state;
             if (loading) {
@@ -35,9 +33,9 @@ export default function withAuth(ComponentToProtect) {
                 return <Redirect to="/login" />;
             }
             return (
-                <React.Fragment>
+                <Fragment>
                     <ComponentToProtect {...this.props} />
-                </React.Fragment>
+                </Fragment>
             );
         }
     }

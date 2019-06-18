@@ -41,8 +41,8 @@ class User(Document, UserMixin):
 
     @staticmethod
     def check_token(token):
-        user = User.objects.get(token=token)
-        if user is None or user.token_expiration < datetime.utcnow():
+        user = User.objects.get(access_token=token)
+        if user is None:
             return None
         return user
 

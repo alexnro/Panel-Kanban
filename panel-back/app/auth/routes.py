@@ -48,6 +48,9 @@ def logout():
     return ''
 
 
-# @bp.route('/checkToken')
-# def get_token():
-#     return User(current_user).get_token()
+@bp.route('/checkToken')
+def check_token():
+    email = request.args.get("email")
+    print(email)
+    user = User.objects.get(email=email)
+    return str(user.access_token)
