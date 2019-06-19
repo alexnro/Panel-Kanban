@@ -30,15 +30,15 @@ class EditComponente extends Component {
             <td>
                 <Form onSubmit={this.handleSubmit}>
                     <Form.Group>
-                        <Form.Label>Inserte un título para la tarea</Form.Label>
+                        {/* <Form.Label>Inserte un nuevo título</Form.Label> */}
                         <Form.Control type="text" ref={(input)=>this.getTitle = input} defaultValue={this.props.post.title} placeholder="Titulo tarea" />
                     </Form.Group>
                     <Form.Group>
-                        <Form.Label>Inserte una descripción para la tarea</Form.Label>
+                        {/* <Form.Label>Inserte una nueva descripción</Form.Label> */}
                         <Form.Control as="textarea" ref={(input)=>this.getMessage = input} defaultValue={this.props.post.message} placeholder="Descripción tarea" />
                     </Form.Group>
                     <Form.Group onChange={(e) => this.setState({ ...this.state, value: e.target.value })}>
-                        <Form.Label>Seleccione una columna donde añadir la tarea</Form.Label><br />
+                        {/* <Form.Label>Seleccione una nueva columna</Form.Label><br /> */}
                         <Form.Control as="select">
                             <option value="1">1</option>
                             <option value="2">2</option>
