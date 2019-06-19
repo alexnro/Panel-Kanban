@@ -2,14 +2,20 @@ import React, { Component } from 'react';
 
 import axios from 'axios';
 
-import './Login.css';
-
-class Login extends Component {
+class Register extends Component {
 
     state = {
+        username: '',
         email: '',
         password: '',
-        isValid: false
+        confirmPassword: ''
+    }
+
+    usernameHandler = event => {
+        this.setState({
+            ...this.state,
+            username: event.target.value
+        })
     }
 
     emailHandler = event => {
@@ -26,31 +32,26 @@ class Login extends Component {
         });
     }
 
-    getJSON = a => {
-        if (typeof a !== "string" || !a || a == null) return null;
-        a = a.replace(/\r\n|\r|\n|\t/g, '').replace(/\\/g, '/');
-        return new Function("return " + a)();
+    confirmPasswordHandler = event => {
+        this.setState({
+            ...this.state,
+            confirmPassword: event.target.value
+        });
     }
 
     submitHandler = event => {
         event.preventDefault();
         const data = {
+            Username: this.state.username,
             Email: this.state.email,
-            Password: this.state.password
+            Password: this.state.password,
+            ConfirmPassword: this.state.confirmPassword
         }
-        const url = '/login';
+        const url = '/register';
         axios.post(url, data)
             .then(response => {
-                let token_data = this.getJSON(response.data);
-                if (response.data !== "Usuario incorrecto") {
-                    this.setState({
-                        ...this.state,
-                        isValid: true
-                    });
-                    this.loginHandler();
-                    localStorage.setItem('token', token_data);
-                    localStorage.setItem('email', this.state.email);
-                }
+                console.log(response);
+                console.log(data);
             })
             .catch(error => {
                 console.log(error);
@@ -58,19 +59,18 @@ class Login extends Component {
             });
     }
 
-    loginHandler = () => {
-        window.location = '/panel';
-    }
-
-    linkToRegister = () => {
-        window.location = '/register';
+    linkToLogin = () => {
+        window.location = '/login';
     }
 
     render() {
-
         return (
             <div className="formulario">
                 <form onSubmit={this.submitHandler}>
+                    <div className="form-group">
+                        <label htmlFor="username">Nombre de usuario</label>
+                        <input onChange={this.usernameHandler} id="username" type="text" name="username" className="form-control" aria-describedby="emailHelp" placeholder="Nombre de usuario" required />
+                    </div>
                     <div className="form-group">
                         <label htmlFor="email">Correo electrónico</label>
                         <input onChange={this.emailHandler} id="email" type="email" name="email" className="form-control" aria-describedby="emailHelp" placeholder="Correo electrónico" required />
@@ -79,12 +79,15 @@ class Login extends Component {
                         <label htmlFor="password">Contraseña</label>
                         <input onChange={this.passwordHandler} id="password" type="password" name="password" className="form-control" placeholder="Contraseña" required />
                     </div>
-                    <button type="submit" className="btn btn-primary">Iniciar sesión</button>
-                    <input type="button" id="registerButton" className="btn btn-secondary" onClick={this.linkToRegister} value="Registrarse" />
+                    <div className="form-group">
+                        <label htmlFor="confirmPpassword">Confirmar contraseña</label>
+                        <input onChange={this.confirmPasswordHandler} id="confirmPassword" type="password" name="confirmPassword" className="form-control" placeholder="Confirmar contraseña" required />
+                    </div>
+                    <button type="submit" className="btn btn-primary">Registrarse</button>
                 </form>
             </div>
         );
-    };
-}
+    }
+};
 
-export default Login;
+export default Register;
