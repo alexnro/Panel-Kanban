@@ -17,6 +17,7 @@ const addPostRequest = data => {
 }
 
 const deletePostRequest = post_id => {
+    console.log(post_id);
     let queryParams = '?task_id=' + post_id;
     axios.post('/deleteTask' + queryParams)
         .then(response => {
@@ -34,7 +35,7 @@ const postReducer = (state = [], action) => {
             addPostRequest(action.data);
             return state.concat([action.data]);
         case 'DELETE_POST':
-            deletePostRequest(action.data.id);
+            deletePostRequest(action.id);
             return state.filter((post) => post.id !== action.id);
         case 'EDIT_POST':
             return state.map((post) => post.id === action.id ? { ...post, editing: !post.editing } : post)

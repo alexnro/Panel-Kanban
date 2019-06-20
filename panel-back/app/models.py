@@ -10,7 +10,7 @@ import os
 
 
 class User(Document, UserMixin):
-    username = fields.StringField(required=True)
+    username = fields.StringField(primary_key=True, required=True)
     email = fields.StringField(required=True)
     password_hash = fields.StringField()
     access_token = fields.StringField()
@@ -56,7 +56,7 @@ def load_user(username):
 
 
 class Task(Document):
-    _id = fields.StringField()
+    _id = fields.StringField(primary_key=True)
     title = fields.StringField()
     message = fields.StringField()
     column = fields.StringField()

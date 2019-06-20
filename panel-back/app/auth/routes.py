@@ -69,7 +69,6 @@ def get_new_task_id():
 @bp.route('/addTask', methods=['POST', 'GET'])
 def add_task():
     task_id = request.args.get("task_id")
-    print(task_id)
     title = request.args.get("title")
     message = request.args.get("message")
     column = request.args.get("column")
@@ -81,5 +80,6 @@ def add_task():
 @bp.route('/deleteTask', methods=['POST', 'GET'])
 def delete_task():
     task_id = request.args.get('task_id')
+    print(task_id)
     Task.objects.get(_id=task_id).delete()
-    return 'borrao'
+    return 'Task deleted'
