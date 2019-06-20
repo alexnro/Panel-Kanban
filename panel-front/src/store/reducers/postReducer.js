@@ -1,8 +1,41 @@
+import axios from 'axios';
+
+
+const addPostRequest = data => {
+    let task_id = localStorage.getItem("task_id");
+    let title = data.title;
+    let message = data.message;
+    let column = data.column;
+    let queryParams = '?task_id=' + task_id + '&title=' + title + '&message=' + message + '&column=' + column;
+    axios.post('/addTask' + queryParams)
+        .then(response => {
+            console.log(response);
+        })
+        .catch(error => {
+            console.log(error);
+        })
+    localStorage.removeItem("task_id");
+}
+
+const deletePostRequest = post_id => {
+    let queryParams = '?task_id=' + post_id;
+    axios.post('/deleteTask' + queryParams)
+        .then(response => {
+            console.log(response);
+        })
+        .catch(error => {
+            console.log(error);
+        })
+}
+
+
 const postReducer = (state = [], action) => {
     switch (action.type) {
         case 'ADD_POST':
+            addPostRequest(action.data);
             return state.concat([action.data]);
         case 'DELETE_POST':
+            deletePostRequest(action.data.id);
             return state.filter((post) => post.id !== action.id);
         case 'EDIT_POST':
             return state.map((post) => post.id === action.id ? { ...post, editing: !post.editing } : post)

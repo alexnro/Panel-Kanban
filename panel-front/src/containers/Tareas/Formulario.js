@@ -1,24 +1,42 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import axios from 'axios';
 
 import { Form, Button } from 'react-bootstrap';
 
 
 class Formulario extends Component {
     state = {
-        value: '1'
+        value: '1',
+        id: ''
+    }
+
+    getNewTaskId = () => {
+        axios.get('/getNewTaskId')
+            .then(response => {
+                console.log(response);
+                console.log(typeof response.data);
+                this.setState({...this.state, id: response.data});
+                localStorage.setItem("task_id", response.data);
+                return response.data;
+            })
+            .catch(error => {
+                console.log(error);
+            })
     }
 
     handleSubmit = (e) => {
         e.preventDefault();
         const title = this.getTitle.value;
         const message = this.getMessage.value;
+        this.getNewTaskId();
         const data = {
-            id: new Date(),
+            id: this.state.id,
             title,
             message,
             column: this.state.value
         }
+        console.log(typeof id);
         this.props.dispatch({
             type: 'ADD_POST', data
         });

@@ -1,8 +1,8 @@
 from flask import request
 from app.auth import bp
-from app.models import User
+from app.models import User, Task
 from werkzeug.security import generate_password_hash
-from flask_login import login_user, current_user, logout_user
+from flask_login import login_user, logout_user
 from flask_httpauth import HTTPBasicAuth, HTTPTokenAuth
 
 
@@ -45,12 +45,41 @@ def logout():
     print(email)
     User.objects.get(email=email).update(unset__access_token=1)
     logout_user()
-    return ''
+    return 'Logged out'
 
 
-@bp.route('/checkToken')
+@bp.route('/checkToken', methods=['GET'])
 def check_token():
     email = request.args.get("email")
     print(email)
     user = User.objects.get(email=email)
     return str(user.access_token)
+
+
+@bp.route('/getNewTaskId', methods=['GET'])
+def get_new_task_id():
+    tasks = Task.objects
+    aux = 0
+    for task in tasks:
+        aux += 1
+    print(aux)
+    return str(aux)
+
+
+@bp.route('/addTask', methods=['POST', 'GET'])
+def add_task():
+    task_id = request.args.get("task_id")
+    print(task_id)
+    title = request.args.get("title")
+    message = request.args.get("message")
+    column = request.args.get("column")
+    task = Task(_id=task_id, title=title, message=message, column=column)
+    task.save()
+    return str(task)
+
+
+@bp.route('/deleteTask', methods=['POST', 'GET'])
+def delete_task():
+    task_id = request.args.get('task_id')
+    Task.objects.get(_id=task_id).delete()
+    return 'borrao'

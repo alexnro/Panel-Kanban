@@ -53,3 +53,10 @@ def load_user(username):
     if not user:
         return None
     return User(user['username'])
+
+
+class Task(Document):
+    _id = fields.IntField()
+    title = fields.StringField()
+    message = fields.StringField()
+    column = fields.StringField()
