@@ -2,7 +2,7 @@ import axios from 'axios';
 
 
 const addPostRequest = data => {
-    let task_id = localStorage.getItem("task_id");
+    let task_id = data.id;
     let title = data.title;
     let message = data.message;
     let column = data.column;
@@ -13,8 +13,7 @@ const addPostRequest = data => {
         })
         .catch(error => {
             console.log(error);
-        })
-    localStorage.removeItem("task_id");
+        });
 }
 
 const deletePostRequest = post_id => {

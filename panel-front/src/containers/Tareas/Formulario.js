@@ -11,27 +11,12 @@ class Formulario extends Component {
         id: ''
     }
 
-    getNewTaskId = () => {
-        axios.get('/getNewTaskId')
-            .then(response => {
-                console.log(response);
-                console.log(typeof response.data);
-                this.setState({...this.state, id: response.data});
-                localStorage.setItem("task_id", response.data);
-                return response.data;
-            })
-            .catch(error => {
-                console.log(error);
-            })
-    }
-
     handleSubmit = (e) => {
         e.preventDefault();
         const title = this.getTitle.value;
         const message = this.getMessage.value;
-        this.getNewTaskId();
         const data = {
-            id: this.state.id,
+            id: String(new Date()),
             title,
             message,
             column: this.state.value

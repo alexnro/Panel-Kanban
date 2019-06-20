@@ -56,7 +56,7 @@ def load_user(username):
 
 
 class Task(Document):
-    _id = fields.IntField()
+    _id = fields.StringField()
     title = fields.StringField()
     message = fields.StringField()
     column = fields.StringField()
