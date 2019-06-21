@@ -6,13 +6,12 @@ import Register from './containers/Register/Register';
 import Panel from './containers/Panel/Panel';
 import Logout from './containers/Logout/Logout';
 import Navegacion from './containers/Header/Navegacion';
-// import Lateral from './containers/Header/Lateral';
-
+import Sidebar from './containers/Header/Sidebar';
 
 const App = () => (
 
   <div>
-    {/* <Lateral /> */}
+    <Sidebar />
     <Navegacion />
     <Route exact path="/login" component={Login} />
     <Route exact path="/register" component={Register} />

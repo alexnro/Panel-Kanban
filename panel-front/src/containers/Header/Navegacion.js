@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
+// import { slide as Menu } from 'react-burger-menu';
+import Sidebar from '../Header/Sidebar';
 
 import './Navegacion.css';
 
 
 class Navegacion extends Component {
 
-    // conjunto() {
+    //  conjunto() {
     //     return (
     //         <div>
     //             <nav className="navbar navbar-expand-md bg-dark navbar-dark">
@@ -73,7 +75,7 @@ class Navegacion extends Component {
 
         return (
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-                <Navbar.Brand href="/">Logo</Navbar.Brand>
+                <Navbar.Brand>Logo</Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="mr-auto">

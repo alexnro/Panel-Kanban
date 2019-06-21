@@ -115,10 +115,12 @@ class Panel extends Component {
             </Row>
         );
         return (
+            <div>
                 <div className="Contenedor">
                     {columnas}
                     <Ventana />
                 </div>
+            </div>
         );
     };
 }
