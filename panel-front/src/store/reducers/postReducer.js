@@ -66,7 +66,17 @@ const postReducer = (state = [], action) => {
                     updatePostRequest(data);
                     return data;
                 } else return post;
-            })
+            });
+        case 'CANCEL_EDIT':
+            return state.map((post) => {
+                return {
+                    ...post,
+                    title: post.title,
+                    message: post.message,
+                    editing: !post.editing,
+                    column: post.column
+                }
+            });
         default:
             return state;
     }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Row, Col } from 'react-bootstrap';
 import { connect } from 'react-redux';
-
+import withAuth from '../../withAuth';
 import './Panel.css';
 import Ventana from '../../components/UI/Modal/Ventana';
 import EditComponente from '../Tareas/EditComponente';
@@ -131,5 +131,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(Panel);
-// export default connect(mapStateToProps)(withAuth(Panel));
+export default connect(mapStateToProps)(withAuth(Panel));
