@@ -16,13 +16,11 @@ def login():
     email = request_data.get("Email")
     password = request_data.get("Password")
     user = User.objects.get(email=email)
-    print(user.username)
     if user is None or not user.check_password(password):
         return "Usuario incorrecto"
     else:
         login_user(user)
         tokens = user.create_token()
-        print(tokens.get("access_token"))
         user.update(access_token=tokens.get("access_token"))
         return str(tokens)
 
@@ -42,7 +40,6 @@ def register():
 @bp.route('/logout', methods=['POST', 'GET'])
 def logout():
     email = request.args.get("email")
-    print(email)
     User.objects.get(email=email).update(unset__access_token=1)
     logout_user()
     return 'Logged out'
@@ -51,7 +48,6 @@ def logout():
 @bp.route('/checkToken', methods=['GET'])
 def check_token():
     email = request.args.get("email")
-    print(email)
     user = User.objects.get(email=email)
     return str(user.access_token)
 
@@ -62,7 +58,6 @@ def get_new_task_id():
     aux = 0
     for task in tasks:
         aux += 1
-    print(aux)
     return str(aux)
 
 
@@ -80,6 +75,16 @@ def add_task():
 @bp.route('/deleteTask', methods=['POST', 'GET'])
 def delete_task():
     task_id = request.args.get('task_id')
-    print(task_id)
     Task.objects.get(_id=task_id).delete()
     return 'Task deleted'
+
+
+@bp.route('/updateTask', methods=['POST', 'GET'])
+def update_task():
+    task_id = request.args.get("task_id")
+    title = request.args.get("title")
+    message = request.args.get("message")
+    column = request.args.get("column")
+    task = Task.objects.get(_id=task_id)
+    task.update(title=title, message=message, column=column)
+    return 'Task updated'

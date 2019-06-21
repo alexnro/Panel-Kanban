@@ -17,9 +17,23 @@ const addPostRequest = data => {
 }
 
 const deletePostRequest = post_id => {
-    console.log(post_id);
     let queryParams = '?task_id=' + post_id;
     axios.post('/deleteTask' + queryParams)
+        .then(response => {
+            console.log(response);
+        })
+        .catch(error => {
+            console.log(error);
+        })
+}
+
+const updatePostRequest = data => {
+    let task_id = data.id;
+    let title = data.title;
+    let message = data.message;
+    let column = data.column;
+    let queryParams = '?task_id=' + task_id + '&title=' + title + '&message=' + message + '&column=' + column;
+    axios.post('/updateTask' + queryParams)
         .then(response => {
             console.log(response);
         })
@@ -38,17 +52,19 @@ const postReducer = (state = [], action) => {
             deletePostRequest(action.id);
             return state.filter((post) => post.id !== action.id);
         case 'EDIT_POST':
-            return state.map((post) => post.id === action.id ? { ...post, editing: !post.editing } : post)
+            return state.map((post) => post.id === action.id ? { ...post, editing: !post.editing } : post);
         case 'UPDATE':
             return state.map((post) => {
                 if (post.id === action.id) {
-                    return {
+                    let data = {
                         ...post,
                         title: action.data.newTitle,
                         message: action.data.newMessage,
                         editing: !post.editing,
                         column: action.data.newColumn
                     }
+                    updatePostRequest(data);
+                    return data;
                 } else return post;
             })
         default:
