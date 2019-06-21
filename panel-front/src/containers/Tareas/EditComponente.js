@@ -15,7 +15,6 @@ class EditComponente extends Component {
         const newColumn = this.state.value;
         this.setState({ ...this.state, column: newColumn })
         const data = {
-            id: new Date(),
             newTitle,
             newMessage,
             newColumn
@@ -28,7 +27,7 @@ class EditComponente extends Component {
     handleCancel = (e) => {
         e.preventDefault();
         this.props.dispatch({
-            type: 'CANCEL_EDIT'
+            type: 'CANCEL_EDIT', data: this.props
         })
     }
 
