@@ -6,7 +6,6 @@ import './Panel.css';
 import Ventana from '../../components/UI/Modal/Ventana';
 import EditComponente from '../Tareas/EditComponente';
 import Tareas from '../Tareas/Tareas';
-import withAuth from '../../withAuth';
 
 class Panel extends Component {
 
@@ -116,10 +115,12 @@ class Panel extends Component {
             </Row>
         );
         return (
+            <div>
                 <div className="Contenedor">
                     {columnas}
                     <Ventana />
                 </div>
+            </div>
         );
     };
 }
@@ -130,4 +131,5 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(withAuth(Panel));
+export default connect(mapStateToProps)(Panel);
+// export default connect(mapStateToProps)(withAuth(Panel));
