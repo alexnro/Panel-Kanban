@@ -3,12 +3,10 @@ import { slide as Menu } from 'react-burger-menu';
 
 import './Sidebar.css';
 
-export default props => {
+export default Sidebar => {
     return (
-        <Menu {...props}>
-            <a href="/login">Login</a>
+        <Menu>
             <a href="/panel">Panel</a>
-            <a href="/logout">Logout</a>
         </Menu>
     );
 }
