@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import { Row, Col } from 'react-bootstrap';
 import { connect } from 'react-redux';
-
+import withAuth from '../../withAuth';
 import './Panel.css';
 import Ventana from '../../components/UI/Modal/Ventana';
 import EditComponente from '../Tareas/EditComponente';
@@ -9,7 +10,21 @@ import Tareas from '../Tareas/Tareas';
 
 class Panel extends Component {
 
+    getTasks = () => {
+        axios.get('/getTasks')
+            .then(response => {
+                console.log(response);
+                return response.data;
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    }
+
     render() {
+
+        this.getTasks();
+
         let columnas = (
             <Row>
                 <Col>
@@ -117,6 +132,7 @@ class Panel extends Component {
         return (
             <div>
                 <div className="Contenedor">
+                    {console.log(columnas)}
                     {columnas}
                     <Ventana />
                 </div>

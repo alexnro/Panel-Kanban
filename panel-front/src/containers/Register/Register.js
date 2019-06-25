@@ -57,6 +57,7 @@ class Register extends Component {
                 console.log(error);
                 console.log(data);
             });
+        this.linkToLogin();
     }
 
     linkToLogin = () => {

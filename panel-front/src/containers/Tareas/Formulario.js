@@ -6,7 +6,8 @@ import { Form, Button } from 'react-bootstrap';
 
 class Formulario extends Component {
     state = {
-        value: '1'
+        value: '1',
+        id: ''
     }
 
     handleSubmit = (e) => {
@@ -14,11 +15,12 @@ class Formulario extends Component {
         const title = this.getTitle.value;
         const message = this.getMessage.value;
         const data = {
-            id: new Date(),
+            id: String(new Date()),
             title,
             message,
             column: this.state.value
         }
+        console.log(typeof id);
         this.props.dispatch({
             type: 'ADD_POST', data
         });

@@ -2,7 +2,6 @@ from app import login
 from flask_login import UserMixin
 from werkzeug.security import check_password_hash
 from flask_jwt_extended import create_access_token, create_refresh_token
-from json import dumps
 from datetime import datetime, timedelta
 from mongoengine import Document, fields
 import base64
@@ -53,3 +52,10 @@ def load_user(username):
     if not user:
         return None
     return User(user['username'])
+
+
+class Task(Document):
+    _id = fields.StringField(primary_key=True)
+    title = fields.StringField()
+    message = fields.StringField()
+    column = fields.StringField()

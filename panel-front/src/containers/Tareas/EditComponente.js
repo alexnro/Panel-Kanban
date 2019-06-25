@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {Form, Button} from 'react-bootstrap';
+import { Form, Button, ButtonGroup } from 'react-bootstrap';
 
 class EditComponente extends Component {
-    state= {
+    state = {
         value: '1',
         column: ''
     }
@@ -13,16 +13,22 @@ class EditComponente extends Component {
         const newTitle = this.getTitle.value;
         const newMessage = this.getMessage.value;
         const newColumn = this.state.value;
-        this.setState({...this.state, column: newColumn})
+        this.setState({ ...this.state, column: newColumn })
         const data = {
-            id: new Date(),
             newTitle,
             newMessage,
             newColumn
         }
         this.props.dispatch({
-            type:'UPDATE', id: this.props.post.id, data: data
+            type: 'UPDATE', id: this.props.post.id, data: data
         });
+    }
+
+    handleCancel = (e) => {
+        e.preventDefault();
+        this.props.dispatch({
+            type: 'CANCEL_EDIT', data: this.props
+        })
     }
 
     render() {
@@ -30,15 +36,15 @@ class EditComponente extends Component {
             <td>
                 <Form onSubmit={this.handleSubmit}>
                     <Form.Group>
-                        {/* <Form.Label>Inserte un nuevo título</Form.Label> */}
-                        <Form.Control type="text" ref={(input)=>this.getTitle = input} defaultValue={this.props.post.title} placeholder="Titulo tarea" />
+                        <Form.Label>Inserte un nuevo título</Form.Label>
+                        <Form.Control type="text" ref={(input) => this.getTitle = input} defaultValue={this.props.post.title} placeholder="Titulo tarea" />
                     </Form.Group>
                     <Form.Group>
-                        {/* <Form.Label>Inserte una nueva descripción</Form.Label> */}
-                        <Form.Control as="textarea" ref={(input)=>this.getMessage = input} defaultValue={this.props.post.message} placeholder="Descripción tarea" />
+                        <Form.Label>Inserte una nueva descripción</Form.Label>
+                        <Form.Control as="textarea" ref={(input) => this.getMessage = input} defaultValue={this.props.post.message} placeholder="Descripción tarea" />
                     </Form.Group>
                     <Form.Group onChange={(e) => this.setState({ ...this.state, value: e.target.value })}>
-                        {/* <Form.Label>Seleccione una nueva columna</Form.Label><br /> */}
+                        <Form.Label>Seleccione una nueva columna</Form.Label><br />
                         <Form.Control as="select">
                             <option value="1">1</option>
                             <option value="2">2</option>
@@ -47,7 +53,10 @@ class EditComponente extends Component {
                             <option value="5">5</option>
                         </Form.Control>
                     </Form.Group>
-                    <Button variant="outline-secondary" type="submit">Añadir</Button>
+                    <ButtonGroup>
+                        <Button variant="outline-secondary" type="submit">Añadir</Button>
+                        <Button variant="outline-secondary" onClick={this.handleCancel} >Cancelar</Button>
+                    </ButtonGroup>
                 </Form>
             </td>
         );
