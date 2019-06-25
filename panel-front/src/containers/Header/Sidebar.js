@@ -7,6 +7,7 @@ export default Sidebar => {
     return (
         <Menu>
             <a href="/panel">Panel</a>
+            <a href="/perfil">Perfil</a>
         </Menu>
     );
 }

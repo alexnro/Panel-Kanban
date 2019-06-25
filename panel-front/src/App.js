@@ -7,6 +7,7 @@ import Panel from './containers/Panel/Panel';
 import Logout from './containers/Logout/Logout';
 import Navegacion from './containers/Header/Navegacion';
 import Sidebar from './containers/Header/Sidebar';
+import Perfil from './containers/Usuario/Perfil';
 
 const App = () => (
 
@@ -17,6 +18,7 @@ const App = () => (
     <Route exact path="/register" component={Register} />
     <Route path="/panel" component={Panel} />
     <Route path="/logout" component={Logout} />
+    <Route path="/perfil" component={Perfil} />
   </div>
 
 )
