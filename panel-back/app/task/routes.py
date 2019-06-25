@@ -7,7 +7,7 @@ from app.models import Task
 def get_new_task_id():
     tasks = Task.objects
     aux = 0
-    for task in tasks:
+    for _ in tasks:
         aux += 1
     return str(aux)
 
@@ -39,3 +39,12 @@ def update_task():
     task = Task.objects.get(_id=task_id)
     task.update(title=title, message=message, column=column)
     return 'Task updated'
+
+
+@bp.route('/getTasks', methods=['GET', 'POST'])
+def get_tasks():
+    tasks = Task.objects
+    print(tasks)
+    for task in tasks:
+        print(task)
+    return ''
