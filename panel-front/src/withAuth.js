@@ -14,7 +14,7 @@ export default function withAuth(ComponentToProtect) {
 
         componentDidMount() {
             let queryParams = '?email=' + localStorage.getItem("email");
-            axios.get('/checkToken' + queryParams)
+            axios.get('/auth/checkToken' + queryParams)
                 .then(response => {
                     this.setState({ loading: false });
                 })

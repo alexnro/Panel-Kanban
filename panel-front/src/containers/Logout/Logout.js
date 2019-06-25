@@ -7,7 +7,7 @@ class Logout extends Component {
     deleteTokenHandler = () => {
         let email = localStorage.getItem("email");
         const queryParams = '?email=' + email;
-        axios.post('/logout' + queryParams)
+        axios.post('/auth/logout' + queryParams)
             .then(response => {
                 console.log(response);
             })

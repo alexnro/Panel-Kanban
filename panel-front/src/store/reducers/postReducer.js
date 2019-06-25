@@ -7,7 +7,7 @@ const addPostRequest = data => {
     let message = data.message;
     let column = data.column;
     let queryParams = '?task_id=' + task_id + '&title=' + title + '&message=' + message + '&column=' + column;
-    axios.post('/addTask' + queryParams)
+    axios.post('/task/addTask' + queryParams)
         .then(response => {
             console.log(response);
         })
@@ -18,7 +18,7 @@ const addPostRequest = data => {
 
 const deletePostRequest = post_id => {
     let queryParams = '?task_id=' + post_id;
-    axios.post('/deleteTask' + queryParams)
+    axios.post('/task/deleteTask' + queryParams)
         .then(response => {
             console.log(response);
         })
@@ -33,7 +33,7 @@ const updatePostRequest = data => {
     let message = data.message;
     let column = data.column;
     let queryParams = '?task_id=' + task_id + '&title=' + title + '&message=' + message + '&column=' + column;
-    axios.post('/updateTask' + queryParams)
+    axios.post('/task/updateTask' + queryParams)
         .then(response => {
             console.log(response);
         })

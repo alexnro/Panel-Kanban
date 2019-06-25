@@ -38,7 +38,7 @@ class Login extends Component {
             Email: this.state.email,
             Password: this.state.password
         }
-        const url = '/login';
+        const url = '/auth/login';
         axios.post(url, data)
             .then(response => {
                 let token_data = this.getJSON(response.data);
