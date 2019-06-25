@@ -29,9 +29,6 @@ def create_app(config_class=Config):
     from app.auth import bp as auth_bp
     app.register_blueprint(auth_bp)
 
-    from app.task import bp as task_bp
-    app.register_blueprint(task_bp)
-
     return app
 
 
