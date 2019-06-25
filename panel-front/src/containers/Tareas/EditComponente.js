@@ -54,8 +54,8 @@ class EditComponente extends Component {
                         </Form.Control>
                     </Form.Group>
                     <ButtonGroup>
-                        <Button variant="outline-secondary" type="submit">Añadir</Button>
-                        <Button variant="outline-secondary" onClick={this.handleCancel} >Cancelar</Button>
+                        <Button variant="outline-success" type="submit">Añadir</Button>
+                        <Button variant="outline-danger" onClick={this.handleCancel} >Cancelar</Button>
                     </ButtonGroup>
                 </Form>
             </td>
