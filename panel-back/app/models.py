@@ -9,7 +9,7 @@ import os
 
 
 class User(Document, UserMixin):
-    username = fields.StringField(required=True)
+    username = fields.StringField(primary_key=True, required=True)
     email = fields.StringField(required=True)
     password_hash = fields.StringField()
     access_token = fields.StringField()
