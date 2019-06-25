@@ -147,5 +147,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(Panel);
-// export default connect(mapStateToProps)(withAuth(Panel));
+export default connect(mapStateToProps)(withAuth(Panel));
