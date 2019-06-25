@@ -11,7 +11,7 @@ import Tareas from '../Tareas/Tareas';
 class Panel extends Component {
 
     getTasks = () => {
-        axios.get('/task/getTasks')
+        axios.get('/getTasks')
             .then(response => {
                 console.log(response);
                 return response.data;

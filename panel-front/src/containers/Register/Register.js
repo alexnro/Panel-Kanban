@@ -47,7 +47,7 @@ class Register extends Component {
             Password: this.state.password,
             ConfirmPassword: this.state.confirmPassword
         }
-        const url = '/auth/register';
+        const url = '/register';
         axios.post(url, data)
             .then(response => {
                 console.log(response);

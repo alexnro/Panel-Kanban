@@ -1,5 +1,5 @@
 from flask import request
-from app.auth import bp
+from app.task import bp
 from app.models import Task
 
 
@@ -39,3 +39,11 @@ def update_task():
     task = Task.objects.get(_id=task_id)
     task.update(title=title, message=message, column=column)
     return 'Task updated'
+
+
+@bp.route('/getTasks', methods=['POST', 'GET'])
+def get_task():
+    tasks = Task.objects
+    for task in tasks:
+        print(task)
+    return ''

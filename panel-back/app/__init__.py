@@ -27,10 +27,10 @@ def create_app(config_class=Config):
     cors.init_app(app)
 
     from app.auth import bp as auth_bp
-    app.register_blueprint(auth_bp, url_prefix='/auth')
+    app.register_blueprint(auth_bp)
 
     from app.task import bp as task_bp
-    app.register_blueprint(task_bp, url_prefix='/task')
+    app.register_blueprint(task_bp)
 
     return app
 
