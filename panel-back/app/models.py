@@ -2,7 +2,6 @@ from app import login
 from flask_login import UserMixin
 from werkzeug.security import check_password_hash
 from flask_jwt_extended import create_access_token, create_refresh_token
-from json import dumps
 from datetime import datetime, timedelta
 from mongoengine import Document, fields
 import base64
