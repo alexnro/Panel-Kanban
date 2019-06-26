@@ -23,6 +23,5 @@ pymodm==0.4.1
 pymongo==3.8.0
 pymongo-document-modeling==0.9.2.dev1
 six==1.12.0
-Werkzeug==0.15.2
 wincertstore==0.2
 WTForms==2.2.1
