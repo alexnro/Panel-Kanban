@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Container, Row, Col, Media, Tab, Tabs, Button, Modal, ModalDialog, Form } from 'react-bootstrap';
-import logo from './logo.jpg';
 
 import './Perfil.css';
 
@@ -35,12 +34,12 @@ class Perfil extends Component {
                                 width={150}
                                 height={150}
                                 className="mr-3"
-                                src={logo}
+                                src="logo"
                                 alt="Lo siento, parece que tenemos problemas con su imagen"
                             />
                             <Media.Body>
-                                <h1>Alejandro Navarro</h1>
-                                <p>putisimo amo</p>
+                                <h1>Nombre usuario</h1>
+                                <p>Descripción</p>
                             </Media.Body>
                         </Media>
                     </Col>
