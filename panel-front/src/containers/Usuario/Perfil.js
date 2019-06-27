@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { Container, Row, Col, Media, Tab, Tabs, Button, Modal, ModalDialog, Form } from 'react-bootstrap';
+import { Container, Row, Col, Media, Tab, Tabs, Button, Modal, Form } from 'react-bootstrap';
+
+import withAuth from '../../withAuth';
 
 import './Perfil.css';
 
@@ -39,7 +41,6 @@ class Perfil extends Component {
                             />
                             <Media.Body>
                                 <h1>Nombre usuario</h1>
-                                <p>Descripción</p>
                             </Media.Body>
                         </Media>
                     </Col>
@@ -49,9 +50,7 @@ class Perfil extends Component {
                         <Tabs defaultActiveKey="Perfil" id="uncontrolled-tab-example" >
                             <Tab eventKey="Perfil" title="Perfil">
                                 <h1>Nombre usuario</h1>
-                                <p>Descripción</p>
                                 <p>Email</p>
-                                <p>Cargo</p>
                                 <Button onClick={this.handleShow} variant="outline-secondary">Modificar datos</Button>
                                 <Modal show={this.state.show} onHide={this.handleClose}>
                                     <Modal.Header>
@@ -64,22 +63,8 @@ class Perfil extends Component {
                                                 <Form.Control type="text" placeholder="Usuario" />
                                             </Form.Group>
                                             <Form.Group>
-                                                <Form.Label>Descripción</Form.Label>
-                                                <Form.Control as="textarea" rows="3" placeholder="Descripción" />
-                                            </Form.Group>
-                                            <Form.Group>
                                                 <Form.Label>Correo electronico</Form.Label>
                                                 <Form.Control type="email" placeholder="Email" />
-                                            </Form.Group>
-                                            <Form.Group controlId="exampleForm.ControlSelect2">
-                                                <Form.Label>Cargo</Form.Label>
-                                                <Form.Control as="select">
-                                                    <option>1</option>
-                                                    <option>2</option>
-                                                    <option>3</option>
-                                                    <option>4</option>
-                                                    <option>5</option>
-                                                </Form.Control>
                                             </Form.Group>
                                         </Form>
                                     </Modal.Body>
@@ -104,4 +89,4 @@ class Perfil extends Component {
     }
 }
 
-export default Perfil;
+export default withAuth(Perfil);
