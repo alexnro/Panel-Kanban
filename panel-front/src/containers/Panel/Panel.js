@@ -4,27 +4,34 @@ import { Row, Col } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import withAuth from '../../withAuth';
 import './Panel.css';
-import Ventana from '../../components/UI/Modal/Ventana';
-import EditComponente from '../Tareas/EditComponente';
 import Tareas from '../Tareas/Tareas';
+import EditComponente from '../Tareas/EditComponente';
+import Ventana from '../../components/UI/Modal/Ventana';
 
 class Panel extends Component {
 
-    getTasks = () => {
+    state = {
+        tasks: ''
+    };
+
+    componentDidMount() {
         axios.get('/getTasks')
             .then(response => {
-                console.log(response);
-                return response.data;
+                let tasks = this.getJSON(response.data);
+                this.setState({ ...this.state, tasks: tasks });
             })
             .catch(error => {
                 console.log(error);
             })
     }
 
+    getJSON = a => {
+        if (typeof a !== "string" || !a || a == null) return null;
+        a = a.replace(/\r\n|\r|\n|\t/g, '').replace(/\\/g, '/');
+        return new Function("return " + a)();
+    }
+
     render() {
-
-        this.getTasks();
-
         let columnas = (
             <Row>
                 <Col>
@@ -36,6 +43,13 @@ class Panel extends Component {
                                 </tr>
                             </thead>
                             <tbody>
+                                {Array.from(this.state.tasks).map((post) => (
+                                    post.column === "1" &&
+                                    <tr key={post._id} column={post.column}>
+                                        {post.editing ? <EditComponente post={post} key={post._id} column={post.column} /> :
+                                            <Tareas key={post._id} post={post} column={post.column} />}
+                                    </tr>
+                                ))}
                                 {this.props.posts.map((post) => (
                                     post.column === "1" &&
                                     <tr key={post.id} column={post.column}>
@@ -56,6 +70,13 @@ class Panel extends Component {
                                 </tr>
                             </thead>
                             <tbody>
+                                {Array.from(this.state.tasks).map((post) => (
+                                    post.column === "2" &&
+                                    <tr key={post._id} column={post.column}>
+                                        {post.editing ? <EditComponente post={post} key={post._id} column={post.column} /> :
+                                            <Tareas key={post.id} post={post} column={post.column} />}
+                                    </tr>
+                                ))}
                                 {this.props.posts.map((post) => (
                                     post.column === "2" &&
                                     <tr key={post.id} column={post.column}>
@@ -76,6 +97,13 @@ class Panel extends Component {
                                 </tr>
                             </thead>
                             <tbody>
+                                {Array.from(this.state.tasks).map((post) => (
+                                    post.column === "3" &&
+                                    <tr key={post._id} column={post.column}>
+                                        {post.editing ? <EditComponente post={post} key={post._id} column={post.column} /> :
+                                            <Tareas key={post.id} post={post} column={post.column} />}
+                                    </tr>
+                                ))}
                                 {this.props.posts.map((post) => (
                                     post.column === "3" &&
                                     <tr key={post.id} column={post.column}>
@@ -96,6 +124,13 @@ class Panel extends Component {
                                 </tr>
                             </thead>
                             <tbody>
+                                {Array.from(this.state.tasks).map((post) => (
+                                    post.column === "4" &&
+                                    <tr key={post._id} column={post.column}>
+                                        {post.editing ? <EditComponente post={post} key={post._id} column={post.column} /> :
+                                            <Tareas key={post.id} post={post} column={post.column} />}
+                                    </tr>
+                                ))}
                                 {this.props.posts.map((post) => (
                                     post.column === "4" &&
                                     <tr key={post.id} column={post.column}>
@@ -116,6 +151,13 @@ class Panel extends Component {
                                 </tr>
                             </thead>
                             <tbody>
+                                {Array.from(this.state.tasks).map((post) => (
+                                    post.column === "5" &&
+                                    <tr key={post._id} column={post.column}>
+                                        {post.editing ? <EditComponente post={post} key={post._id} column={post.column} /> :
+                                            <Tareas key={post.id} post={post} column={post.column} />}
+                                    </tr>
+                                ))}
                                 {this.props.posts.map((post) => (
                                     post.column === "5" &&
                                     <tr key={post.id} column={post.column}>
@@ -132,7 +174,6 @@ class Panel extends Component {
         return (
             <div>
                 <div className="Contenedor">
-                    {console.log(columnas)}
                     {columnas}
                     <Ventana />
                 </div>

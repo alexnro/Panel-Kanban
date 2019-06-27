@@ -44,6 +44,13 @@ def update_task():
 @bp.route('/getTasks', methods=['POST', 'GET'])
 def get_task():
     tasks = Task.objects
+    task_dict = []
     for task in tasks:
-        print(task)
-    return ''
+        data = {
+            '_id': task.id,
+            'title': task.title,
+            'message': task.message,
+            'column': task.column
+        }
+        task_dict.append(data)
+    return str(task_dict)
