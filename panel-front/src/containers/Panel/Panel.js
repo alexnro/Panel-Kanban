@@ -131,10 +131,9 @@ class Panel extends Component {
         );
         return (
             <div>
-                <div className="Contenedor">
-                    {console.log(columnas)}
+                <div className="contenedor">
+                    <Ventana /><br/><br/>
                     {columnas}
-                    <Ventana />
                 </div>
             </div>
         );
