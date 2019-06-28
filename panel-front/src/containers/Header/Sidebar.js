@@ -13,6 +13,8 @@ export default Sidebar => {
             <hr />
             <a href="/panel">Panel</a>
             <a href="/perfil">Perfil</a>
+            <hr />
+            <p>Paneles disponibles</p>
         </Menu>
     );
 }
