@@ -7,7 +7,7 @@ class Tareas extends Component {
     render() {
         return(
             <td>
-                <Card style={{ width: '18rem' }}>
+                <Card>
                     <Card.Body>
                         <Card.Title>{this.props.post.title}</Card.Title>
                         <Card.Text>{this.props.post.message}</Card.Text>
