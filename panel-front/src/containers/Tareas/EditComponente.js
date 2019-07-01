@@ -20,7 +20,7 @@ class EditComponente extends Component {
             newColumn
         }
         this.props.dispatch({
-            type: 'UPDATE', id: this.props.post.id, data: data
+            type: 'UPDATE', id: this.props.post._id, data: data
         });
     }
 

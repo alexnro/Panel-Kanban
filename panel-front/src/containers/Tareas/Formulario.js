@@ -20,7 +20,6 @@ class Formulario extends Component {
             message,
             column: this.state.value
         }
-        console.log(typeof id);
         this.props.dispatch({
             type: 'ADD_POST', data
         });

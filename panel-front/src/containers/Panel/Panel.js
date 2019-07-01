@@ -14,11 +14,12 @@ class Panel extends Component {
         tasks: ''
     };
 
-    componentDidMount() {
+    componentDidMount = () => {
         axios.get('/getTasks')
             .then(response => {
                 let tasks = this.getJSON(response.data);
                 this.setState({ ...this.state, tasks: tasks });
+                console.log(this.state);
             })
             .catch(error => {
                 console.log(error);
@@ -42,22 +43,17 @@ class Panel extends Component {
                                     <th scope="col">#</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                {Array.from(this.state.tasks).map((post) => (
-                                    post.column === "1" &&
-                                    <tr key={post._id} column={post.column}>
-                                        {post.editing ? <EditComponente post={post} key={post._id} column={post.column} /> :
-                                            <Tareas key={post._id} post={post} column={post.column} />}
-                                    </tr>
-                                ))}
-                                {this.props.posts.map((post) => (
-                                    post.column === "1" &&
-                                    <tr key={post.id} column={post.column}>
-                                        {post.editing ? <EditComponente post={post} key={post.id} column={post.column} /> :
-                                            <Tareas key={post.id} post={post} column={post.column} />}
-                                    </tr>
-                                ))}
-                            </tbody>
+                            {this.state.tasks ?
+                                <tbody>
+                                    {Array.from(this.state.tasks).map((post) => (
+                                        post.column === "1" &&
+                                        <tr key={post._id} column={post.column}>
+                                            {post.editing ? <EditComponente post={post} key={post._id} column={post.column} /> :
+                                                <Tareas key={post._id} post={post} column={post.column} />}
+                                        </tr>
+                                    ))}
+                                </tbody> :
+                                <tbody></tbody>}
                         </table>
                     </div>
                 </Col>
@@ -69,22 +65,17 @@ class Panel extends Component {
                                     <th scope="col">#</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                {Array.from(this.state.tasks).map((post) => (
-                                    post.column === "2" &&
-                                    <tr key={post._id} column={post.column}>
-                                        {post.editing ? <EditComponente post={post} key={post._id} column={post.column} /> :
-                                            <Tareas key={post.id} post={post} column={post.column} />}
-                                    </tr>
-                                ))}
-                                {this.props.posts.map((post) => (
-                                    post.column === "2" &&
-                                    <tr key={post.id} column={post.column}>
-                                        {post.editing ? <EditComponente post={post} key={post.id} column={post.column} /> :
-                                            <Tareas key={post.id} post={post} column={post.column} />}
-                                    </tr>
-                                ))}
-                            </tbody>
+                            {this.state.tasks ?
+                                <tbody>
+                                    {Array.from(this.state.tasks).map((post) => (
+                                        post.column === "2" &&
+                                        <tr key={post._id} column={post.column}>
+                                            {post.editing ? <EditComponente post={post} key={post._id} column={post.column} /> :
+                                                <Tareas key={post._id} post={post} column={post.column} />}
+                                        </tr>
+                                    ))}
+                                </tbody> :
+                                <tbody></tbody>}
                         </table>
                     </div>
                 </Col>
@@ -96,22 +87,17 @@ class Panel extends Component {
                                     <th scope="col">#</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                {Array.from(this.state.tasks).map((post) => (
-                                    post.column === "3" &&
-                                    <tr key={post._id} column={post.column}>
-                                        {post.editing ? <EditComponente post={post} key={post._id} column={post.column} /> :
-                                            <Tareas key={post.id} post={post} column={post.column} />}
-                                    </tr>
-                                ))}
-                                {this.props.posts.map((post) => (
-                                    post.column === "3" &&
-                                    <tr key={post.id} column={post.column}>
-                                        {post.editing ? <EditComponente post={post} key={post.id} column={post.column} /> :
-                                            <Tareas key={post.id} post={post} column={post.column} />}
-                                    </tr>
-                                ))}
-                            </tbody>
+                            {this.state.tasks ?
+                                <tbody>
+                                    {Array.from(this.state.tasks).map((post) => (
+                                        post.column === "3" &&
+                                        <tr key={post._id} column={post.column}>
+                                            {post.editing ? <EditComponente post={post} key={post._id} column={post.column} /> :
+                                                <Tareas key={post._id} post={post} column={post.column} />}
+                                        </tr>
+                                    ))}
+                                </tbody> :
+                                <tbody></tbody>}
                         </table>
                     </div>
                 </Col>
@@ -123,22 +109,17 @@ class Panel extends Component {
                                     <th scope="col">#</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                {Array.from(this.state.tasks).map((post) => (
-                                    post.column === "4" &&
-                                    <tr key={post._id} column={post.column}>
-                                        {post.editing ? <EditComponente post={post} key={post._id} column={post.column} /> :
-                                            <Tareas key={post.id} post={post} column={post.column} />}
-                                    </tr>
-                                ))}
-                                {this.props.posts.map((post) => (
-                                    post.column === "4" &&
-                                    <tr key={post.id} column={post.column}>
-                                        {post.editing ? <EditComponente post={post} key={post.id} column={post.column} /> :
-                                            <Tareas key={post.id} post={post} column={post.column} />}
-                                    </tr>
-                                ))}
-                            </tbody>
+                            {this.state.tasks ?
+                                <tbody>
+                                    {Array.from(this.state.tasks).map((post) => (
+                                        post.column === "4" &&
+                                        <tr key={post._id} column={post.column}>
+                                            {post.editing ? <EditComponente post={post} key={post._id} column={post.column} /> :
+                                                <Tareas key={post._id} post={post} column={post.column} />}
+                                        </tr>
+                                    ))}
+                                </tbody> :
+                                <tbody></tbody>}
                         </table>
                     </div>
                 </Col>
@@ -150,22 +131,17 @@ class Panel extends Component {
                                     <th scope="col">#</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                {Array.from(this.state.tasks).map((post) => (
-                                    post.column === "5" &&
-                                    <tr key={post._id} column={post.column}>
-                                        {post.editing ? <EditComponente post={post} key={post._id} column={post.column} /> :
-                                            <Tareas key={post.id} post={post} column={post.column} />}
-                                    </tr>
-                                ))}
-                                {this.props.posts.map((post) => (
-                                    post.column === "5" &&
-                                    <tr key={post.id} column={post.column}>
-                                        {post.editing ? <EditComponente post={post} key={post.id} column={post.column} /> :
-                                            <Tareas key={post.id} post={post} column={post.column} />}
-                                    </tr>
-                                ))}
-                            </tbody>
+                            {this.state.tasks ?
+                                <tbody>
+                                    {Array.from(this.state.tasks).map((post) => (
+                                        post.column === "5" &&
+                                        <tr key={post._id} column={post.column}>
+                                            {post.editing ? <EditComponente post={post} key={post._id} column={post.column} /> :
+                                                <Tareas key={post._id} post={post} column={post.column} />}
+                                        </tr>
+                                    ))}
+                                </tbody> :
+                                <tbody></tbody>}
                         </table>
                     </div>
                 </Col>
