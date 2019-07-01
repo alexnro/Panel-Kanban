@@ -4,6 +4,7 @@ import { Container, Row, Col, Media, Tab, Tabs, Button, Modal, Form } from 'reac
 import withAuth from '../../withAuth';
 
 import './Perfil.css';
+import axios from 'axios';
 
 class Perfil extends Component {
 
@@ -14,8 +15,26 @@ class Perfil extends Component {
         this.handleClose = this.handleClose.bind(this);
 
         this.state = {
-            show: false
+            show: false,
+            username: '',
+            email: ''
         };
+    }
+
+    componentWillMount(){
+        let queryParams = '?email=' + localStorage.getItem('email');
+        console.log(queryParams)
+        axios.get('/user' + queryParams)
+            .then(response => {
+                console.log(response);
+                let username = response.data.username
+                let email = response.data.email
+                this.setState({...this.state, username: username, email: email})
+                console.log(this.state)
+            })
+            .catch(error => {
+                console.log(error);
+            })
     }
 
     handleClose() {
@@ -40,7 +59,7 @@ class Perfil extends Component {
                                 alt="Lo siento, parece que tenemos problemas con su imagen"
                             />
                             <Media.Body>
-                                <h1>Nombre usuario</h1>
+                                <h1>{this.state.username}</h1>
                             </Media.Body>
                         </Media>
                     </Col>
@@ -49,8 +68,8 @@ class Perfil extends Component {
                     <Col>
                         <Tabs defaultActiveKey="Perfil" id="uncontrolled-tab-example" >
                             <Tab eventKey="Perfil" title="Perfil">
-                                <h1>Nombre usuario</h1>
-                                <p>Email</p>
+                                <p><strong>Nombre de usuario: </strong>{this.state.username}</p>
+                                <p><strong>Correo electronico: </strong>{this.state.email}</p>
                                 <Button onClick={this.handleShow} variant="outline-secondary">Modificar datos</Button>
                                 <Modal show={this.state.show} onHide={this.handleClose}>
                                     <Modal.Header>

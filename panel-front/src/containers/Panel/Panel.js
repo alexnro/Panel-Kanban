@@ -10,6 +10,10 @@ import Tareas from '../Tareas/Tareas';
 
 class Panel extends Component {
 
+    state = {
+        tasks: ''
+    };
+
     getTasks = () => {
         axios.get('/getTasks')
             .then(response => {
@@ -22,8 +26,6 @@ class Panel extends Component {
     }
 
     render() {
-
-        this.getTasks();
 
         let columnas = (
             <Row>

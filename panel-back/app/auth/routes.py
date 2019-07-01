@@ -50,3 +50,12 @@ def check_token():
     email = request.args.get("email")
     user = User.objects.get(email=email)
     return str(user.access_token)
+
+
+@bp.route('/user', methods=['GET'])
+def get_user():
+    email = request.args.get("email")
+    user = User.objects.get(email=email)
+    return user.to_json()
+
+
