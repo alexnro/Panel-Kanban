@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Row, Col, Media, Tab, Tabs, Button, Modal, Form, ButtonGroup } from 'react-bootstrap';
+import { Container, Row, Col, Media, Tab, Tabs } from 'react-bootstrap';
 import { connect } from 'react-redux';
 
 import withAuth from '../../withAuth';

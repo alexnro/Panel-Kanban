@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Modal, Button} from 'react-bootstrap';
 
-import Formulario from '../../../containers/Tareas/Formulario';
+import TaskForm from '../../../containers/Tareas/TaskForm';
 
 class ModalTarea extends Component {
     constructor(props, context) {
@@ -35,7 +35,7 @@ class ModalTarea extends Component {
               Añadir Tarea
             </Modal.Header>
             <Modal.Body>
-              <Formulario/>
+              <TaskForm/>
             </Modal.Body>
           </Modal>
         </>

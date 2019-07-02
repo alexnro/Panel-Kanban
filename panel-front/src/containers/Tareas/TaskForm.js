@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Form, Button } from 'react-bootstrap';
 
 
-class Formulario extends Component {
+class TaskForm extends Component {
     state = {
         value: '1',
         id: ''
@@ -56,4 +56,4 @@ class Formulario extends Component {
     }
 }
 
-export default connect()(Formulario);
+export default connect()(TaskForm);
