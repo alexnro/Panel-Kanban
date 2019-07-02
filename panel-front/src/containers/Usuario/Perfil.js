@@ -15,11 +15,7 @@ class Perfil extends Component {
     constructor(props, context) {
         super(props, context);
 
-        this.handleShow = this.handleShow.bind(this);
-        this.handleClose = this.handleClose.bind(this);
-
         this.state = {
-            show: false,
             username: '',
             email: ''
         };
@@ -39,15 +35,6 @@ class Perfil extends Component {
             .catch(error => {
                 console.log(error);
             })
-    }
-    
-
-    handleClose() {
-        this.setState({ show: false });
-    }
-
-    handleShow() {
-        this.setState({ show: true });
     }
 
     render() {
