@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Container, Row, Col, Media, Tab, Tabs, Button, Modal, Form } from 'react-bootstrap';
+import { Container, Row, Col, Media, Tab, Tabs, Button, Modal, Form, ButtonGroup } from 'react-bootstrap';
+import { connect } from 'react-redux';
 
 import withAuth from '../../withAuth';
 
@@ -21,7 +22,7 @@ class Perfil extends Component {
         };
     }
 
-    componentWillMount(){
+    componentWillMount() {
         let queryParams = '?email=' + localStorage.getItem('email');
         console.log(queryParams)
         axios.get('/user' + queryParams)
@@ -29,7 +30,7 @@ class Perfil extends Component {
                 console.log(response);
                 let username = response.data.username
                 let email = response.data.email
-                this.setState({...this.state, username: username, email: email})
+                this.setState({ ...this.state, username: username, email: email })
                 console.log(this.state)
             })
             .catch(error => {
@@ -43,6 +44,26 @@ class Perfil extends Component {
 
     handleShow() {
         this.setState({ show: true });
+    }
+
+    handleSubmit = (e) => {
+        e.preventDefault();
+        const newUsername = this.getUsername;
+        const newEmail = this.getEmail;
+        const data = {
+            newUsername,
+            newEmail
+        }
+        this.props.dispatch({
+            type: 'UPDATE_USER', data: data
+        });
+    }
+
+    handleCancel = (e) => {
+        e.preventDefault();
+        this.props.dispatch({
+            type: 'CANCEL_EDIT', data: this.props
+        })
     }
 
     render() {
@@ -72,29 +93,25 @@ class Perfil extends Component {
                                 <p><strong>Correo electronico: </strong>{this.state.email}</p>
                                 <Button onClick={this.handleShow} variant="outline-secondary">Modificar datos</Button>
                                 <Modal show={this.state.show} onHide={this.handleClose}>
-                                    <Modal.Header>
+                                    <Modal.Header closeButton>
                                         <Modal.Title>Modificación Perfil</Modal.Title>
                                     </Modal.Header>
                                     <Modal.Body>
-                                        <Form>
+                                        <Form onSubmit={this.handleSubmit}>
                                             <Form.Group>
                                                 <Form.Label>Nombre de usuario</Form.Label>
-                                                <Form.Control type="text" placeholder="Usuario" />
+                                                <Form.Control type="text" ref={(input) => this.getUsername = input} placeholder="Usuario" defaultValue={this.state.username} />
                                             </Form.Group>
                                             <Form.Group>
                                                 <Form.Label>Correo electronico</Form.Label>
-                                                <Form.Control type="email" placeholder="Email" />
+                                                <Form.Control type="email" ref={(input) => this.getEmail = input} placeholder="Email" defaultValue={this.state.email} />
                                             </Form.Group>
+                                            <ButtonGroup>
+                                                <Button variant="outline-success" type="submit">Añadir</Button>
+                                                <Button variant="outline-danger" onClick={this.handleCancel} >Cancelar</Button>
+                                            </ButtonGroup>                                        
                                         </Form>
                                     </Modal.Body>
-                                    <Modal.Footer>
-                                        <Button variant="outline-danger" onClick={this.handleClose}>
-                                            Cancelar
-                                        </Button>
-                                        <Button variant="outline-success" onClick={this.handleClose}>
-                                            Modificar
-                                        </Button>
-                                    </Modal.Footer>
                                 </Modal>
                             </Tab>
                             <Tab eventKey="Paneles" title="Paneles">
@@ -108,4 +125,4 @@ class Perfil extends Component {
     }
 }
 
-export default withAuth(Perfil);
+export default connect()(withAuth(Perfil));
