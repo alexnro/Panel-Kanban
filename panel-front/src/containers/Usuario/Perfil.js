@@ -8,7 +8,7 @@ import axios from 'axios';
 
 import './Perfil.css';
 
-import UserForm from './UserForm';
+import ModalUsuario from '../../components/UI/Modal/ModalUsuario';
 
 class Perfil extends Component {
 
@@ -75,15 +75,7 @@ class Perfil extends Component {
                             <Tab eventKey="Perfil" title="Perfil">
                                 <p><strong>Nombre de usuario: </strong>{this.state.username}</p>
                                 <p><strong>Correo electronico: </strong>{this.state.email}</p>
-                                <Button onClick={this.handleShow} variant="outline-secondary">Modificar datos</Button>
-                                <Modal show={this.state.show} onHide={this.handleClose}>
-                                    <Modal.Header closeButton>
-                                        <Modal.Title>Modificación Perfil</Modal.Title>
-                                    </Modal.Header>
-                                    <Modal.Body>
-                                        <UserForm />
-                                    </Modal.Body>
-                                </Modal>
+                                <ModalUsuario />
                             </Tab>
                             <Tab eventKey="Paneles" title="Paneles">
 
