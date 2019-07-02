@@ -42,7 +42,7 @@ class Ventana extends Component {
                         Añadir Tarea
                     </Modal.Header>
                     <Modal.Body>
-                        <Formulario />
+                        <Formulario refresh={this.props.refresh.bind(this)} />
                     </Modal.Body>
                 </Modal>
             </>

@@ -49,7 +49,7 @@ class Formulario extends Component {
                             <option value="5">5</option>
                         </Form.Control>
                     </Form.Group>
-                    <Button variant="outline-secondary" type="submit">Añadir</Button>
+                    <Button variant="outline-secondary" type="submit" onClick={this.props.refresh()}>Añadir</Button>
                 </Form>
             </div>
         );

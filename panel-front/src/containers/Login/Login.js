@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-
 import axios from 'axios';
-
+import { getJSON } from '../../shared/utility';
 import './Login.css';
 
 class Login extends Component {
@@ -26,12 +25,6 @@ class Login extends Component {
         });
     }
 
-    getJSON = a => {
-        if (typeof a !== "string" || !a || a == null) return null;
-        a = a.replace(/\r\n|\r|\n|\t/g, '').replace(/\\/g, '/');
-        return new Function("return " + a)();
-    }
-
     submitHandler = event => {
         event.preventDefault();
         const data = {
@@ -41,7 +34,7 @@ class Login extends Component {
         const url = '/login';
         axios.post(url, data)
             .then(response => {
-                let token_data = this.getJSON(response.data);
+                let token_data = getJSON(response.data);
                 if (response.data !== "Usuario incorrecto") {
                     this.setState({
                         ...this.state,

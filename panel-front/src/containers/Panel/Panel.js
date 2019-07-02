@@ -7,6 +7,7 @@ import './Panel.css';
 import Tareas from '../Tareas/Tareas';
 import EditComponente from '../Tareas/EditComponente';
 import Ventana from '../../components/UI/Modal/Ventana';
+import { getJSON } from '../../shared/utility';
 
 class Panel extends Component {
 
@@ -15,21 +16,19 @@ class Panel extends Component {
     };
 
     componentDidMount = () => {
+        this.getTasks();
+    }
+
+    getTasks = () => {
         axios.get('/getTasks')
             .then(response => {
-                let tasks = this.getJSON(response.data);
+                let tasks = getJSON(response.data);
                 this.setState({ ...this.state, tasks: tasks });
                 console.log(this.state);
             })
             .catch(error => {
                 console.log(error);
             })
-    }
-
-    getJSON = a => {
-        if (typeof a !== "string" || !a || a == null) return null;
-        a = a.replace(/\r\n|\r|\n|\t/g, '').replace(/\\/g, '/');
-        return new Function("return " + a)();
     }
 
     render() {
@@ -49,7 +48,7 @@ class Panel extends Component {
                                         post.column === "1" &&
                                         <tr key={post._id} column={post.column}>
                                             {post.editing ? <EditComponente post={post} key={post._id} column={post.column} /> :
-                                                <Tareas key={post._id} post={post} column={post.column} />}
+                                                <Tareas key={post._id} post={post} column={post.column} refresh={this.getTasks.bind(this)} />}
                                         </tr>
                                     ))}
                                 </tbody> :
@@ -71,7 +70,7 @@ class Panel extends Component {
                                         post.column === "2" &&
                                         <tr key={post._id} column={post.column}>
                                             {post.editing ? <EditComponente post={post} key={post._id} column={post.column} /> :
-                                                <Tareas key={post._id} post={post} column={post.column} />}
+                                                <Tareas key={post._id} post={post} column={post.column} refresh={this.getTasks.bind(this)} />}
                                         </tr>
                                     ))}
                                 </tbody> :
@@ -93,7 +92,7 @@ class Panel extends Component {
                                         post.column === "3" &&
                                         <tr key={post._id} column={post.column}>
                                             {post.editing ? <EditComponente post={post} key={post._id} column={post.column} /> :
-                                                <Tareas key={post._id} post={post} column={post.column} />}
+                                                <Tareas key={post._id} post={post} column={post.column} refresh={this.getTasks.bind(this)} />}
                                         </tr>
                                     ))}
                                 </tbody> :
@@ -115,7 +114,7 @@ class Panel extends Component {
                                         post.column === "4" &&
                                         <tr key={post._id} column={post.column}>
                                             {post.editing ? <EditComponente post={post} key={post._id} column={post.column} /> :
-                                                <Tareas key={post._id} post={post} column={post.column} />}
+                                                <Tareas key={post._id} post={post} column={post.column} refresh={this.getTasks.bind(this)} />}
                                         </tr>
                                     ))}
                                 </tbody> :
@@ -137,7 +136,7 @@ class Panel extends Component {
                                         post.column === "5" &&
                                         <tr key={post._id} column={post.column}>
                                             {post.editing ? <EditComponente post={post} key={post._id} column={post.column} /> :
-                                                <Tareas key={post._id} post={post} column={post.column} />}
+                                                <Tareas key={post._id} post={post} column={post.column} refresh={this.getTasks.bind(this)} />}
                                         </tr>
                                     ))}
                                 </tbody> :
@@ -151,7 +150,7 @@ class Panel extends Component {
             <div>
                 <div className="Contenedor">
                     {columnas}
-                    <Ventana />
+                    <Ventana refresh={this.getTasks.bind(this)} />
                 </div>
             </div>
         );
