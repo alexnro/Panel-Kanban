@@ -3,7 +3,7 @@ import {Modal, Button} from 'react-bootstrap';
 
 import Formulario from '../../../containers/Tareas/Formulario';
 
-class Ventana extends Component {
+class ModalTarea extends Component {
     constructor(props, context) {
       super(props, context);
   
@@ -50,4 +50,4 @@ class Ventana extends Component {
     }
 }
 
-export default Ventana;
+export default ModalTarea;

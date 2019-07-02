@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import { Row, Col } from 'react-bootstrap';
 import { connect } from 'react-redux';
+
+import axios from 'axios';
 import withAuth from '../../withAuth';
+
 import './Panel.css';
-import Ventana from '../../components/UI/Modal/Ventana';
+
+import ModalTarea from '../../components/UI/Modal/ModalTarea';
 import EditComponente from '../Tareas/EditComponente';
 import Tareas from '../Tareas/Tareas';
 
@@ -134,7 +137,7 @@ class Panel extends Component {
         return (
             <div>
                 <div className="contenedor">
-                    <Ventana /><br/><br/>
+                    <ModalTarea /><br/><br/>
                     {columnas}
                 </div>
             </div>
