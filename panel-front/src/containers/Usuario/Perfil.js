@@ -3,9 +3,11 @@ import { Container, Row, Col, Media, Tab, Tabs, Button, Modal, Form, ButtonGroup
 import { connect } from 'react-redux';
 
 import withAuth from '../../withAuth';
+import axios from 'axios';
+
 
 import './Perfil.css';
-import axios from 'axios';
+import UserForm from './UserForm';
 
 class Perfil extends Component {
 
@@ -37,6 +39,7 @@ class Perfil extends Component {
                 console.log(error);
             })
     }
+    
 
     handleClose() {
         this.setState({ show: false });
@@ -44,26 +47,6 @@ class Perfil extends Component {
 
     handleShow() {
         this.setState({ show: true });
-    }
-
-    handleSubmit = (e) => {
-        e.preventDefault();
-        const newUsername = this.getUsername;
-        const newEmail = this.getEmail;
-        const data = {
-            newUsername,
-            newEmail
-        }
-        this.props.dispatch({
-            type: 'UPDATE_USER', data: data
-        });
-    }
-
-    handleCancel = (e) => {
-        e.preventDefault();
-        this.props.dispatch({
-            type: 'CANCEL_EDIT', data: this.props
-        })
     }
 
     render() {
@@ -97,20 +80,7 @@ class Perfil extends Component {
                                         <Modal.Title>Modificación Perfil</Modal.Title>
                                     </Modal.Header>
                                     <Modal.Body>
-                                        <Form onSubmit={this.handleSubmit}>
-                                            <Form.Group>
-                                                <Form.Label>Nombre de usuario</Form.Label>
-                                                <Form.Control type="text" ref={(input) => this.getUsername = input} placeholder="Usuario" defaultValue={this.state.username} />
-                                            </Form.Group>
-                                            <Form.Group>
-                                                <Form.Label>Correo electronico</Form.Label>
-                                                <Form.Control type="email" ref={(input) => this.getEmail = input} placeholder="Email" defaultValue={this.state.email} />
-                                            </Form.Group>
-                                            <ButtonGroup>
-                                                <Button variant="outline-success" type="submit">Añadir</Button>
-                                                <Button variant="outline-danger" onClick={this.handleCancel} >Cancelar</Button>
-                                            </ButtonGroup>                                        
-                                        </Form>
+                                        <UserForm />
                                     </Modal.Body>
                                 </Modal>
                             </Tab>
