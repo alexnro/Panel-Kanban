@@ -9,9 +9,9 @@ import { createStore } from 'redux';
 
 import './index.css';
 import App from './App';
-import postReducer from './store/reducers/postReducer';
+import Tareas from './store/reducers/Tareas';
 
-const store = createStore(postReducer);
+const store = createStore(Tareas);
 
 const app = (
     <Provider store={store}>
