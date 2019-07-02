@@ -58,4 +58,3 @@ def get_user():
     user = User.objects.get(email=email)
     return user.to_json()
 
-

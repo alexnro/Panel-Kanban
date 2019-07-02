@@ -1,28 +1,28 @@
-import React, {Component} from 'react';
-import {Modal, Button} from 'react-bootstrap';
+import React, { Component } from 'react';
+import { Modal, Button } from 'react-bootstrap';
 
-import Formulario from '../../../containers/Tareas/Formulario';
+import TaskForm from '../../../containers/Tareas/TaskForm';
 
 class ModalTarea extends Component {
     constructor(props, context) {
-      super(props, context);
-  
-      this.handleShow = this.handleShow.bind(this);
-      this.handleClose = this.handleClose.bind(this);
-  
-      this.state = {
-        show: false
-      };
+        super(props, context);
+
+        this.handleShow = this.handleShow.bind(this);
+        this.handleClose = this.handleClose.bind(this);
+
+        this.state = {
+            show: false
+        };
     }
 
     handleClose() {
-      this.setState({ show: false });
+        this.setState({ show: false });
     }
-  
+
     handleShow() {
-      this.setState({ show: true });
+        this.setState({ show: true });
     }
-  
+
     render() {
       return (
         <>
@@ -35,7 +35,7 @@ class ModalTarea extends Component {
               Añadir Tarea
             </Modal.Header>
             <Modal.Body>
-              <Formulario/>
+              <TaskForm/>
             </Modal.Body>
           </Modal>
         </>

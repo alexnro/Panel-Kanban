@@ -43,18 +43,23 @@ const updatePostRequest = data => {
 }
 
 
-const postReducer = (state = [], action) => {
+const Tareas = (state = [], action) => {
     switch (action.type) {
         case 'ADD_POST':
             addPostRequest(action.data);
             return state.concat([action.data]);
         case 'DELETE_POST':
             deletePostRequest(action.id);
-            return state.filter((post) => post.id !== action.id);
+            return state.filter((post) => {
+                return post.id !== action.id
+            });
         case 'EDIT_POST':
-            return state.map((post) => post.id === action.id ? { ...post, editing: !post.editing } : post);
+            return state.map((post) => {
+                console.log(post)
+                return post.id === action.id ? { ...post, editing: !post.editing } : post});
         case 'UPDATE':
             return state.map((post) => {
+                console.log(post)
                 if (post.id === action.id) {
                     let data = {
                         ...post,
@@ -65,7 +70,9 @@ const postReducer = (state = [], action) => {
                     }
                     updatePostRequest(data);
                     return data;
-                } else return post;
+                } else {
+                    return post;
+                }
             });
         case 'CANCEL_EDIT':
             return state.map((post) => {
@@ -82,4 +89,4 @@ const postReducer = (state = [], action) => {
     }
 }
 
-export default postReducer;
+export default Tareas;

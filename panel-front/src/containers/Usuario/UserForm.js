@@ -44,13 +44,6 @@ class UserForm extends Component{
         });
     }
 
-    handleCancel = (e) => {
-        e.preventDefault();
-        this.props.dispatch({
-            type: 'CANCEL_EDIT', data: this.props
-        })
-    }
-
     render() {
         return (
             <Form onSubmit={this.handleSubmit}>
