@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Avatar from 'react-avatar';
+import Avatar, { ConfigProvider } from 'react-avatar';
 
 import axios from 'axios';
 
@@ -24,9 +24,11 @@ class ImgPerfil extends Component {
             })
     }
 
-    render(){
-        return(
-            <Avatar name='Sandra' />
+    render() {
+        return (
+            <ConfigProvider colors={['#ccccff', '#00ffff', '#ccffcc']}>
+                <Avatar/>
+            </ConfigProvider>
         );
     }
 }

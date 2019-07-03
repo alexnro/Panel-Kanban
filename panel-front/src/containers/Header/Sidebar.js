@@ -8,7 +8,7 @@ export default Sidebar => {
     return (
         <Menu>
             <div>
-                <ImgPerfil />
+                {/* <ImgPerfil /> */}
                 <p>Nombre</p>
             </div>
             <hr />
