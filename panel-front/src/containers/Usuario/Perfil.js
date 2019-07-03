@@ -9,6 +9,7 @@ import axios from 'axios';
 import './Perfil.css';
 
 import ModalUsuario from '../../components/UI/Modal/ModalUsuario';
+import ImgPerfil from './ImgPerfil';
 
 class Perfil extends Component {
 
@@ -43,13 +44,7 @@ class Perfil extends Component {
                 <Row className="columna1">
                     <Col>
                         <Media>
-                            <img
-                                width={150}
-                                height={150}
-                                className="mr-3"
-                                src="logo"
-                                alt="Lo siento, parece que tenemos problemas con su imagen"
-                            />
+                            <ImgPerfil />
                             <Media.Body>
                                 <h1>{this.state.username}</h1>
                             </Media.Body>
