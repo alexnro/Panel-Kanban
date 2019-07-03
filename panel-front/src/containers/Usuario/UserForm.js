@@ -35,8 +35,8 @@ class UserForm extends Component{
     handleSubmit = (e) => {
         e.preventDefault();
         const username = this.getUsername.value;
-        const email = this.getEmail.value;
-        this.setState({ ...this.state, getUsername: username, getEmail: email })
+        const email = this.state.email;
+        this.setState({ ...this.state, getUsername: username, email: email })
         const queryParams = '?username=' + username + '&email=' + email;
         console.log(queryParams);
         
@@ -57,10 +57,7 @@ class UserForm extends Component{
                     <Form.Label>Nombre de usuario</Form.Label>
                     <Form.Control type="text" ref={(input) => this.getUsername = input} placeholder="Usuario" defaultValue={this.state.username} />
                 </Form.Group>
-                <Form.Group>
-                    <Form.Label>Correo electronico</Form.Label>
-                    <Form.Control type="email" ref={(input) => this.getEmail = input} placeholder="Email" defaultValue={this.state.email} />
-                </Form.Group>
+                <Form.Label>{this.state.email}</Form.Label><br/>
                 <Button variant="outline-success" type="submit">Añadir</Button>
             </Form>
         );
