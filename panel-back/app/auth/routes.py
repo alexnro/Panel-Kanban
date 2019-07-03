@@ -58,3 +58,12 @@ def get_user():
     user = User.objects.get(email=email)
     return user.to_json()
 
+
+@bp.route('/updateUser', methods=['POST', 'GET'])
+def update_user():
+    username = request.args.get("username")
+    email = request.args.get("email")
+    user = User.objects.get(username=username)
+    user.update(username=username, email=email)
+    return 'User updated'
+

@@ -3,7 +3,7 @@ import { Modal, Button } from 'react-bootstrap';
 
 import UserForm from '../../../containers/Usuario/UserForm';
 
-class ModalTarea extends Component {
+class ModalUsuario extends Component {
     constructor(props, context) {
         super(props, context);
 
@@ -26,7 +26,9 @@ class ModalTarea extends Component {
     render() {
         return (
             <>
-                <Button onClick={this.handleShow} variant="outline-secondary">Modificar datos</Button>
+                <Button onClick={this.handleShow} variant="outline-secondary">
+                    Modificar datos
+                </Button>
                 <Modal show={this.state.show} onHide={this.handleClose}>
                     <Modal.Header closeButton>
                         <Modal.Title>Modificación Perfil</Modal.Title>
@@ -40,4 +42,4 @@ class ModalTarea extends Component {
     }
 }
 
-export default ModalTarea;
+export default ModalUsuario;
