@@ -63,7 +63,7 @@ def get_user():
 def update_user():
     username = request.args.get("username")
     email = request.args.get("email")
-    user = User.objects.get(username=username)
-    user.update(username=username, email=email)
+    user = User.objects.get(email=email)
+    user.update(username=username)
     return 'User updated'
 
