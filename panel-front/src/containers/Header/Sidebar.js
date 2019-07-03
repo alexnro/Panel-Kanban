@@ -2,12 +2,13 @@ import React from 'react';
 import { slide as Menu } from 'react-burger-menu';
 
 import './Sidebar.css';
+import ImgPerfil from '../Usuario/ImgPerfil';
 
 export default Sidebar => {
     return (
         <Menu>
             <div>
-                <img src="logo" alt="holi" />
+                {/* <ImgPerfil /> */}
                 <p>Nombre</p>
             </div>
             <hr />
