@@ -43,7 +43,7 @@ class Perfil extends Component {
                         <Media>
                             <ImgPerfil />
                             <Media.Body>
-                                <h1>{this.state.username}</h1>
+                                <h1 className="nombre">{this.state.username}</h1>
                             </Media.Body>
                         </Media>
                     </Col>
