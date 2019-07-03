@@ -24,14 +24,11 @@ class Perfil extends Component {
 
     componentWillMount() {
         let queryParams = '?email=' + localStorage.getItem('email');
-        console.log(queryParams)
         axios.get('/user' + queryParams)
             .then(response => {
-                console.log(response);
                 let username = response.data.username
                 let email = response.data.email
                 this.setState({ ...this.state, username: username, email: email })
-                console.log(this.state)
             })
             .catch(error => {
                 console.log(error);

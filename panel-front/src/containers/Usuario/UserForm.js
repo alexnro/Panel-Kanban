@@ -18,14 +18,11 @@ class UserForm extends Component{
 
     componentWillMount() {
         let queryParams = '?email=' + localStorage.getItem('email');
-        console.log(queryParams)
         axios.get('/user' + queryParams)
             .then(response => {
-                console.log(response);
                 let username = response.data.username
                 let email = response.data.email
                 this.setState({ ...this.state, username: username, email: email })
-                console.log(this.state)
             })
             .catch(error => {
                 console.log(error);
@@ -38,7 +35,6 @@ class UserForm extends Component{
         const email = this.state.email;
         this.setState({ ...this.state, getUsername: username, email: email })
         const queryParams = '?username=' + username + '&email=' + email;
-        console.log(queryParams);
         
         axios.post('/updateUser' + queryParams)
             .then(response => {
