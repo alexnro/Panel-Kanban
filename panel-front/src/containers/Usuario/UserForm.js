@@ -10,6 +10,7 @@ class UserForm extends Component{
         super(props, context);
 
         this.state = {
+            value: '',
             username: '',
             email: ''
         };
@@ -33,11 +34,12 @@ class UserForm extends Component{
 
     handleSubmit = (e) => {
         e.preventDefault();
-        const data = {
-            username: this.state.username,
-            email: this.state.email
-        }
-        const queryParams = '?username=' + data.username + '&email=' + data.email;
+        const username = this.getUsername.value;
+        const email = this.getEmail.value;
+        this.setState({ ...this.state, getUsername: username, getEmail: email })
+        const queryParams = '?username=' + username + '&email=' + email;
+        console.log(queryParams);
+        
         axios.post('/updateUser' + queryParams)
             .then(response => {
                 console.log(response);
@@ -53,11 +55,11 @@ class UserForm extends Component{
             <Form onSubmit={this.handleSubmit}>
                 <Form.Group>
                     <Form.Label>Nombre de usuario</Form.Label>
-                    <Form.Control type="text" placeholder="Usuario" defaultValue={this.state.username} />
+                    <Form.Control type="text" ref={(input) => this.getUsername = input} placeholder="Usuario" defaultValue={this.state.username} />
                 </Form.Group>
                 <Form.Group>
                     <Form.Label>Correo electronico</Form.Label>
-                    <Form.Control type="email" placeholder="Email" defaultValue={this.state.email} />
+                    <Form.Control type="email" ref={(input) => this.getEmail = input} placeholder="Email" defaultValue={this.state.email} />
                 </Form.Group>
                 <Button variant="outline-success" type="submit">Añadir</Button>
             </Form>
