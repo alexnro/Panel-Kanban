@@ -12,6 +12,7 @@ class UserForm extends Component{
         this.state = {
             value: '',
             username: '',
+            cargo: '',
             email: ''
         };
     }
@@ -22,7 +23,8 @@ class UserForm extends Component{
             .then(response => {
                 let username = response.data.username
                 let email = response.data.email
-                this.setState({ ...this.state, username: username, email: email })
+                let cargo = response.data.cargo
+                this.setState({ ...this.state, username: username, email: email, cargo: cargo })
             })
             .catch(error => {
                 console.log(error);
@@ -33,9 +35,10 @@ class UserForm extends Component{
         e.preventDefault();
         const username = this.getUsername.value;
         const email = this.state.email;
-        this.setState({ ...this.state, getUsername: username, email: email })
-        const queryParams = '?username=' + username + '&email=' + email;
-        
+        const cargo = this.getCargo.value;
+        this.setState({ ...this.state, getUsername: username, email: email, cargo: cargo })
+        const queryParams = '?username=' + username + '&email=' + email + '&cargo=' + cargo;
+        console.log(queryParams);
         axios.post('/updateUser' + queryParams)
             .then(response => {
                 console.log(response);
@@ -52,6 +55,10 @@ class UserForm extends Component{
                 <Form.Group>
                     <Form.Label>Nombre de usuario</Form.Label>
                     <Form.Control type="text" ref={(input) => this.getUsername = input} placeholder="Usuario" defaultValue={this.state.username} />
+                </Form.Group>
+                <Form.Group>
+                    <Form.Label>Cargo</Form.Label>
+                    <Form.Control type="text" ref={(input) => this.getCargo = input} placeholder="Cargo" defaultValue={this.state.cargo} />
                 </Form.Group>
                 <Form.Label>{this.state.email}</Form.Label><br/>
                 <Button variant="outline-success" type="submit">Añadir</Button>

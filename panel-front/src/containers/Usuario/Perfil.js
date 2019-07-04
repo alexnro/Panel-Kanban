@@ -18,7 +18,8 @@ class Perfil extends Component {
 
         this.state = {
             username: '',
-            email: ''
+            email: '',
+            cargo: ''
         };
     }
 
@@ -28,7 +29,8 @@ class Perfil extends Component {
             .then(response => {
                 let username = response.data.username
                 let email = response.data.email
-                this.setState({ ...this.state, username: username, email: email })
+                let cargo = response.data.cargo
+                this.setState({ ...this.state, username: username, email: email, cargo: cargo })
             })
             .catch(error => {
                 console.log(error);
@@ -54,6 +56,7 @@ class Perfil extends Component {
                             <Tab eventKey="Perfil" title="Perfil">
                                 <p><strong>Nombre de usuario: </strong>{this.state.username}</p>
                                 <p><strong>Correo electronico: </strong>{this.state.email}</p>
+                                <p><strong>Cargo que ejerce: </strong>{this.state.cargo}</p>
                                 <ModalUsuario />
                             </Tab>
                             <Tab eventKey="Paneles" title="Paneles">
