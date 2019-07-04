@@ -11,6 +11,7 @@ import os
 class User(Document, UserMixin):
     username = fields.StringField(required=True)
     email = fields.StringField(required=True)
+    cargo = fields.StringField(required=True)
     password_hash = fields.StringField()
     access_token = fields.StringField()
     refresh_token = fields.StringField()

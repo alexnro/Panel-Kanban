@@ -8,6 +8,7 @@ class Register extends Component {
         username: '',
         email: '',
         password: '',
+        cargo: '',
         confirmPassword: ''
     }
 
@@ -23,6 +24,12 @@ class Register extends Component {
             ...this.state,
             email: event.target.value
         });
+    }
+    cargoHandler = event => {
+        this.setState({
+            ...this.state,
+            cargo: event.target.value
+        })
     }
 
     passwordHandler = event => {
@@ -44,6 +51,7 @@ class Register extends Component {
         const data = {
             Username: this.state.username,
             Email: this.state.email,
+            Cargo: this.state.cargo,
             Password: this.state.password,
             ConfirmPassword: this.state.confirmPassword
         }
@@ -75,6 +83,10 @@ class Register extends Component {
                     <div className="form-group">
                         <label htmlFor="email">Correo electrónico</label>
                         <input onChange={this.emailHandler} id="email" type="email" name="email" className="form-control" aria-describedby="emailHelp" placeholder="Correo electrónico" required />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="username">Cargo</label>
+                        <input onChange={this.cargoHandler} id="cargo" type="text" name="cargo" className="form-control" aria-describedby="emailHelp" placeholder="Cargo" required />
                     </div>
                     <div className="form-group">
                         <label htmlFor="password">Contraseña</label>
