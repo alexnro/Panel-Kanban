@@ -4,6 +4,7 @@ import { slide as Menu } from 'react-burger-menu';
 import axios from 'axios';
 
 import ImgPerfil from '../Usuario/ImgPerfil';
+import ModalPanel from '../../components/UI/Modal/ModalPanel';
 
 import './Sidebar.css';
 
@@ -39,7 +40,9 @@ class Sidebar extends Component {
                 <a href="/panel">Panel</a>
                 <a href="/perfil">Perfil</a>
                 <hr />
+                <ModalPanel />
                 <p>Paneles disponibles</p>
+
             </Menu>
         );
     }

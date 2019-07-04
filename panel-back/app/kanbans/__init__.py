@@ -1,5 +1,5 @@
 from flask import Blueprint
 
-bp = Blueprint('todo', __name__)
+bp = Blueprint('kanbans', __name__)
 
-from app.todo import routes
+from app.kanbans import routes

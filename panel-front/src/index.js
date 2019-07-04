@@ -10,8 +10,9 @@ import { createStore } from 'redux';
 import './index.css';
 import App from './App';
 import Tareas from './store/reducers/Tareas';
+import Kanban from './store/reducers/Kanban';
 
-const store = createStore(Tareas);
+const store = createStore(Kanban);
 
 const app = (
     <Provider store={store}>
