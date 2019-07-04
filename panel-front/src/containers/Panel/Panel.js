@@ -148,11 +148,9 @@ class Panel extends Component {
             </Row>
         );
         return (
-            <div>
-                <div className="Contenedor">
-                    {columnas}
-                    <ModalTarea />
-                </div>
+            <div className="Contenedor">
+                <div className="Boton"><ModalTarea /></div>
+                {columnas}
             </div>
         );
     };
