@@ -79,7 +79,6 @@ class ModalUsuario extends Component {
                                 <Form.Label>Cargo</Form.Label>
                                 <Form.Control type="text" ref={(input) => this.getCargo = input} placeholder="Cargo" defaultValue={this.state.cargo} />
                             </Form.Group>
-                            <Form.Label>{this.state.email}</Form.Label><br />
                             <Button variant="outline-success" type="submit" onClick={this.handleClose}>Añadir</Button>
                         </Form>
                     </Modal.Body>
