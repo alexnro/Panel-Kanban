@@ -14,7 +14,7 @@ class Panel extends Component {
         tasks: ''
     };
 
-    componentDidMount = () => {
+    componentWillMount = () => {
         axios.get('/getTasks')
             .then(response => {
                 let tasks = this.getJSON(response.data);

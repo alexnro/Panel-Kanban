@@ -9,7 +9,7 @@
 }
 
 .bm-item:hover {
-  color: white;
+  color: #b0b9be;
   text-decoration: none;
 }
 
@@ -45,4 +45,10 @@
 
 hr {
   border-color: #78c0f0;
+}
+
+/* Lista */
+
+ul li {
+  list-style: none;
 }
