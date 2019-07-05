@@ -87,7 +87,7 @@ class Register extends Component {
                     </div>
                     <div className="form-group">
                         <label htmlFor="username">Cargo</label>
-                        <input onChange={this.cargoHandler} id="cargo" type="text" name="cargo" className="form-control" aria-describedby="emailHelp" placeholder="Cargo" required />
+                        <input onChange={this.cargoHandler} id="cargo" type="text" name="cargo" className="form-control" aria-describedby="emailHelp" placeholder="Cargo"/>
                     </div>
                     <div className="form-group">
                         <label htmlFor="password">Contraseña</label>
