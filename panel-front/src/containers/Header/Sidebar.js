@@ -5,9 +5,9 @@ import axios from 'axios';
 
 import ImgPerfil from '../Usuario/ImgPerfil';
 import ModalPanel from '../../components/UI/Modal/ModalPanel';
+import Paneles from '../Panel/Paneles';
 
 import './Sidebar.css';
-import Paneles from '../Panel/Paneles';
 
 class Sidebar extends Component {
 

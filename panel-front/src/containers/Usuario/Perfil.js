@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Row, Col, Media, Tab, Tabs } from 'react-bootstrap';
+import { Container, Row, Col, Media, Tab, Tabs, Nav } from 'react-bootstrap';
 import { connect } from 'react-redux';
 
 import withAuth from '../../withAuth';
@@ -10,6 +10,8 @@ import './Perfil.css';
 
 import ModalUsuario from '../../components/UI/Modal/ModalUsuario';
 import ImgPerfil from './ImgPerfil';
+import Paneles from '../Panel/Paneles';
+
 
 class Perfil extends Component {
 
@@ -19,18 +21,36 @@ class Perfil extends Component {
         this.state = {
             username: '',
             email: '',
-            cargo: ''
+            cargo: '',
+            kanbans: []
         };
     }
 
-    componentWillMount() {
+    getJSON = a => {
+        if (typeof a !== "string" || !a || a == null) return null;
+        a = a.replace(/\r\n|\r|\n|\t/g, '').replace(/\\/g, '/');
+        return new Function("return " + a)();
+    }
+
+    componentDidMount() {
         let queryParams = '?email=' + localStorage.getItem('email');
         axios.get('/user' + queryParams)
             .then(response => {
                 let username = response.data.username
                 let email = response.data.email
-                let cargo = response.data.cargo
-                this.setState({ ...this.state, username: username, email: email, cargo: cargo })
+                this.setState({ ...this.state, username: username, email: email })
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    }
+
+    componentWillMount() {
+        axios.get('/getKanban')
+            .then(response => {
+                let kanbans = this.getJSON(response.data);
+                this.setState({ ...this.state, kanbans: kanbans });
+                console.log(this.state);
             })
             .catch(error => {
                 console.log(error);
@@ -60,7 +80,13 @@ class Perfil extends Component {
                                 <ModalUsuario />
                             </Tab>
                             <Tab eventKey="Paneles" title="Paneles">
-
+                                <ul>
+                                    {(this.state.kanbans).map((kanban) => (
+                                        <li>
+                                            <Paneles name={kanban.name} />
+                                        </li>
+                                    ))}
+                                </ul>
                             </Tab>
                         </Tabs>
                     </Col>
