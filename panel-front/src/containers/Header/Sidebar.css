@@ -1,11 +1,16 @@
-  /* Enlaces */
+/* Enlaces */
 
 .bm-item {
   display: inline-block;
   text-decoration: none;
-  margin-bottom: 10px;
+  margin-bottom: 0.625em;
   color: #b0b9be;
   transition: color 0.2s;
+}
+
+.bm-item-list {
+  color: #b8b7ad;
+  padding: 0.8em;
 }
 
 .bm-item:hover {
@@ -16,7 +21,7 @@
 /* Botón */
 
 .bm-burger-button {
-  position: relative;
+  position: fixed;
   width: 36px;
   height: 30px;
   left: 36px;
@@ -33,12 +38,26 @@
   background: #78c0f0;
 }
 
+.bm-cross-button {
+  height: 24px;
+  width: 24px;
+}
+
 /* Sidebar en si */
 
 .bm-menu {
   background: #334e72;
-  padding: 2.5em 1.5em 0;
+  padding: 40px 20px;
   font-size: 20px;
+}
+
+.bm-menu-wrap {
+  position: fixed;
+  height: 100%;
+}
+
+.bm-morph-shape {
+  fill: #373a47;
 }
 
 /* Separador */
@@ -52,3 +71,4 @@ hr {
 ul li {
   list-style: none;
 }
+
