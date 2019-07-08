@@ -33,7 +33,7 @@ class ImgPerfil extends Component {
         return name
                 .split(' ')
                 .map( item => item.charAt(0) )
-                .slice(0,2)
+                .slice(0, 1)
                 .join(' ');
     }
 
@@ -41,10 +41,10 @@ class ImgPerfil extends Component {
         let { size }  = this.props;
         let container = classNames('avatar',size);
         return (
-            <div className={container}>
+            <span className={container}>
                 <span>{this._getName()}</span>
                 {console.log(this._getName())}
-            </div>
+            </span>
         );
     }
 }

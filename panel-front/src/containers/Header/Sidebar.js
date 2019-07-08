@@ -3,7 +3,6 @@ import { slide as Menu } from 'react-burger-menu';
 
 import axios from 'axios';
 
-import ImgPerfil from '../Usuario/ImgPerfil';
 import ModalPanel from '../../components/UI/Modal/ModalPanel';
 import Paneles from '../Panel/Paneles';
 
@@ -52,9 +51,6 @@ class Sidebar extends Component {
         return (
             <Menu>
                 <div className="datosUsuario">
-                    <span className="imagen">
-                        <ImgPerfil />
-                    </span>
                     {this.state.username}
                 </div>
                 <hr />
