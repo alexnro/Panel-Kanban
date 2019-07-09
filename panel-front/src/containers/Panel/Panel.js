@@ -6,7 +6,7 @@ import withAuth from '../../withAuth';
 import './Panel.css';
 import Tareas from '../Tareas/Tareas';
 import EditComponente from '../Tareas/EditComponente';
-import Ventana from '../../components/UI/Modal/Ventana';
+import ModalTarea from '../../components/UI/Modal/ModalTarea';
 import { getJSON } from '../../shared/utility';
 
 class Panel extends Component {
@@ -15,11 +15,8 @@ class Panel extends Component {
         tasks: ''
     };
 
-    componentDidMount = () => {
-        this.getTasks();
-    }
 
-    getTasks = () => {
+    componentWillMount = () => {
         axios.get('/getTasks')
             .then(response => {
                 let tasks = getJSON(response.data);
@@ -48,7 +45,7 @@ class Panel extends Component {
                                         post.column === "1" &&
                                         <tr key={post._id} column={post.column}>
                                             {post.editing ? <EditComponente post={post} key={post._id} column={post.column} /> :
-                                                <Tareas key={post._id} post={post} column={post.column} refresh={this.getTasks.bind(this)} />}
+                                                <Tareas key={post._id} post={post} column={post.column} />}
                                         </tr>
                                     ))}
                                 </tbody> :
@@ -70,7 +67,7 @@ class Panel extends Component {
                                         post.column === "2" &&
                                         <tr key={post._id} column={post.column}>
                                             {post.editing ? <EditComponente post={post} key={post._id} column={post.column} /> :
-                                                <Tareas key={post._id} post={post} column={post.column} refresh={this.getTasks.bind(this)} />}
+                                                <Tareas key={post._id} post={post} column={post.column} />}
                                         </tr>
                                     ))}
                                 </tbody> :
@@ -92,7 +89,7 @@ class Panel extends Component {
                                         post.column === "3" &&
                                         <tr key={post._id} column={post.column}>
                                             {post.editing ? <EditComponente post={post} key={post._id} column={post.column} /> :
-                                                <Tareas key={post._id} post={post} column={post.column} refresh={this.getTasks.bind(this)} />}
+                                                <Tareas key={post._id} post={post} column={post.column} />}
                                         </tr>
                                     ))}
                                 </tbody> :
@@ -114,7 +111,7 @@ class Panel extends Component {
                                         post.column === "4" &&
                                         <tr key={post._id} column={post.column}>
                                             {post.editing ? <EditComponente post={post} key={post._id} column={post.column} /> :
-                                                <Tareas key={post._id} post={post} column={post.column} refresh={this.getTasks.bind(this)} />}
+                                                <Tareas key={post._id} post={post} column={post.column} />}
                                         </tr>
                                     ))}
                                 </tbody> :
@@ -136,7 +133,7 @@ class Panel extends Component {
                                         post.column === "5" &&
                                         <tr key={post._id} column={post.column}>
                                             {post.editing ? <EditComponente post={post} key={post._id} column={post.column} /> :
-                                                <Tareas key={post._id} post={post} column={post.column} refresh={this.getTasks.bind(this)} />}
+                                                <Tareas key={post._id} post={post} column={post.column} />}
                                         </tr>
                                     ))}
                                 </tbody> :
@@ -147,11 +144,9 @@ class Panel extends Component {
             </Row>
         );
         return (
-            <div>
-                <div className="Contenedor">
-                    {columnas}
-                    <Ventana refresh={this.getTasks.bind(this)} />
-                </div>
+            <div className="Contenedor">
+                <div className="Boton"><ModalTarea /></div>
+                {columnas}
             </div>
         );
     };

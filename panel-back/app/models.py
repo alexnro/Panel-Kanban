@@ -9,8 +9,9 @@ import os
 
 
 class User(Document, UserMixin):
-    username = fields.StringField(primary_key=True, required=True)
+    username = fields.StringField(required=True)
     email = fields.StringField(required=True)
+    cargo = fields.StringField()
     password_hash = fields.StringField()
     access_token = fields.StringField()
     refresh_token = fields.StringField()
@@ -59,3 +60,7 @@ class Task(Document):
     title = fields.StringField()
     message = fields.StringField()
     column = fields.StringField()
+
+
+class Kanbans(Document):
+    name = fields.StringField()

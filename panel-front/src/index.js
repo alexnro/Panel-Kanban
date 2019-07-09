@@ -4,14 +4,20 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { createStore, combineReducers } from 'redux';
 
 
 import './index.css';
 import App from './App';
-import postReducer from './store/reducers/postReducer';
+import Tareas from './store/reducers/Tareas';
+import Kanban from './store/reducers/Kanban';
 
-const store = createStore(postReducer);
+const rootReducer = combineReducers({
+    Tareas: Tareas,
+    Kanban: Kanban
+});
+
+const store = createStore(rootReducer);
 
 const app = (
     <Provider store={store}>

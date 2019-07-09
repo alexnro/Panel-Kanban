@@ -1,0 +1,14 @@
+.avatar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #e0b3ff;
+    width: 85px;
+    height: 85px;
+}
+ 
+.avatar span{
+    font-size: 16px;
+    color: black;
+    font-size: 35px;
+}

@@ -32,6 +32,9 @@ def create_app(config_class=Config):
     from app.task import bp as task_bp
     app.register_blueprint(task_bp)
 
+    from app.kanbans import bp as kanbans_bp
+    app.register_blueprint(kanbans_bp)
+
     return app
 
 

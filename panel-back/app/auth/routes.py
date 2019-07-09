@@ -30,9 +30,10 @@ def register():
     request_data = request.get_json()
     username = request_data.get("Username")
     email = request_data.get("Email")
+    cargo = request_data.get("Cargo")
     password = request_data.get("Password")
     password_hash = generate_password_hash(password)
-    user = User(username=username, email=email, password_hash=password_hash)
+    user = User(username=username, email=email, password_hash=password_hash, cargo=cargo)
     user.save()
     return user.email
 
@@ -50,3 +51,21 @@ def check_token():
     email = request.args.get("email")
     user = User.objects.get(email=email)
     return str(user.access_token)
+
+
+@bp.route('/user', methods=['GET'])
+def get_user():
+    email = request.args.get("email")
+    user = User.objects.get(email=email)
+    return user.to_json()
+
+
+@bp.route('/updateUser', methods=['POST', 'GET'])
+def update_user():
+    username = request.args.get("username")
+    cargo = request.args.get("cargo")
+    email = request.args.get("email")
+    user = User.objects.get(email=email)
+    user.update(username=username, cargo=cargo)
+    return 'User updated'
+

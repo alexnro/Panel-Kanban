@@ -44,9 +44,11 @@ class Login extends Component {
                     localStorage.setItem('token', token_data);
                     localStorage.setItem('email', this.state.email);
                 }
+                alert('Ha iniciado sesión correctamente')
             })
             .catch(error => {
                 console.log(error);
+                alert('Ha ocurrido un problema, vuelva a intentarlo')
                 console.log(data);
             });
     }

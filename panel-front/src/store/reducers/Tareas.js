@@ -43,7 +43,7 @@ const updatePostRequest = data => {
 }
 
 
-const postReducer = (state = [], action) => {
+const Tareas = (state = [], action) => {
     switch (action.type) {
         case 'ADD_POST':
             addPostRequest(action.data);
@@ -89,4 +89,4 @@ const postReducer = (state = [], action) => {
     }
 }
 
-export default postReducer;
+export default Tareas;
