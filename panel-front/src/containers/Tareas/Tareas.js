@@ -7,12 +7,10 @@ class Tareas extends Component {
 
     editHandler = () => {
         this.props.dispatch({ type: 'EDIT_POST', id: this.props.post._id });
-        this.props.refresh();
     }
     
     deleteHandler = () => {
         this.props.dispatch({ type: 'DELETE_POST', id: this.props.post._id });
-        this.props.refresh();
     }
 
     render() {

@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import withAuth from '../../withAuth';
 import axios from 'axios';
+import { getJSON } from '../../shared/utility';
 
 
 import './Perfil.css';
@@ -26,12 +27,6 @@ class Perfil extends Component {
         };
     }
 
-    getJSON = a => {
-        if (typeof a !== "string" || !a || a == null) return null;
-        a = a.replace(/\r\n|\r|\n|\t/g, '').replace(/\\/g, '/');
-        return new Function("return " + a)();
-    }
-
     componentDidMount() {
         let queryParams = '?email=' + localStorage.getItem('email');
         axios.get('/user' + queryParams)
@@ -49,7 +44,7 @@ class Perfil extends Component {
     componentWillMount() {
         axios.get('/getKanban')
             .then(response => {
-                let kanbans = this.getJSON(response.data);
+                let kanbans = getJSON(response.data);
                 this.setState({ ...this.state, kanbans: kanbans });
                 console.log(this.state);
             })
