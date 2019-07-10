@@ -38,6 +38,7 @@ def register():
     return user.email
 
 
+
 @bp.route('/logout', methods=['POST', 'GET'])
 def logout():
     email = request.args.get("email")

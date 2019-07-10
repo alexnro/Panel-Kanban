@@ -9,8 +9,8 @@ import os
 
 
 class User(Document, UserMixin):
-    username = fields.StringField(required=True)
-    email = fields.StringField(required=True)
+    username = fields.StringField(required=True, unique=True)
+    email = fields.StringField(required=True, unique=True)
     cargo = fields.StringField()
     password_hash = fields.StringField()
     access_token = fields.StringField()

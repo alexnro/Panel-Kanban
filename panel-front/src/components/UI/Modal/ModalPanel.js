@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 import { connect } from 'react-redux';
 
+import withAuth from '../../withAuth';
+
 class ModalPanel extends Component {
   constructor(props, context) {
     super(props, context);
@@ -62,4 +64,4 @@ class ModalPanel extends Component {
   }
 }
 
-export default connect()(ModalPanel);
+export default connect()(withAuth(ModalPanel));
