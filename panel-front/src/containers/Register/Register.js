@@ -60,13 +60,13 @@ class Register extends Component {
             .then(response => {
                 console.log(response);
                 console.log(data);
+                this.linkToLogin(alert('Se ha registrado correctamente'));
             })
             .catch(error => {
                 console.log(error);
                 console.log(data);
                 alert('Ha ocurrido un problema, vuelva a intentarlo')
             });
-        this.linkToLogin(alert('Se ha registrado correctamente'));
     }
 
     linkToLogin = () => {
