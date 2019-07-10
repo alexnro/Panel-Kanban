@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 import { connect } from 'react-redux';
 
-import withAuth from '../../withAuth';
-
 class ModalPanel extends Component {
   constructor(props, context) {
     super(props, context);
@@ -11,7 +9,6 @@ class ModalPanel extends Component {
     this.handleShow = this.handleShow.bind(this);
     this.handleClose = this.handleClose.bind(this);
 
-    /**hola soy victor jejexd */
     this.state = {
       show: false,
       value: '',
@@ -65,4 +62,4 @@ class ModalPanel extends Component {
   }
 }
 
-export default connect()(withAuth(ModalPanel));
+export default connect()(ModalPanel);
