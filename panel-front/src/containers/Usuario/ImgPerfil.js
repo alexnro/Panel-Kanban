@@ -29,7 +29,6 @@ class ImgPerfil extends Component {
 
     _getName(){
         let name = this.state.username;
-        console.log(name);
         return name
                 .split(' ')
                 .map( item => item.charAt(0) )
@@ -43,7 +42,6 @@ class ImgPerfil extends Component {
         return (
             <span className={container}>
                 <span>{this._getName()}</span>
-                {console.log(this._getName())}
             </span>
         );
     }
