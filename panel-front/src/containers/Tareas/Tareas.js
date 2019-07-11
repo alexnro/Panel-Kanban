@@ -4,6 +4,15 @@ import { Card, Button, ButtonGroup } from 'react-bootstrap';
 
 
 class Tareas extends Component {
+
+    editHandler = () => {
+        this.props.dispatch({ type: 'EDIT_POST', id: this.props.post._id });
+    }
+    
+    deleteHandler = () => {
+        this.props.dispatch({ type: 'DELETE_POST', id: this.props.post._id });
+    }
+
     render() {
         return (
             <td>
@@ -14,10 +23,10 @@ class Tareas extends Component {
                     </Card.Body>
                     <ButtonGroup aria-label="Basic example">
                         <Button variant="outline-secondary" size="sm"
-                            onClick={() => this.props.dispatch({ type: 'EDIT_POST', id: this.props.post._id })}>
+                            onClick={this.editHandler}>
                             Editar</Button>
                         <Button variant="outline-secondary" size="sm"
-                            onClick={() => this.props.dispatch({ type: 'DELETE_POST', id: this.props.post._id })}>
+                            onClick={this.deleteHandler}>
                             Eliminar</Button>
                     </ButtonGroup>
                 </Card>

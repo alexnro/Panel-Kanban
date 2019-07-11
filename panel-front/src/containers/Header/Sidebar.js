@@ -5,6 +5,7 @@ import axios from 'axios';
 
 import ModalPanel from '../../components/UI/Modal/ModalPanel';
 import Paneles from '../Panel/Paneles';
+import { getJSON } from '../../shared/utility';
 
 import './Sidebar.css';
 
@@ -14,12 +15,6 @@ class Sidebar extends Component {
         username: '',
         email: '',
         kanbans: []
-    }
-
-    getJSON = a => {
-        if (typeof a !== "string" || !a || a == null) return null;
-        a = a.replace(/\r\n|\r|\n|\t/g, '').replace(/\\/g, '/');
-        return new Function("return " + a)();
     }
 
     componentDidMount() {
@@ -38,7 +33,7 @@ class Sidebar extends Component {
     componentWillMount() {
         axios.get('/getKanban')
             .then(response => {
-                let kanbans = this.getJSON(response.data);
+                let kanbans = getJSON(response.data);
                 this.setState({ ...this.state, kanbans: kanbans });
             })
             .catch(error => {

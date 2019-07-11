@@ -7,6 +7,7 @@ import './Panel.css';
 import Tareas from '../Tareas/Tareas';
 import EditComponente from '../Tareas/EditComponente';
 import ModalTarea from '../../components/UI/Modal/ModalTarea';
+import { getJSON } from '../../shared/utility';
 
 class Panel extends Component {
 
@@ -14,21 +15,16 @@ class Panel extends Component {
         tasks: ''
     };
 
+
     componentWillMount = () => {
         axios.get('/getTasks')
             .then(response => {
-                let tasks = this.getJSON(response.data);
+                let tasks = getJSON(response.data);
                 this.setState({ ...this.state, tasks: tasks });
             })
             .catch(error => {
                 console.log(error);
             })
-    }
-
-    getJSON = a => {
-        if (typeof a !== "string" || !a || a == null) return null;
-        a = a.replace(/\r\n|\r|\n|\t/g, '').replace(/\\/g, '/');
-        return new Function("return " + a)();
     }
 
     render() {
