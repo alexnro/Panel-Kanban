@@ -1,4 +1,4 @@
-import React, { Component, useReducer } from 'react';
+import React, { Component } from 'react';
 import axios from 'axios';
 import { getJSON } from '../../shared/utility';
 import './Login.css';
@@ -47,8 +47,8 @@ class Login extends Component {
                 alert('Ha iniciado sesión correctamente')
             })
             .catch(error => {
-                alert('Ha ocurrido un problema, vuelva a intentarlo')
-                this.setState.isValid = true && this.loginHandler()
+                console.log(error);
+                alert('Ha habido un problema. Vuelva a intentarlo')
             });
     }
 
