@@ -51,7 +51,6 @@ class Perfil extends Component {
             .then(response => {
                 let kanbans = this.getJSON(response.data);
                 this.setState({ ...this.state, kanbans: kanbans });
-                console.log(this.state);
             })
             .catch(error => {
                 console.log(error);

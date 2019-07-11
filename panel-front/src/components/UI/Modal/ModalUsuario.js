@@ -48,7 +48,6 @@ class ModalUsuario extends Component {
         const cargo = this.getCargo.value;
         this.setState({ ...this.state, getUsername: username, email: email, cargo: cargo })
         const queryParams = '?username=' + username + '&email=' + email + '&cargo=' + cargo;
-        console.log(queryParams);
         axios.post('/updateUser' + queryParams)
             .then(response => {
                 console.log(response);

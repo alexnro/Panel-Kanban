@@ -2,7 +2,7 @@ from flask import request
 from app.auth import bp
 from app.models import User
 from werkzeug.security import generate_password_hash
-from flask_login import login_user, logout_user
+from flask_login import login_user
 from flask_httpauth import HTTPBasicAuth, HTTPTokenAuth
 
 
@@ -16,7 +16,9 @@ def login():
     email = request_data.get("Email")
     password = request_data.get("Password")
     user = User.objects.get(email=email)
-    if user is None or not user.check_password(password):
+    if user.access_token:
+        return "Usuario ya logueado"
+    elif user is None or not user.check_password(password):
         return "Usuario incorrecto"
     else:
         login_user(user)
@@ -36,7 +38,6 @@ def register():
     user = User(username=username, email=email, password_hash=password_hash, cargo=cargo)
     user.save()
     return user.email
-
 
 
 @bp.route('/logout', methods=['POST', 'GET'])

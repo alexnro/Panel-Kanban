@@ -19,7 +19,6 @@ class Panel extends Component {
             .then(response => {
                 let tasks = this.getJSON(response.data);
                 this.setState({ ...this.state, tasks: tasks });
-                console.log(this.state);
             })
             .catch(error => {
                 console.log(error);
