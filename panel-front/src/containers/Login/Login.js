@@ -48,7 +48,7 @@ class Login extends Component {
             })
             .catch(error => {
                 alert('Ha ocurrido un problema, vuelva a intentarlo')
-                this.setState.isValid = true && this.loginHandler(alert("usuario ya logueado"))
+                this.setState.isValid = true && this.loginHandler()
             });
     }
 
