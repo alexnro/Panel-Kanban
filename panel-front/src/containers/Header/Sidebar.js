@@ -55,7 +55,7 @@ class Sidebar extends Component {
                 <p>Paneles disponibles</p>
                 <ul>
                     {(this.state.kanbans).map((kanban) => (
-                        <li>
+                        <li key={kanban.name}>
                             <Paneles name={kanban.name} />
                         </li>
                     ))}

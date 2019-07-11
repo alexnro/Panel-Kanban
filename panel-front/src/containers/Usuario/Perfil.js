@@ -81,7 +81,7 @@ class Perfil extends Component {
                                 <Tab eventKey="Paneles" title="Paneles">
                                     <ul>
                                         {(this.state.kanbans).map((kanban) => (
-                                            <li>
+                                            <li key={kanban.name}>
                                                 <Paneles name={kanban.name} />
                                             </li>
                                         ))}
