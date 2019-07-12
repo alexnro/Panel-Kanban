@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 class Paneles extends Component {
     render() {
         return (
-            <p>{this.props.name}</p>
+            <a href="#">{this.props.name}</a>
         );
     }
 }

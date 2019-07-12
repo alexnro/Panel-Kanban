@@ -5,3 +5,12 @@
 .Boton {
     margin-bottom: 2%;
 }
+
+a {
+    color: #b8b7ad;
+}
+
+a:hover {
+    color: #b8b7ad;
+    text-decoration: none;
+}
