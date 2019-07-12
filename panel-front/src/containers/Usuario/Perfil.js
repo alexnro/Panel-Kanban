@@ -79,13 +79,15 @@ class Perfil extends Component {
                                     <ModalUsuario />
                                 </Tab>
                                 <Tab eventKey="Paneles" title="Paneles">
-                                    <ul>
-                                        {(this.state.kanbans).map((kanban) => (
-                                            <li key={kanban.name}>
-                                                <Paneles name={kanban.name} />
-                                            </li>
-                                        ))}
-                                    </ul>
+                                    <div className="panel">
+                                        <ul>
+                                            {(this.state.kanbans).map((kanban) => (
+                                                <li key={kanban.name}>
+                                                    <Paneles name={kanban.name} />
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
                                 </Tab>
                             </Tabs>
                         </Col>
