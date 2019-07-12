@@ -22,20 +22,11 @@ class Panel extends Component {
 
     componentDidUpdate = () => {
         let equal = false;
-        console.log(this.state.tasks[0]);
-        console.log(this.props.posts);
-        console.log(this.props.posts[0]);
         if (this.state.tasks.length !== this.props.posts.length) {
             equal = true;
-            console.log(equal)
         }
-        console.log(equal)
         if (equal) {
-            console.log(this.state.tasks)
-            console.log(this.props.posts)
             this.getTasks();
-            console.log(this.state.tasks)
-            console.log(this.props.posts)
         }
     }
 
@@ -44,7 +35,6 @@ class Panel extends Component {
             .then(response => {
                 let tasks = getJSON(response.data);
                 this.setState({ ...this.state, tasks: tasks }, () => this.props.dispatch({ type: 'GET_POSTS', tasks: this.state.tasks }));
-                console.log(this.state);
             })
             .catch(error => {
                 console.log(error);
