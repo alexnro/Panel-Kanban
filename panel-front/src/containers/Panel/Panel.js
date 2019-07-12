@@ -19,12 +19,26 @@ class Panel extends Component {
         tasks: ''
     };
 
+    componentDidMount = () => {
+        this.getTasks();
+        console.log(this.props.posts)
+    }
 
-    componentWillMount = () => {
+    componentDidUpdate = () => {
+        let equal = false;
+        if (this.state.tasks.length !== this.props.posts.length) {
+            equal = true;
+        }
+        if (equal) {
+            this.getTasks();
+        }
+    }
+
+    getTasks = () => {
         axios.get('/getTasks')
             .then(response => {
                 let tasks = getJSON(response.data);
-                this.setState({ ...this.state, tasks: tasks });
+                this.setState({ ...this.state, tasks: tasks }, () => this.props.dispatch({ type: 'GET_POSTS', tasks: this.state.tasks }));
             })
             .catch(error => {
                 console.log(error);
@@ -42,9 +56,9 @@ class Panel extends Component {
                                     <th scope="col">#</th>
                                 </tr>
                             </thead>
-                            {this.state.tasks ?
+                            {this.props.posts ?
                                 <tbody>
-                                    {Array.from(this.state.tasks).map((post) => (
+                                    {Array.from(this.props.posts).map((post) => (
                                         post.column === "1" &&
                                         <tr key={post._id} column={post.column}>
                                             {post.editing ? <EditComponente post={post} key={post._id} column={post.column} /> :
@@ -64,9 +78,9 @@ class Panel extends Component {
                                     <th scope="col">#</th>
                                 </tr>
                             </thead>
-                            {this.state.tasks ?
+                            {this.props.posts ?
                                 <tbody>
-                                    {Array.from(this.state.tasks).map((post) => (
+                                    {Array.from(this.props.posts).map((post) => (
                                         post.column === "2" &&
                                         <tr key={post._id} column={post.column}>
                                             {post.editing ? <EditComponente post={post} key={post._id} column={post.column} /> :
@@ -86,9 +100,9 @@ class Panel extends Component {
                                     <th scope="col">#</th>
                                 </tr>
                             </thead>
-                            {this.state.tasks ?
+                            {this.props.posts ?
                                 <tbody>
-                                    {Array.from(this.state.tasks).map((post) => (
+                                    {Array.from(this.props.posts).map((post) => (
                                         post.column === "3" &&
                                         <tr key={post._id} column={post.column}>
                                             {post.editing ? <EditComponente post={post} key={post._id} column={post.column} /> :
@@ -108,9 +122,9 @@ class Panel extends Component {
                                     <th scope="col">#</th>
                                 </tr>
                             </thead>
-                            {this.state.tasks ?
+                            {this.props.posts ?
                                 <tbody>
-                                    {Array.from(this.state.tasks).map((post) => (
+                                    {Array.from(this.props.posts).map((post) => (
                                         post.column === "4" &&
                                         <tr key={post._id} column={post.column}>
                                             {post.editing ? <EditComponente post={post} key={post._id} column={post.column} /> :
@@ -130,9 +144,9 @@ class Panel extends Component {
                                     <th scope="col">#</th>
                                 </tr>
                             </thead>
-                            {this.state.tasks ?
+                            {this.props.posts ?
                                 <tbody>
-                                    {Array.from(this.state.tasks).map((post) => (
+                                    {Array.from(this.props.posts).map((post) => (
                                         post.column === "5" &&
                                         <tr key={post._id} column={post.column}>
                                             {post.editing ? <EditComponente post={post} key={post._id} column={post.column} /> :
@@ -161,7 +175,7 @@ class Panel extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        posts: state
+        posts: state.Tareas
     }
 }
 

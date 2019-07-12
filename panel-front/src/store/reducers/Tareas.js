@@ -28,7 +28,8 @@ const deletePostRequest = post_id => {
 }
 
 const updatePostRequest = data => {
-    let task_id = data.id;
+    console.log(data);
+    let task_id = data._id;
     let title = data.title;
     let message = data.message;
     let column = data.column;
@@ -45,27 +46,30 @@ const updatePostRequest = data => {
 
 const Tareas = (state = [], action) => {
     switch (action.type) {
+        case 'GET_POSTS':
+            state = action.tasks
+            return state;
         case 'ADD_POST':
             addPostRequest(action.data);
             return state.concat([action.data]);
         case 'DELETE_POST':
             deletePostRequest(action.id);
-            return state.filter((post) => {
-                return post.id !== action.id
-            });
+            return state.splice(state.findIndex(x => x._id === action.id));
         case 'EDIT_POST':
             return state.map((post) => {
                 console.log(post)
-                return post.id === action.id ? { ...post, editing: !post.editing } : post});
+                return post._id === action.id ? { ...post, editing: !post.editing } : post});
         case 'UPDATE':
+            console.log(action.id)
             return state.map((post) => {
-                console.log(post)
-                if (post.id === action.id) {
+                console.log(post._id)
+                console.log(action.id)
+                if (post._id === action.id) {
                     let data = {
                         ...post,
                         title: action.data.newTitle,
                         message: action.data.newMessage,
-                        editing: !post.editing,
+                        editing: false,
                         column: action.data.newColumn
                     }
                     updatePostRequest(data);
@@ -80,7 +84,7 @@ const Tareas = (state = [], action) => {
                     ...post,
                     title: post.title,
                     message: post.message,
-                    editing: !post.editing,
+                    editing: false,
                     column: post.column
                 }
             });
