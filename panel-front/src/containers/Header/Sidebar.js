@@ -35,7 +35,6 @@ class Sidebar extends Component {
             .then(response => {
                 let kanbans = getJSON(response.data);
                 this.setState({ ...this.state, kanbans: kanbans });
-                console.log(this.state);
             })
             .catch(error => {
                 console.log(error);
@@ -56,7 +55,7 @@ class Sidebar extends Component {
                 <p>Paneles disponibles</p>
                 <ul>
                     {(this.state.kanbans).map((kanban) => (
-                        <li>
+                        <li key={kanban.name}>
                             <Paneles name={kanban.name} />
                         </li>
                     ))}

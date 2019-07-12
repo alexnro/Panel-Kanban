@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import { Row, Col } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import withAuth from '../../withAuth';
+import { getJSON } from '../../shared/utility';
+
 import './Panel.css';
+
+import withAuth from '../../withAuth';
 import Tareas from '../Tareas/Tareas';
 import EditComponente from '../Tareas/EditComponente';
 import ModalTarea from '../../components/UI/Modal/ModalTarea';
-import { getJSON } from '../../shared/utility';
+import Sidebar from '../Header/Sidebar';
+import Navegacion from '../Header/Navegacion';
+import axios from 'axios';
 
 class Panel extends Component {
 
@@ -153,9 +157,13 @@ class Panel extends Component {
             </Row>
         );
         return (
-            <div className="Contenedor">
-                <div className="Boton"><ModalTarea /></div>
-                {columnas}
+            <div>
+                <Sidebar />
+                <Navegacion />   
+                <div className="Contenedor">
+                    <div className="Boton"><ModalTarea /></div>
+                    {columnas}
+                </div>
             </div>
         );
     };

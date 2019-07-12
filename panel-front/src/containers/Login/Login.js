@@ -48,8 +48,7 @@ class Login extends Component {
             })
             .catch(error => {
                 console.log(error);
-                alert('Ha ocurrido un problema, vuelva a intentarlo')
-                console.log(data);
+                alert('Ha habido un problema. Vuelva a intentarlo')
             });
     }
 

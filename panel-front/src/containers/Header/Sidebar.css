@@ -72,3 +72,8 @@ ul li {
   list-style: none;
 }
 
+/* Nombre usuario */
+.datosUsuario {
+  text-transform: capitalize;
+}
+
