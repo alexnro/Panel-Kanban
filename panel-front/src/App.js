@@ -9,7 +9,7 @@ import Perfil from './containers/Usuario/Perfil';
 const App = () => (
 
   <div>
-    <Route exact path="/" component={Login} />
+    <Route exact path="/" component={Panel} />
     <Route exact path="/login" component={Login} />
     <Route exact path="/register" component={Register} />
     <Route exact path="/panel" component={Panel} />
