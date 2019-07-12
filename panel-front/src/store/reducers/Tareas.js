@@ -45,6 +45,9 @@ const updatePostRequest = data => {
 
 const Tareas = (state = [], action) => {
     switch (action.type) {
+        case 'GET_POSTS':
+            state = action.tasks
+            return state;
         case 'ADD_POST':
             addPostRequest(action.data);
             return state.concat([action.data]);
