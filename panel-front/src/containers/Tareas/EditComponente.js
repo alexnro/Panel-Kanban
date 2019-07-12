@@ -45,7 +45,7 @@ class EditComponente extends Component {
                     </Form.Group>
                     <Form.Group onChange={(e) => this.setState({ ...this.state, value: e.target.value })}>
                         <Form.Label>Seleccione una nueva columna</Form.Label><br />
-                        <Form.Control as="select">
+                        <Form.Control as="select" defaultValue={this.props.column}>
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
