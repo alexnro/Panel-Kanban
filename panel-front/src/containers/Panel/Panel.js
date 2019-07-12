@@ -21,12 +21,8 @@ class Panel extends Component {
     }
 
     componentDidUpdate = () => {
-        let equal = false;
         if (this.state.tasks.length !== this.props.posts.length) {
-            equal = true;
-        }
-        if (equal) {
-            this.getTasks();
+            this.getTasks()
         }
     }
 
