@@ -13,7 +13,7 @@ import App from './App';
 import Tareas from './store/reducers/Tareas';
 import Kanban from './store/reducers/Kanban';
 
-const composeEnhancers = process.env.NODE_ENV == 'development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null || compose;
+const composeEnhancers = process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null || compose;
 
 const rootReducer = combineReducers({
     Tareas: Tareas,

@@ -52,9 +52,9 @@ class Panel extends Component {
                                     <th scope="col">#</th>
                                 </tr>
                             </thead>
-                            {this.state.tasks ?
+                            {this.props.posts ?
                                 <tbody>
-                                    {Array.from(this.state.tasks).map((post) => (
+                                    {Array.from(this.props.posts).map((post) => (
                                         post.column === "1" &&
                                         <tr key={post._id} column={post.column}>
                                             {post.editing ? <EditComponente post={post} key={post._id} column={post.column} /> :
@@ -74,9 +74,9 @@ class Panel extends Component {
                                     <th scope="col">#</th>
                                 </tr>
                             </thead>
-                            {this.state.tasks ?
+                            {this.props.posts ?
                                 <tbody>
-                                    {Array.from(this.state.tasks).map((post) => (
+                                    {Array.from(this.props.posts).map((post) => (
                                         post.column === "2" &&
                                         <tr key={post._id} column={post.column}>
                                             {post.editing ? <EditComponente post={post} key={post._id} column={post.column} /> :
@@ -96,9 +96,9 @@ class Panel extends Component {
                                     <th scope="col">#</th>
                                 </tr>
                             </thead>
-                            {this.state.tasks ?
+                            {this.props.posts ?
                                 <tbody>
-                                    {Array.from(this.state.tasks).map((post) => (
+                                    {Array.from(this.props.posts).map((post) => (
                                         post.column === "3" &&
                                         <tr key={post._id} column={post.column}>
                                             {post.editing ? <EditComponente post={post} key={post._id} column={post.column} /> :
@@ -118,9 +118,9 @@ class Panel extends Component {
                                     <th scope="col">#</th>
                                 </tr>
                             </thead>
-                            {this.state.tasks ?
+                            {this.props.posts ?
                                 <tbody>
-                                    {Array.from(this.state.tasks).map((post) => (
+                                    {Array.from(this.props.posts).map((post) => (
                                         post.column === "4" &&
                                         <tr key={post._id} column={post.column}>
                                             {post.editing ? <EditComponente post={post} key={post._id} column={post.column} /> :
@@ -140,9 +140,9 @@ class Panel extends Component {
                                     <th scope="col">#</th>
                                 </tr>
                             </thead>
-                            {this.state.tasks ?
+                            {this.props.posts ?
                                 <tbody>
-                                    {Array.from(this.state.tasks).map((post) => (
+                                    {Array.from(this.props.posts).map((post) => (
                                         post.column === "5" &&
                                         <tr key={post._id} column={post.column}>
                                             {post.editing ? <EditComponente post={post} key={post._id} column={post.column} /> :
