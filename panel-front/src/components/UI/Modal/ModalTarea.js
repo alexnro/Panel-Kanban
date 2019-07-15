@@ -32,7 +32,8 @@ class ModalTarea extends Component {
             id: String(new Date()),
             title,
             message,
-            column: this.state.value
+            column: this.state.value,
+            kanban: this.props.kanban
         }
         this.props.dispatch({
             type: 'ADD_POST', data

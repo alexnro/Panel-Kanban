@@ -10,7 +10,6 @@ basic_auth = HTTPBasicAuth()
 token_auth = HTTPTokenAuth()
 
 
-@bp.route('/')
 @bp.route('/login', methods=['POST', 'GET'])
 def login():
     request_data = request.get_json()

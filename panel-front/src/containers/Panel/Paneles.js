@@ -6,7 +6,7 @@ import './Paneles.css';
 class Paneles extends Component {
     render() {
         return (
-            <a href="#">{this.props.name}</a>
+            <a href={"/panel?name=" + this.props.name}>{this.props.name}</a>
         );
     }
 }

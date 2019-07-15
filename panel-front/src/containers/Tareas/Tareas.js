@@ -8,14 +8,14 @@ class Tareas extends Component {
     editHandler = () => {
         this.props.dispatch({ type: 'EDIT_POST', id: this.props.post._id });
     }
-    
+
     deleteHandler = () => {
         this.props.dispatch({ type: 'DELETE_POST', id: this.props.post._id });
     }
 
     render() {
         return (
-            <td>
+            <td key={this.props.post._id}>
                 <Card>
                     <Card.Body>
                         <Card.Title>{this.props.post.title}</Card.Title>

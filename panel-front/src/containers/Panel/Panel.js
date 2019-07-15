@@ -13,24 +13,21 @@ import Sidebar from '../Header/Sidebar';
 import Navegacion from '../Header/Navegacion';
 import axios from 'axios';
 
+
 class Panel extends Component {
 
-    state = {
-        tasks: ''
-    };
+    constructor(props, context) {
+        super(props, context);
+
+        this.urlParameters = new URLSearchParams(window.location.search);
+
+        this.state = {
+            tasks: [],
+            kanban: this.urlParameters.get('name')
+        };
+    }
 
     componentDidMount = () => {
-        this.getTasks();
-        console.log(this.props.posts)
-    }
-
-    componentDidUpdate = () => {
-        if (this.state.tasks.length !== this.props.posts.length) {
-            this.getTasks()
-        }
-    }
-
-    getTasks = () => {
         axios.get('/getTasks')
             .then(response => {
                 let tasks = getJSON(response.data);
@@ -55,7 +52,7 @@ class Panel extends Component {
                             {this.props.posts ?
                                 <tbody>
                                     {Array.from(this.props.posts).map((post) => (
-                                        post.column === "1" &&
+                                        post.column === "1" && this.state.kanban === post.kanban &&
                                         <tr key={post._id} column={post.column}>
                                             {post.editing ? <EditComponente post={post} key={post._id} column={post.column} /> :
                                                 <Tareas key={post._id} post={post} column={post.column} />}
@@ -77,7 +74,7 @@ class Panel extends Component {
                             {this.props.posts ?
                                 <tbody>
                                     {Array.from(this.props.posts).map((post) => (
-                                        post.column === "2" &&
+                                        post.column === "2" && this.state.kanban === post.kanban &&
                                         <tr key={post._id} column={post.column}>
                                             {post.editing ? <EditComponente post={post} key={post._id} column={post.column} /> :
                                                 <Tareas key={post._id} post={post} column={post.column} />}
@@ -99,10 +96,10 @@ class Panel extends Component {
                             {this.props.posts ?
                                 <tbody>
                                     {Array.from(this.props.posts).map((post) => (
-                                        post.column === "3" &&
+                                        post.column === "3" && this.state.kanban === post.kanban &&
                                         <tr key={post._id} column={post.column}>
                                             {post.editing ? <EditComponente post={post} key={post._id} column={post.column} /> :
-                                                <Tareas key={post._id} post={post} column={post.column} />}
+                                                <Tareas key={post._id} posts={this.props.posts} post={post} column={post.column} />}
                                         </tr>
                                     ))}
                                 </tbody> :
@@ -121,7 +118,7 @@ class Panel extends Component {
                             {this.props.posts ?
                                 <tbody>
                                     {Array.from(this.props.posts).map((post) => (
-                                        post.column === "4" &&
+                                        post.column === "4" && this.state.kanban === post.kanban &&
                                         <tr key={post._id} column={post.column}>
                                             {post.editing ? <EditComponente post={post} key={post._id} column={post.column} /> :
                                                 <Tareas key={post._id} post={post} column={post.column} />}
@@ -143,7 +140,7 @@ class Panel extends Component {
                             {this.props.posts ?
                                 <tbody>
                                     {Array.from(this.props.posts).map((post) => (
-                                        post.column === "5" &&
+                                        post.column === "5" && this.state.kanban === post.kanban &&
                                         <tr key={post._id} column={post.column}>
                                             {post.editing ? <EditComponente post={post} key={post._id} column={post.column} /> :
                                                 <Tareas key={post._id} post={post} column={post.column} />}
@@ -159,9 +156,9 @@ class Panel extends Component {
         return (
             <div>
                 <Sidebar />
-                <Navegacion />   
+                <Navegacion />
                 <div className="Contenedor">
-                    <div className="Boton"><ModalTarea /></div>
+                    <div className="Boton"><ModalTarea kanban={this.state.kanban} /></div>
                     {columnas}
                 </div>
             </div>

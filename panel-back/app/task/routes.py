@@ -7,7 +7,7 @@ from app.models import Task
 def get_new_task_id():
     tasks = Task.objects
     aux = 0
-    for task in tasks:
+    for _ in tasks:
         aux += 1
     return str(aux)
 
@@ -18,7 +18,8 @@ def add_task():
     title = request.args.get("title")
     message = request.args.get("message")
     column = request.args.get("column")
-    task = Task(_id=task_id, title=title, message=message, column=column)
+    kanban = request.args.get("kanban")
+    task = Task(_id=task_id, title=title, message=message, column=column, kanban=kanban)
     task.save()
     return str(task)
 
@@ -50,7 +51,8 @@ def get_task():
             '_id': task.id,
             'title': task.title,
             'message': task.message,
-            'column': task.column
+            'column': task.column,
+            'kanban': task.kanban
         }
         task_dict.append(data)
     return str(task_dict)
