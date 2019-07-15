@@ -1,6 +1,7 @@
 a {
     color: #b0b9be;
     text-transform: capitalize;
+    margin-left: -15%;
 }
 
 a:hover {

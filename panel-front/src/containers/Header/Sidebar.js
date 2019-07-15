@@ -45,8 +45,8 @@ class Sidebar extends Component {
                     {this.state.username}
                 </div>
                 <hr />
-                <a href="/panel">Panel</a>
-                <a href="/perfil">Perfil</a>
+                <a href="/panel" className="superior">Panel</a>
+                <a href="/perfil" className="superior">Perfil</a>
                 <hr />
                 <ModalPanel />
                 <p>Paneles disponibles</p>
