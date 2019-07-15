@@ -40,9 +40,14 @@ class Perfil extends Component {
             .catch(error => {
                 console.log(error);
             })
+        this.getKanban();
     }
 
-    componentWillMount() {
+    componentDidUpdate = () => {
+        this.getKanban()
+    }
+
+    getKanban() {
         axios.get('/getKanban')
             .then(response => {
                 let kanbans = getJSON(response.data);
