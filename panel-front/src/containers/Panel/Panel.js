@@ -21,7 +21,6 @@ class Panel extends Component {
 
     componentDidMount = () => {
         this.getTasks();
-        console.log(this.props.posts)
     }
 
     componentDidUpdate = () => {
@@ -56,7 +55,7 @@ class Panel extends Component {
                                 <tbody>
                                     {Array.from(this.props.posts).map((post) => (
                                         post.column === "1" &&
-                                        <tr key={post._id} column={post.column}>
+                                        <tr key={Math.random() * 1000} column={post.column}>
                                             {post.editing ? <EditComponente post={post} key={post._id} column={post.column} /> :
                                                 <Tareas key={post._id} post={post} column={post.column} />}
                                         </tr>
@@ -78,7 +77,7 @@ class Panel extends Component {
                                 <tbody>
                                     {Array.from(this.props.posts).map((post) => (
                                         post.column === "2" &&
-                                        <tr key={post._id} column={post.column}>
+                                        <tr key={Math.random() * 2000} column={post.column}>
                                             {post.editing ? <EditComponente post={post} key={post._id} column={post.column} /> :
                                                 <Tareas key={post._id} post={post} column={post.column} />}
                                         </tr>
@@ -100,7 +99,7 @@ class Panel extends Component {
                                 <tbody>
                                     {Array.from(this.props.posts).map((post) => (
                                         post.column === "3" &&
-                                        <tr key={post._id} column={post.column}>
+                                        <tr key={Math.random() * 3000} column={post.column}>
                                             {post.editing ? <EditComponente post={post} key={post._id} column={post.column} /> :
                                                 <Tareas key={post._id} post={post} column={post.column} />}
                                         </tr>
@@ -122,7 +121,7 @@ class Panel extends Component {
                                 <tbody>
                                     {Array.from(this.props.posts).map((post) => (
                                         post.column === "4" &&
-                                        <tr key={post._id} column={post.column}>
+                                        <tr key={Math.random() * 4000} column={post.column}>
                                             {post.editing ? <EditComponente post={post} key={post._id} column={post.column} /> :
                                                 <Tareas key={post._id} post={post} column={post.column} />}
                                         </tr>
@@ -144,7 +143,7 @@ class Panel extends Component {
                                 <tbody>
                                     {Array.from(this.props.posts).map((post) => (
                                         post.column === "5" &&
-                                        <tr key={post._id} column={post.column}>
+                                        <tr key={Math.random() * 5000} column={post.column}>
                                             {post.editing ? <EditComponente post={post} key={post._id} column={post.column} /> :
                                                 <Tareas key={post._id} post={post} column={post.column} />}
                                         </tr>
