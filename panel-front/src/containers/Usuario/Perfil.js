@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Row, Col, Media, Tab, Tabs } from 'react-bootstrap';
+import { Container, Row, Col, Media} from 'react-bootstrap';
 import { connect } from 'react-redux';
 
 import withAuth from '../../withAuth';
@@ -11,7 +11,6 @@ import './Perfil.css';
 
 import ModalUsuario from '../../components/UI/Modal/ModalUsuario';
 import ImgPerfil from './ImgPerfil';
-import Paneles from '../Panel/Paneles';
 import Sidebar from '../Header/Sidebar';
 import Navegacion from '../Header/Navegacion';
 
@@ -76,25 +75,10 @@ class Perfil extends Component {
                     </Row>
                     <Row className="columna2">
                         <Col>
-                            <Tabs defaultActiveKey="Perfil" id="uncontrolled-tab-example" >
-                                <Tab eventKey="Perfil" title="Perfil">
-                                    <p><strong>Nombre de usuario: </strong>{this.state.username}</p>
-                                    <p><strong>Correo electronico: </strong>{this.state.email}</p>
-                                    <p><strong>Cargo que ejerce: </strong>{this.state.cargo}</p>
-                                    <ModalUsuario />
-                                </Tab>
-                                <Tab eventKey="Paneles" title="Paneles">
-                                    <div className="panel">
-                                        <ul>
-                                            {(this.state.kanbans).map((kanban) => (
-                                                <li style={{ color: 'black' }} key={kanban.name}>
-                                                    <Paneles name={kanban.name} />
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </div>
-                                </Tab>
-                            </Tabs>
+                            <p><strong>Nombre de usuario: </strong>{this.state.username}</p>
+                            <p><strong>Correo electronico: </strong>{this.state.email}</p>
+                            <p><strong>Cargo que ejerce: </strong>{this.state.cargo}</p>
+                            <ModalUsuario />
                         </Col>
                     </Row>
                 </Container>
