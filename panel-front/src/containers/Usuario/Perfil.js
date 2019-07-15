@@ -82,7 +82,7 @@ class Perfil extends Component {
                                     <div className="panel">
                                         <ul>
                                             {(this.state.kanbans).map((kanban) => (
-                                                <li key={kanban.name}>
+                                                <li style={{ color: 'black' }} key={kanban.name}>
                                                     <Paneles name={kanban.name} />
                                                 </li>
                                             ))}
