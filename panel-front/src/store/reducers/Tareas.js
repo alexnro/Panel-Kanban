@@ -50,7 +50,7 @@ const Tareas = (state = [], action) => {
     switch (action.type) {
         case 'GET_POSTS':
             state = action.tasks;
-            return state;
+            return state !== undefined ? state : [];
         case 'ADD_POST':
             addPostRequest(action.data);
             return state === null ? state = [action.data] : state.concat([action.data]);
