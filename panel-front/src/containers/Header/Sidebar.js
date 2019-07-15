@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { slide as Menu } from 'react-burger-menu';
+import { connect } from 'react-redux';
 
 import axios from 'axios';
 
@@ -14,7 +15,7 @@ class Sidebar extends Component {
     state = {
         username: '',
         email: '',
-        kanbans: []
+        kanbans: ''
     }
 
     componentDidMount() {
@@ -29,17 +30,20 @@ class Sidebar extends Component {
                 console.log(error);
             })
         this.getKanban();
+        console.log(this.props.kanban)
     }
 
-    componentDidUpdate = () => {
-        this.getKanban()
+    componentDidUpdate() {
+        if (this.state.kanbans.length === this.props.paneles.length) {
+            this.getKanban()
+        }
     }
 
     getKanban() {
         axios.get('/getKanban')
             .then(response => {
                 let kanbans = getJSON(response.data);
-                this.setState({ ...this.state, kanbans: kanbans });
+                this.setState({ ...this.state, kanbans: kanbans }, () => this.props.dispatch({ type: 'GET_KANBAN', kanbans: this.state.kanbans }));
             })
             .catch(error => {
                 console.log(error);
@@ -59,9 +63,9 @@ class Sidebar extends Component {
                 <ModalPanel />
                 <p>Paneles disponibles</p>
                 <ul>
-                    {(this.state.kanbans).map((kanban) => (
+                    {Array.from(this.props.paneles).map((kanban) => (
                         <li key={kanban.name}>
-                            <Paneles name={kanban.name} />
+                            <Paneles kanban={kanban} name={kanban.name} />
                         </li>
                     ))}
                 </ul>
@@ -70,4 +74,10 @@ class Sidebar extends Component {
     }
 }
 
-export default Sidebar;
+const mapStateToProps = (state) => {
+    return {
+        paneles: state
+    }
+}
+
+export default connect(mapStateToProps)(Sidebar);
