@@ -4,7 +4,7 @@ import { Form, Button, ButtonGroup } from 'react-bootstrap';
 
 class EditComponente extends Component {
     state = {
-        value: '1',
+        value: this.props.column,
         column: ''
     }
 

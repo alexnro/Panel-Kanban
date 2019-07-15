@@ -73,7 +73,7 @@ class ModalTarea extends Component {
                                     <option value="5">Done</option>
                                 </Form.Control>
                             </Form.Group>
-                            <Button variant="outline-secondary" type="submit" onClick={this.handleClose}>Añadir</Button>
+                            <Button variant="outline-success" type="submit" onClick={this.handleClose}>Añadir</Button>
                         </Form>
                     </Modal.Body>
                 </Modal>

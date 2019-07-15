@@ -53,7 +53,7 @@ class ModalPanel extends Component {
                                 <Form.Label>Inserte un nombre para el panel</Form.Label>
                                 <Form.Control required type="text" ref={(input) => this.getName = input} placeholder="Titulo panel" />
                             </Form.Group>
-                            <Button variant="outline-secondary" type="submit" onClick={this.handleClose}>Añadir</Button>
+                            <Button variant="outline-success" type="submit" onClick={this.handleClose}>Añadir</Button>
                         </Form>
                     </Modal.Body>
                 </Modal>
