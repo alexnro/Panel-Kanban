@@ -13,20 +13,26 @@ import Sidebar from '../Header/Sidebar';
 import Navegacion from '../Header/Navegacion';
 import axios from 'axios';
 
+
 class Panel extends Component {
 
-    state = {
-        tasks: ''
+    constructor(props, context) {
+        super(props, context);
+
+        this.urlParameters = new URLSearchParams(window.location.search);
+
+        this.state = {
+            tasks: [],
+            kanban: this.urlParameters.get('name')
     };
+    }
 
     componentDidMount = () => {
         this.getTasks();
     }
 
-    componentDidUpdate = () => {
-        if (this.state.tasks.length !== this.props.posts.length) {
-            this.getTasks()
-        }
+    shouldComponentUpdate(nextProps, nextState) {
+        return this.state !== nextState || this.props !== nextProps;
     }
 
     getTasks = () => {
@@ -160,7 +166,7 @@ class Panel extends Component {
                 <Sidebar />
                 <Navegacion />   
                 <div className="Contenedor">
-                    <div className="Boton"><ModalTarea /></div>
+                    <div className="Boton"><ModalTarea kanban={this.state.kanban} /></div>
                     {columnas}
                 </div>
             </div>

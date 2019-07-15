@@ -60,6 +60,7 @@ class Task(Document):
     title = fields.StringField()
     message = fields.StringField()
     column = fields.StringField()
+    kanban = fields.StringField()
 
 
 class Kanbans(Document):

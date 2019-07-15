@@ -6,7 +6,8 @@ const addPostRequest = data => {
     let title = data.title;
     let message = data.message;
     let column = data.column;
-    let queryParams = '?task_id=' + task_id + '&title=' + title + '&message=' + message + '&column=' + column;
+    let kanban = data.kanban;
+    let queryParams = '?task_id=' + task_id + '&title=' + title + '&message=' + message + '&column=' + column + '&kanban=' + kanban;
     axios.post('/addTask' + queryParams)
         .then(response => {
             console.log(response);
@@ -18,6 +19,7 @@ const addPostRequest = data => {
 
 const deletePostRequest = post_id => {
     let queryParams = '?task_id=' + post_id;
+    console.log(post_id)
     axios.post('/deleteTask' + queryParams)
         .then(response => {
             console.log(response);
@@ -47,11 +49,11 @@ const updatePostRequest = data => {
 const Tareas = (state = [], action) => {
     switch (action.type) {
         case 'GET_POSTS':
-            state = action.tasks
+            state = action.tasks;
             return state;
         case 'ADD_POST':
             addPostRequest(action.data);
-            return state.concat([action.data]);
+            return state === null ? state = [action.data] : state.concat([action.data]);
         case 'DELETE_POST':
             deletePostRequest(action.id);
             return state.splice(state.findIndex(x => x._id === action.id));
