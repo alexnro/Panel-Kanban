@@ -16,10 +16,10 @@ const Kanban = (state = [], action) => {
     switch (action.type) {
         case 'ADD_KANBAN':
             addKanban(action.data);
-            return state.concat([action.data]);
+            return state === null ? state = [action.data] : state.concat([action.data]);
         case 'GET_KANBAN':
                 state = action.kanbans
-                return state;
+                return state !== undefined ? state : [];
         default:
             return state;
     }
