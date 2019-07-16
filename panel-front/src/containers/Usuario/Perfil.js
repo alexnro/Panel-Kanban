@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 import { Container, Row, Col, Media} from 'react-bootstrap';
-import { connect } from 'react-redux';
 
 import withAuth from '../../withAuth';
 import axios from 'axios';
-import { getJSON } from '../../shared/utility';
-
 
 import './Perfil.css';
 
@@ -35,22 +32,6 @@ class Perfil extends Component {
                 let email = response.data.email
                 let cargo = response.data.cargo
                 this.setState({ ...this.state, username: username, email: email, cargo: cargo })
-            })
-            .catch(error => {
-                console.log(error);
-            })
-        this.getKanban();
-    }
-
-    componentDidUpdate = () => {
-        this.getKanban()
-    }
-
-    getKanban() {
-        axios.get('/getKanban')
-            .then(response => {
-                let kanbans = getJSON(response.data);
-                this.setState({ ...this.state, kanbans: kanbans });
             })
             .catch(error => {
                 console.log(error);
@@ -87,4 +68,4 @@ class Perfil extends Component {
     }
 }
 
-export default connect()(withAuth(Perfil));
+export default (withAuth(Perfil));
