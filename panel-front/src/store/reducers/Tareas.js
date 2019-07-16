@@ -56,7 +56,7 @@ const Tareas = (state = [], action) => {
             return state === null ? state = [action.data] : state.concat([action.data]);
         case 'DELETE_POST':
             deletePostRequest(action.id);
-            return state.splice(state.findIndex(x => x._id === action.id));
+            return state.filter(post => post._id !== action.id);
         case 'EDIT_POST':
             return state.map((post) => {
                 console.log(post)
