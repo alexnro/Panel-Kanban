@@ -16,8 +16,6 @@ def login():
     email = request_data.get("Email")
     password = request_data.get("Password")
     user = User.objects.get(email=email)
-    if user.is_authenticated:
-        return str(user.access_token)
     if user is None or not user.check_password(password):
         return "Usuario incorrecto"
     else:

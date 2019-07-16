@@ -11,8 +11,8 @@ class User(Document, UserMixin):
     username = fields.StringField(required=True, unique=True)
     email = fields.StringField(required=True, unique=True)
     cargo = fields.StringField()
-    password_hash = fields.StringField(unique=True)
-    access_token = fields.StringField(unique=True)
+    password_hash = fields.StringField()
+    access_token = fields.StringField()
 
     def __repr__(self):
         return '<User {}>'.format(self.username)
