@@ -21,7 +21,7 @@ class ModalTarea extends Component {
     }
 
     handleShow() {
-        this.setState({ show: true });
+        this.setState({ show: true, value: '1' });
     }
 
     handleSubmit = (e) => {
@@ -47,7 +47,7 @@ class ModalTarea extends Component {
             <>
                 <Button variant="secondary" onClick={this.handleShow}>
                     Añadir Tarea
-          </Button>
+                </Button>
 
                 <Modal show={this.state.show} onHide={this.handleClose}>
                     <Modal.Header closeButton>
