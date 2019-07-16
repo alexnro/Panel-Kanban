@@ -2,7 +2,7 @@ import axios from 'axios';
 
 
 const addPostRequest = data => {
-    let task_id = data.id;
+    let task_id = data._id;
     let title = data.title;
     let message = data.message;
     let column = data.column;
@@ -30,7 +30,6 @@ const deletePostRequest = post_id => {
 }
 
 const updatePostRequest = data => {
-    console.log(data);
     let task_id = data._id;
     let title = data.title;
     let message = data.message;
@@ -56,16 +55,14 @@ const Tareas = (state = [], action) => {
             return state === null ? state = [action.data] : state.concat([action.data]);
         case 'DELETE_POST':
             deletePostRequest(action.id);
-            return state.splice(state.findIndex(x => x._id === action.id));
+            return state.filter(post => post._id !== action.id);
         case 'EDIT_POST':
-            return state.map((post) => {
-                console.log(post)
-                return post._id === action.id ? { ...post, editing: !post.editing } : post});
+            return state.map((post) => post._id === action.id ? { ...post, editing: !post.editing } : post);
         case 'UPDATE':
             console.log(action.id)
+            console.log(state)
             return state.map((post) => {
-                console.log(post._id)
-                console.log(action.id)
+                console.log(post)
                 if (post._id === action.id) {
                     let data = {
                         ...post,

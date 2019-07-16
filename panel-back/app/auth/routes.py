@@ -20,9 +20,9 @@ def login():
         return "Usuario incorrecto"
     else:
         login_user(user)
-        tokens = user.create_token()
-        user.update(access_token=tokens.get("access_token"))
-        return str(tokens)
+        token = user.create_token()
+        user.update(access_token=token.get("access_token"))
+        return str(token)
 
 
 @bp.route('/register', methods=['POST', 'GET'])

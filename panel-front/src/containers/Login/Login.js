@@ -40,7 +40,7 @@ class Login extends Component {
                         ...this.state,
                         isValid: true
                     });
-                    this.loginHandler();
+                    this.linkToProfile();
                     localStorage.setItem('token', token_data);
                     localStorage.setItem('email', this.state.email);
                 }
@@ -52,7 +52,7 @@ class Login extends Component {
             });
     }
 
-    loginHandler = () => {
+    linkToProfile = () => {
         window.location = '/perfil';
     }
 
@@ -61,6 +61,10 @@ class Login extends Component {
     }
 
     render() {
+
+        if (localStorage.getItem('token')) {
+            this.linkToProfile();
+        }
 
         return (
             <div className="formulario">
