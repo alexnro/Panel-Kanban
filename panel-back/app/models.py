@@ -1,8 +1,7 @@
 from app import login
 from flask_login import UserMixin
 from werkzeug.security import check_password_hash
-from flask_jwt_extended import create_access_token, create_refresh_token
-from datetime import datetime, timedelta
+from flask_jwt_extended import create_access_token
 from mongoengine import Document, fields
 import base64
 import os
@@ -12,10 +11,8 @@ class User(Document, UserMixin):
     username = fields.StringField(required=True, unique=True)
     email = fields.StringField(required=True, unique=True)
     cargo = fields.StringField()
-    password_hash = fields.StringField()
-    access_token = fields.StringField()
-    refresh_token = fields.StringField()
-    token_expiration = fields.DateTimeField()
+    password_hash = fields.StringField(unique=True)
+    access_token = fields.StringField(unique=True)
 
     def __repr__(self):
         return '<User {}>'.format(self.username)
@@ -25,19 +22,13 @@ class User(Document, UserMixin):
 
     def create_token(self):
         self.access_token = create_access_token(identity=self.username)
-        self.refresh_token = create_refresh_token(identity=self.username)
-        return {'access_token': self.access_token, 'refresh_token': self.refresh_token}
+        return {'access_token': self.access_token}
 
-    def get_token(self, expires_in=3600):
-        now = datetime.utcnow()
-        if self.access_token and self.token_expiration > now + timedelta(seconds=60):
+    def get_token(self):
+        if self.access_token:
             return self.access_token
         self.access_token = base64.b64encode(os.urandom(24)).decode('utf-8')
-        self.token_expiration = now + timedelta(seconds=expires_in)
         return self.access_token
-
-    def revoke_token(self):
-        self.token_expiration = datetime.utcnow() - timedelta(seconds=1)
 
     @staticmethod
     def check_token(token):
