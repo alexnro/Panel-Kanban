@@ -29,7 +29,7 @@ class ModalTarea extends Component {
         const title = this.getTitle.value;
         const message = this.getMessage.value;
         const data = {
-            id: String(new Date()),
+            _id: String(new Date()),
             title,
             message,
             column: this.state.value,
