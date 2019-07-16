@@ -28,9 +28,6 @@ class Sidebar extends Component {
             .catch(error => {
                 console.log(error);
             })
-    }
-
-    componentWillMount() {
         axios.get('/getKanban')
             .then(response => {
                 let kanbans = getJSON(response.data);
@@ -40,7 +37,7 @@ class Sidebar extends Component {
                 console.log(error);
             })
     }
-
+    
     render() {
         return (
             <Menu>
@@ -48,15 +45,14 @@ class Sidebar extends Component {
                     {this.state.username}
                 </div>
                 <hr />
-                <a href="/panel">Panel</a>
-                <a href="/perfil">Perfil</a>
+                <a href="/perfil" className="superior">Perfil</a>
                 <hr />
                 <ModalPanel />
                 <p>Paneles disponibles</p>
                 <ul>
                     {(this.state.kanbans).map((kanban) => (
                         <li key={kanban.name}>
-                            <Paneles name={kanban.name} />
+                            <Paneles kanban={kanban} name={kanban.name} />
                         </li>
                     ))}
                 </ul>

@@ -1,17 +1,13 @@
 import React, { Component } from 'react';
-import { Container, Row, Col, Media, Tab, Tabs } from 'react-bootstrap';
-import { connect } from 'react-redux';
+import { Container, Row, Col, Media} from 'react-bootstrap';
 
 import withAuth from '../../withAuth';
 import axios from 'axios';
-import { getJSON } from '../../shared/utility';
-
 
 import './Perfil.css';
 
 import ModalUsuario from '../../components/UI/Modal/ModalUsuario';
 import ImgPerfil from './ImgPerfil';
-import Paneles from '../Panel/Paneles';
 import Sidebar from '../Header/Sidebar';
 import Navegacion from '../Header/Navegacion';
 
@@ -42,17 +38,6 @@ class Perfil extends Component {
             })
     }
 
-    componentWillMount() {
-        axios.get('/getKanban')
-            .then(response => {
-                let kanbans = getJSON(response.data);
-                this.setState({ ...this.state, kanbans: kanbans });
-            })
-            .catch(error => {
-                console.log(error);
-            })
-    }
-
     render() {
         return (
             <div>
@@ -71,23 +56,10 @@ class Perfil extends Component {
                     </Row>
                     <Row className="columna2">
                         <Col>
-                            <Tabs defaultActiveKey="Perfil" id="uncontrolled-tab-example" >
-                                <Tab eventKey="Perfil" title="Perfil">
-                                    <p><strong>Nombre de usuario: </strong>{this.state.username}</p>
-                                    <p><strong>Correo electronico: </strong>{this.state.email}</p>
-                                    <p><strong>Cargo que ejerce: </strong>{this.state.cargo}</p>
-                                    <ModalUsuario />
-                                </Tab>
-                                <Tab eventKey="Paneles" title="Paneles">
-                                    <ul>
-                                        {(this.state.kanbans).map((kanban) => (
-                                            <li key={kanban.name}>
-                                                <Paneles name={kanban.name} />
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </Tab>
-                            </Tabs>
+                            <p><strong>Nombre de usuario: </strong>{this.state.username}</p>
+                            <p><strong>Correo electronico: </strong>{this.state.email}</p>
+                            <p><strong>Cargo que ejerce: </strong>{this.state.cargo}</p>
+                            <ModalUsuario />
                         </Col>
                     </Row>
                 </Container>
@@ -96,4 +68,4 @@ class Perfil extends Component {
     }
 }
 
-export default connect()(withAuth(Perfil));
+export default (withAuth(Perfil));

@@ -17,6 +17,9 @@ const Kanban = (state = [], action) => {
         case 'ADD_KANBAN':
             addKanban(action.data);
             return state.concat([action.data]);
+        case 'GET_KANBAN':
+                state = action.kanbans
+                return state;
         default:
             return state;
     }

@@ -77,3 +77,8 @@ ul li {
   text-transform: capitalize;
 }
 
+/* enlaces superior */
+
+.superior {
+  margin-left: 5%;
+}

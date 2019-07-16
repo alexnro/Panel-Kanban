@@ -4,7 +4,7 @@ import { Form, Button, ButtonGroup } from 'react-bootstrap';
 
 class EditComponente extends Component {
     state = {
-        value: '1',
+        value: this.props.column,
         column: ''
     }
 
@@ -46,11 +46,11 @@ class EditComponente extends Component {
                     <Form.Group onChange={(e) => this.setState({ ...this.state, value: e.target.value })}>
                         <Form.Label>Seleccione una nueva columna</Form.Label><br />
                         <Form.Control as="select" defaultValue={this.props.column}>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
+                            <option value="1">Todo</option>
+                            <option value="2">In progress</option>
+                            <option value="3">For testing</option>
+                            <option value="4">Testing</option>
+                            <option value="5">Done</option>
                         </Form.Control>
                     </Form.Group>
                     <ButtonGroup>

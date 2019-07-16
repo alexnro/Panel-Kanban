@@ -53,7 +53,7 @@ class Login extends Component {
     }
 
     loginHandler = () => {
-        window.location = '/panel';
+        window.location = '/perfil';
     }
 
     linkToRegister = () => {

@@ -46,7 +46,7 @@ class Panel extends Component {
                         <table className="table table-hover">
                             <thead>
                                 <tr>
-                                    <th scope="col">#</th>
+                                    <th scope="col">Todo</th>
                                 </tr>
                             </thead>
                             {this.props.posts ?
@@ -68,7 +68,7 @@ class Panel extends Component {
                         <table className="table table-hover">
                             <thead>
                                 <tr>
-                                    <th scope="col">#</th>
+                                    <th scope="col">In progress</th>
                                 </tr>
                             </thead>
                             {this.props.posts ?
@@ -90,7 +90,7 @@ class Panel extends Component {
                         <table className="table table-hover">
                             <thead>
                                 <tr>
-                                    <th scope="col">#</th>
+                                    <th scope="col">For testing</th>
                                 </tr>
                             </thead>
                             {this.props.posts ?
@@ -112,7 +112,7 @@ class Panel extends Component {
                         <table className="table table-hover">
                             <thead>
                                 <tr>
-                                    <th scope="col">#</th>
+                                    <th scope="col">Testing</th>
                                 </tr>
                             </thead>
                             {this.props.posts ?
@@ -134,7 +134,7 @@ class Panel extends Component {
                         <table className="table table-hover">
                             <thead>
                                 <tr>
-                                    <th scope="col">#</th>
+                                    <th scope="col">Done</th>
                                 </tr>
                             </thead>
                             {this.props.posts ?

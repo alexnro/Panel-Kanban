@@ -66,14 +66,14 @@ class ModalTarea extends Component {
                             <Form.Group onChange={(e) => this.setState({ ...this.state, value: e.target.value })}>
                                 <Form.Label>Seleccione una columna donde añadir la tarea</Form.Label><br />
                                 <Form.Control as="select">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
+                                    <option value="1">Todo</option>
+                                    <option value="2">In progress</option>
+                                    <option value="3">For testing</option>
+                                    <option value="4">Testing</option>
+                                    <option value="5">Done</option>
                                 </Form.Control>
                             </Form.Group>
-                            <Button variant="outline-secondary" type="submit" onClick={this.handleClose}>Añadir</Button>
+                            <Button variant="outline-success" type="submit" onClick={this.handleClose}>Añadir</Button>
                         </Form>
                     </Modal.Body>
                 </Modal>
