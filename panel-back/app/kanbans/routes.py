@@ -23,3 +23,11 @@ def get_kanban():
         }
         kanban_dict.append(data)
     return str(kanban_dict)
+
+
+@bp.route('/deleteKanban', methods=['POST', 'GET'])
+def delete_kanban():
+    name = request.args.get('name')
+    print(name)
+    Kanbans.objects.get(name=name).delete()
+    return 'Kanban deleted'
