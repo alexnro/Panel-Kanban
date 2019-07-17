@@ -1,14 +1,16 @@
 import axios from 'axios';
 
 const addKanban = data => {
-    let name = data.name
-    let queryParams = '?name=' + name
+    let _id = data._id;
+    let name = data.name;
+    let queryParams = '?_id=' + _id + '&name=' + name;
     axios.post('/addKanban' + queryParams)
         .then(response => {
             console.log(response);
         })
         .catch(error => {
             console.log(error);
+            console.log(queryParams);
         });
 }
 

@@ -9,7 +9,7 @@ from flask_mongoengine import MongoEngine
 
 login = LoginManager()
 mongo = PyMongo()
-client = MongoClient('mongodb+srv://admin:123@panel-kanban-5mm05.mongodb.net/kanban?retryWrites=true&w=majority')
+client = MongoClient('mongodb+srv://admin:123@panel-kanban-5mm05.mongodb.net/kanban?retryWrites=true&w=majority', maxPoolSize=1)
 db = client.kanban
 mongo_engine = MongoEngine()
 jwt_manager = JWTManager()

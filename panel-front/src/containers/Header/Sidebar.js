@@ -36,6 +36,7 @@ class Sidebar extends Component {
             })
             .catch(error => {
                 console.log(error);
+                console.log(this.props.kanbans.kanbans);
             })
     }
 
