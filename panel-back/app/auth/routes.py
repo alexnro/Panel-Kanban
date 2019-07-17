@@ -68,4 +68,3 @@ def update_user():
     user = User.objects.get(email=email)
     user.update(username=username, cargo=cargo)
     return 'User updated'
-
