@@ -34,13 +34,15 @@ class Sidebar extends Component {
         axios.get('/getKanban')
             .then(response => {
                 let kanbans = getJSON(response.data);
-                this.setState({ ...this.state, kanbans: kanbans });
+                this.props.dispatch({ type: 'GET_KANBAN', kanbans: kanbans });
+                console.log(this.props.kanbans.Kanban);
             })
             .catch(error => {
                 console.log(error);
+                console.log(this.props.kanbans.kanbans);
             })
     }
-    
+
     render() {
         return (
             <Menu>
@@ -54,7 +56,7 @@ class Sidebar extends Component {
                 <p>Paneles disponibles</p>
                 {this.state.kanbans ?
                 <ul>
-                    {(this.state.kanbans).map((kanban) => (
+                    {Array.from(this.props.kanbans.Kanban).map((kanban) => (
                         <li key={kanban.name}>
                             <Paneles kanban={kanban} name={kanban.name} />
                         </li>
@@ -66,8 +68,9 @@ class Sidebar extends Component {
     }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
     return {
+        kanbans: state,
         user: state.User
     }
 }
