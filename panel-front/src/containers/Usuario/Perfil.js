@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Row, Col, Media} from 'react-bootstrap';
+import { connect } from 'react-redux';
 
 import withAuth from '../../withAuth';
 import axios from 'axios';
@@ -24,14 +25,14 @@ class Perfil extends Component {
         };
     }
 
-    componentDidMount() {
+    componentWillMount() {
         let queryParams = '?email=' + localStorage.getItem('email');
         axios.get('/user' + queryParams)
             .then(response => {
                 let username = response.data.username
                 let email = response.data.email
                 let cargo = response.data.cargo
-                this.setState({ ...this.state, username: username, email: email, cargo: cargo })
+        this.setState({ ...this.state, username: username, email: email, cargo: cargo })
             })
             .catch(error => {
                 console.log(error);
@@ -49,16 +50,16 @@ class Perfil extends Component {
                             <Media>
                                 <ImgPerfil />
                                 <Media.Body>
-                                    <h1 className="nombre">{this.state.username}</h1>
+                                    <h1 className="nombre">{this.props.user.username}</h1>
                                 </Media.Body>
                             </Media>
                         </Col>
                     </Row>
                     <Row className="columna2">
                         <Col>
-                            <p><strong>Nombre de usuario: </strong>{this.state.username}</p>
+                            <p><strong>Nombre de usuario: </strong>{this.props.user.username}</p>
                             <p><strong>Correo electronico: </strong>{this.state.email}</p>
-                            <p><strong>Cargo que ejerce: </strong>{this.state.cargo}</p>
+                            <p><strong>Cargo que ejerce: </strong>{this.props.user.cargo}</p>
                             <ModalUsuario />
                         </Col>
                     </Row>
@@ -68,4 +69,10 @@ class Perfil extends Component {
     }
 }
 
-export default (withAuth(Perfil));
+const mapStateToProps = (state) => {
+    return {
+        user: state.User
+    }
+}
+
+export default connect(mapStateToProps)(withAuth(Perfil));

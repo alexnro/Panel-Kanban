@@ -14,16 +14,19 @@ class Sidebar extends Component {
 
     state = {
         username: '',
-        email: ''
+        email: '',
+        cargo: '',
+        kanbans: []
     }
 
-    componentDidMount() {
+    componentWillMount() {
         let queryParams = '?email=' + localStorage.getItem('email');
         axios.get('/user' + queryParams)
             .then(response => {
-                let username = response.data.username
-                let email = response.data.email
-                this.setState({ ...this.state, username: username, email: email })
+                let username = response.data.username;
+                let cargo = response.data.cargo;
+                let email = response.data.email;
+                this.setState({ ...this.state, username: username, email: email, cargo: cargo }, () => this.props.dispatch({ type: 'GET_USER', user: this.state }));
             })
             .catch(error => {
                 console.log(error);
@@ -44,13 +47,14 @@ class Sidebar extends Component {
         return (
             <Menu>
                 <div className="datosUsuario">
-                    {this.state.username}
+                    {this.props.user.username}
                 </div>
                 <hr />
                 <a href="/perfil" className="superior">Perfil</a>
                 <hr />
                 <ModalPanel />
                 <p>Paneles disponibles</p>
+                {this.state.kanbans ?
                 <ul>
                     {Array.from(this.props.kanbans.Kanban).map((kanban) => (
                         <li key={kanban.name}>
@@ -58,6 +62,7 @@ class Sidebar extends Component {
                         </li>
                     ))}
                 </ul>
+                : <ul></ul>}
             </Menu>
         );
     }
@@ -65,7 +70,8 @@ class Sidebar extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        kanbans: state
+        kanbans: state,
+        user: state.User
     }
 }
 
