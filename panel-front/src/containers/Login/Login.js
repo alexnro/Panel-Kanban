@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-
 import axios from 'axios';
-
+import { getJSON } from '../../shared/utility';
 import './Login.css';
 
 class Login extends Component {
@@ -26,12 +25,6 @@ class Login extends Component {
         });
     }
 
-    getJSON = a => {
-        if (typeof a !== "string" || !a || a == null) return null;
-        a = a.replace(/\r\n|\r|\n|\t/g, '').replace(/\\/g, '/');
-        return new Function("return " + a)();
-    }
-
     submitHandler = event => {
         event.preventDefault();
         const data = {
@@ -41,13 +34,13 @@ class Login extends Component {
         const url = '/login';
         axios.post(url, data)
             .then(response => {
-                let token_data = this.getJSON(response.data);
+                let token_data = getJSON(response.data);
                 if (response.data !== "Usuario incorrecto") {
                     this.setState({
                         ...this.state,
                         isValid: true
                     });
-                    this.loginHandler();
+                    this.linkToProfile();
                     localStorage.setItem('token', token_data);
                     localStorage.setItem('email', this.state.email);
                 }
@@ -55,13 +48,12 @@ class Login extends Component {
             })
             .catch(error => {
                 console.log(error);
-                alert('Ha ocurrido un problema, vuelva a intentarlo')
-                console.log(data);
+                alert('Ha habido un problema. Vuelva a intentarlo')
             });
     }
 
-    loginHandler = () => {
-        window.location = '/panel';
+    linkToProfile = () => {
+        window.location = '/perfil';
     }
 
     linkToRegister = () => {
@@ -69,6 +61,10 @@ class Login extends Component {
     }
 
     render() {
+
+        if (localStorage.getItem('token')) {
+            this.linkToProfile();
+        }
 
         return (
             <div className="formulario">

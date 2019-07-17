@@ -10,6 +10,7 @@ def add_kanban():
     kanban.save()
     return str(kanban)
 
+
 @bp.route('/getKanban', methods=['POST', 'GET'])
 def get_kanban():
     kanbans = Kanbans.objects

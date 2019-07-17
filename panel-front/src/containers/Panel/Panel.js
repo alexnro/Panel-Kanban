@@ -1,35 +1,41 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import { Row, Col } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import withAuth from '../../withAuth';
+import { getJSON } from '../../shared/utility';
+
 import './Panel.css';
+
+import withAuth from '../../withAuth';
 import Tareas from '../Tareas/Tareas';
 import EditComponente from '../Tareas/EditComponente';
 import ModalTarea from '../../components/UI/Modal/ModalTarea';
+import Sidebar from '../Header/Sidebar';
+import Navegacion from '../Header/Navegacion';
+import axios from 'axios';
+
 
 class Panel extends Component {
 
-    state = {
-        tasks: ''
-    };
+    constructor(props, context) {
+        super(props, context);
 
-    componentWillMount = () => {
+        this.urlParameters = new URLSearchParams(window.location.search);
+
+        this.state = {
+            tasks: [],
+            kanban: this.urlParameters.get('name')
+        };
+    }
+
+    componentDidMount = () => {
         axios.get('/getTasks')
             .then(response => {
-                let tasks = this.getJSON(response.data);
-                this.setState({ ...this.state, tasks: tasks });
-                console.log(this.state);
+                let tasks = getJSON(response.data);
+                this.setState({ ...this.state, tasks: tasks }, () => this.props.dispatch({ type: 'GET_POSTS', tasks: this.state.tasks }));
             })
             .catch(error => {
                 console.log(error);
             })
-    }
-
-    getJSON = a => {
-        if (typeof a !== "string" || !a || a == null) return null;
-        a = a.replace(/\r\n|\r|\n|\t/g, '').replace(/\\/g, '/');
-        return new Function("return " + a)();
     }
 
     render() {
@@ -40,13 +46,13 @@ class Panel extends Component {
                         <table className="table table-hover">
                             <thead>
                                 <tr>
-                                    <th scope="col">#</th>
+                                    <th scope="col">Todo</th>
                                 </tr>
                             </thead>
-                            {this.state.tasks ?
+                            {this.props.posts ?
                                 <tbody>
-                                    {Array.from(this.state.tasks).map((post) => (
-                                        post.column === "1" &&
+                                    {Array.from(this.props.posts).map((post) => (
+                                        post.column === "1" && this.state.kanban === post.kanban &&
                                         <tr key={post._id} column={post.column}>
                                             {post.editing ? <EditComponente post={post} key={post._id} column={post.column} /> :
                                                 <Tareas key={post._id} post={post} column={post.column} />}
@@ -62,13 +68,13 @@ class Panel extends Component {
                         <table className="table table-hover">
                             <thead>
                                 <tr>
-                                    <th scope="col">#</th>
+                                    <th scope="col">In progress</th>
                                 </tr>
                             </thead>
-                            {this.state.tasks ?
+                            {this.props.posts ?
                                 <tbody>
-                                    {Array.from(this.state.tasks).map((post) => (
-                                        post.column === "2" &&
+                                    {Array.from(this.props.posts).map((post) => (
+                                        post.column === "2" && this.state.kanban === post.kanban &&
                                         <tr key={post._id} column={post.column}>
                                             {post.editing ? <EditComponente post={post} key={post._id} column={post.column} /> :
                                                 <Tareas key={post._id} post={post} column={post.column} />}
@@ -84,16 +90,16 @@ class Panel extends Component {
                         <table className="table table-hover">
                             <thead>
                                 <tr>
-                                    <th scope="col">#</th>
+                                    <th scope="col">For testing</th>
                                 </tr>
                             </thead>
-                            {this.state.tasks ?
+                            {this.props.posts ?
                                 <tbody>
-                                    {Array.from(this.state.tasks).map((post) => (
-                                        post.column === "3" &&
+                                    {Array.from(this.props.posts).map((post) => (
+                                        post.column === "3" && this.state.kanban === post.kanban &&
                                         <tr key={post._id} column={post.column}>
                                             {post.editing ? <EditComponente post={post} key={post._id} column={post.column} /> :
-                                                <Tareas key={post._id} post={post} column={post.column} />}
+                                                <Tareas key={post._id} posts={this.props.posts} post={post} column={post.column} />}
                                         </tr>
                                     ))}
                                 </tbody> :
@@ -106,13 +112,13 @@ class Panel extends Component {
                         <table className="table table-hover">
                             <thead>
                                 <tr>
-                                    <th scope="col">#</th>
+                                    <th scope="col">Testing</th>
                                 </tr>
                             </thead>
-                            {this.state.tasks ?
+                            {this.props.posts ?
                                 <tbody>
-                                    {Array.from(this.state.tasks).map((post) => (
-                                        post.column === "4" &&
+                                    {Array.from(this.props.posts).map((post) => (
+                                        post.column === "4" && this.state.kanban === post.kanban &&
                                         <tr key={post._id} column={post.column}>
                                             {post.editing ? <EditComponente post={post} key={post._id} column={post.column} /> :
                                                 <Tareas key={post._id} post={post} column={post.column} />}
@@ -128,13 +134,13 @@ class Panel extends Component {
                         <table className="table table-hover">
                             <thead>
                                 <tr>
-                                    <th scope="col">#</th>
+                                    <th scope="col">Done</th>
                                 </tr>
                             </thead>
-                            {this.state.tasks ?
+                            {this.props.posts ?
                                 <tbody>
-                                    {Array.from(this.state.tasks).map((post) => (
-                                        post.column === "5" &&
+                                    {Array.from(this.props.posts).map((post) => (
+                                        post.column === "5" && this.state.kanban === post.kanban &&
                                         <tr key={post._id} column={post.column}>
                                             {post.editing ? <EditComponente post={post} key={post._id} column={post.column} /> :
                                                 <Tareas key={post._id} post={post} column={post.column} />}
@@ -148,9 +154,13 @@ class Panel extends Component {
             </Row>
         );
         return (
-            <div className="Contenedor">
-                <div className="Boton"><ModalTarea /></div>
-                {columnas}
+            <div>
+                <Sidebar />
+                <Navegacion />
+                <div className="Contenedor">
+                    <div className="Boton"><ModalTarea kanban={this.state.kanban} /></div>
+                    {columnas}
+                </div>
             </div>
         );
     };
@@ -158,7 +168,7 @@ class Panel extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        posts: state
+        posts: state.Tareas
     }
 }
 

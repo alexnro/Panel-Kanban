@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Modal, Button, Form } from 'react-bootstrap';
+import { Modal, Button, Form, Alert } from 'react-bootstrap';
+import { connect } from 'react-redux';
 
 import axios from 'axios';
 
@@ -31,9 +32,9 @@ class ModalUsuario extends Component {
         let queryParams = '?email=' + localStorage.getItem('email');
         axios.get('/user' + queryParams)
             .then(response => {
-                let username = response.data.username
-                let email = response.data.email
-                let cargo = response.data.cargo
+                let username = response.data.username;
+                let email = response.data.email;
+                let cargo = response.data.cargo;
                 this.setState({ ...this.state, username: username, email: email, cargo: cargo })
             })
             .catch(error => {
@@ -46,17 +47,24 @@ class ModalUsuario extends Component {
         const username = this.getUsername.value;
         const email = this.state.email;
         const cargo = this.getCargo.value;
-        this.setState({ ...this.state, getUsername: username, email: email, cargo: cargo })
+        let data = {
+            username: username,
+            cargo: cargo
+        }
         const queryParams = '?username=' + username + '&email=' + email + '&cargo=' + cargo;
-        console.log(queryParams);
         axios.post('/updateUser' + queryParams)
             .then(response => {
                 console.log(response);
+                if (response.data === 'User updated') {
+                    this.props.dispatch({ type: 'UPDATE_USER', data: data });
+                    this.setState({ ...this.state, getUsername: username, email: email, cargo: cargo });
+                } else {
+                    alert('El nombre de usuario ya está en uso');
+                }
             })
             .catch(error => {
                 console.log(error);
             })
-        
     }
 
     render() {
@@ -73,11 +81,11 @@ class ModalUsuario extends Component {
                         <Form onSubmit={this.handleSubmit}>
                             <Form.Group>
                                 <Form.Label>Nombre de usuario</Form.Label>
-                                <Form.Control type="text" ref={(input) => this.getUsername = input} placeholder="Usuario" defaultValue={this.state.username} />
+                                <Form.Control type="text" ref={(input) => this.getUsername = input} placeholder="Usuario" defaultValue={this.props.user.username} />
                             </Form.Group>
                             <Form.Group>
                                 <Form.Label>Cargo</Form.Label>
-                                <Form.Control type="text" ref={(input) => this.getCargo = input} placeholder="Cargo" defaultValue={this.state.cargo} />
+                                <Form.Control type="text" ref={(input) => this.getCargo = input} placeholder="Cargo" defaultValue={this.props.user.cargo} />
                             </Form.Group>
                             <Button variant="outline-success" type="submit" onClick={this.handleClose}>Añadir</Button>
                         </Form>
@@ -88,4 +96,10 @@ class ModalUsuario extends Component {
     }
 }
 
-export default ModalUsuario;
+const mapStateToProps = state => {
+    return {
+        user: state.User
+    }
+}
+
+export default connect(mapStateToProps)(ModalUsuario);

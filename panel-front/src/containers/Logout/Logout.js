@@ -21,7 +21,7 @@ class Logout extends Component {
         this.deleteTokenHandler();
         localStorage.removeItem("token");
         localStorage.removeItem("email");
-        return <Redirect to="/" />
+        return <Redirect to="/login" />
     }
 }
 

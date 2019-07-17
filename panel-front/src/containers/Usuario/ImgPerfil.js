@@ -31,7 +31,7 @@ class ImgPerfil extends Component {
         return name
                 .split(' ')
                 .map( item => item.charAt(0) )
-                .slice(0,1)
+                .slice(0, 1)
                 .join(' ');
     }
 

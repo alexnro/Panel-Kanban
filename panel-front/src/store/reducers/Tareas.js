@@ -2,11 +2,12 @@ import axios from 'axios';
 
 
 const addPostRequest = data => {
-    let task_id = data.id;
+    let task_id = data._id;
     let title = data.title;
     let message = data.message;
     let column = data.column;
-    let queryParams = '?task_id=' + task_id + '&title=' + title + '&message=' + message + '&column=' + column;
+    let kanban = data.kanban;
+    let queryParams = '?task_id=' + task_id + '&title=' + title + '&message=' + message + '&column=' + column + '&kanban=' + kanban;
     axios.post('/addTask' + queryParams)
         .then(response => {
             console.log(response);
@@ -18,6 +19,7 @@ const addPostRequest = data => {
 
 const deletePostRequest = post_id => {
     let queryParams = '?task_id=' + post_id;
+    console.log(post_id)
     axios.post('/deleteTask' + queryParams)
         .then(response => {
             console.log(response);
@@ -28,7 +30,7 @@ const deletePostRequest = post_id => {
 }
 
 const updatePostRequest = data => {
-    let task_id = data.id;
+    let task_id = data._id;
     let title = data.title;
     let message = data.message;
     let column = data.column;
@@ -45,27 +47,28 @@ const updatePostRequest = data => {
 
 const Tareas = (state = [], action) => {
     switch (action.type) {
+        case 'GET_POSTS':
+            state = action.tasks;
+            return state !== undefined ? state : [];
         case 'ADD_POST':
             addPostRequest(action.data);
-            return state.concat([action.data]);
+            return state === null ? state = [action.data] : state.concat([action.data]);
         case 'DELETE_POST':
             deletePostRequest(action.id);
-            return state.filter((post) => {
-                return post.id !== action.id
-            });
+            return state.filter(post => post._id !== action.id);
         case 'EDIT_POST':
-            return state.map((post) => {
-                console.log(post)
-                return post.id === action.id ? { ...post, editing: !post.editing } : post});
+            return state.map((post) => post._id === action.id ? { ...post, editing: !post.editing } : post);
         case 'UPDATE':
+            console.log(action.id)
+            console.log(state)
             return state.map((post) => {
                 console.log(post)
-                if (post.id === action.id) {
+                if (post._id === action.id) {
                     let data = {
                         ...post,
                         title: action.data.newTitle,
                         message: action.data.newMessage,
-                        editing: !post.editing,
+                        editing: false,
                         column: action.data.newColumn
                     }
                     updatePostRequest(data);
@@ -80,7 +83,7 @@ const Tareas = (state = [], action) => {
                     ...post,
                     title: post.title,
                     message: post.message,
-                    editing: !post.editing,
+                    editing: false,
                     column: post.column
                 }
             });
