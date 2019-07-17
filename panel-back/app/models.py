@@ -55,4 +55,5 @@ class Task(Document):
 
 
 class Kanbans(Document):
+    _id = fields.StringField(primary_key=True)
     name = fields.StringField()

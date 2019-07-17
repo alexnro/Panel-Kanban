@@ -5,8 +5,9 @@ from app.models import Kanbans
 
 @bp.route('/addKanban', methods=['POST', 'GET'])
 def add_kanban():
+    _id = request.args.get("_id")
     name = request.args.get("name")
-    kanban = Kanbans(name=name)
+    kanban = Kanbans(_id=_id, name=name)
     kanban.save()
     return str(kanban)
 
@@ -17,7 +18,16 @@ def get_kanban():
     kanban_dict = []
     for kanban in kanbans:
         data = {
+            '_id': kanban.id,
             'name': kanban.name
         }
         kanban_dict.append(data)
     return str(kanban_dict)
+
+
+@bp.route('/deleteKanban', methods=['POST', 'GET'])
+def delete_kanban():
+    name = request.args.get('name')
+    print(name)
+    Kanbans.objects.get(name=name).delete()
+    return 'Kanban deleted'

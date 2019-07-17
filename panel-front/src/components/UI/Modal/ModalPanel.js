@@ -28,6 +28,7 @@ class ModalPanel extends Component {
         e.preventDefault();
         const name = this.getName.value;
         const data = {
+            _id: String(new Date()),
             name
         }
         this.props.dispatch({
