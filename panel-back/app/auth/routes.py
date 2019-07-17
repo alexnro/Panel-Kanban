@@ -66,5 +66,8 @@ def update_user():
     cargo = request.args.get("cargo")
     email = request.args.get("email")
     user = User.objects.get(email=email)
-    user.update(username=username, cargo=cargo)
-    return 'User updated'
+    try:
+        user.update(username=username, cargo=cargo)
+        return 'User updated'
+    except:
+        return 'User not updated'
