@@ -53,6 +53,10 @@ class Task(Document):
     column = fields.StringField()
     kanban = fields.StringField()
 
+    @staticmethod
+    def delete_tasks_from_kanban(kanban):
+        Task.objects(kanban=kanban).delete()
+
 
 class Kanbans(Document):
     _id = fields.StringField(primary_key=True)

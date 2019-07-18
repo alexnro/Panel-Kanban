@@ -1,6 +1,6 @@
 from flask import request
 from app.kanbans import bp
-from app.models import Kanbans
+from app.models import Kanbans, Task
 
 
 @bp.route('/addKanban', methods=['POST', 'GET'])
@@ -28,6 +28,6 @@ def get_kanban():
 @bp.route('/deleteKanban', methods=['POST', 'GET'])
 def delete_kanban():
     name = request.args.get('name')
-    print(name)
+    Task.delete_tasks_from_kanban(name)
     Kanbans.objects.get(name=name).delete()
     return 'Kanban deleted'
