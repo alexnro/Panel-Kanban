@@ -9,7 +9,7 @@ import './Perfil.css';
 
 import ModalUsuario from '../../components/UI/Modal/ModalUsuario';
 import ImgPerfil from './ImgPerfil';
-import Sidebar from '../Header/Sidebar';
+import Sidebar from '../Sidebar/Sidebar';
 import Navegacion from '../Header/Navegacion';
 
 class Perfil extends Component {

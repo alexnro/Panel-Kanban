@@ -9,7 +9,7 @@ import withAuth from '../../withAuth';
 import Tareas from '../Tareas/Tareas';
 import EditComponente from '../Tareas/EditComponente';
 import ModalTarea from '../../components/UI/Modal/ModalTarea';
-import Sidebar from '../Header/Sidebar';
+import Sidebar from '../Sidebar/Sidebar';
 import Navegacion from '../Header/Navegacion';
 import axios from 'axios';
 import ModalAviso from '../../components/UI/Modal/ModalAviso';
