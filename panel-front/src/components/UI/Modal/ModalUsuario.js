@@ -37,8 +37,6 @@ class ModalUsuario extends Component {
                 let cargo = response.data.cargo;
                 this.setState({ ...this.state, username: username, email: email, cargo: cargo })
             })
-            .catch(error => {
-            })
     }
 
     handleSubmit = (e) => {
@@ -59,8 +57,6 @@ class ModalUsuario extends Component {
                 } else {
                     alert('El nombre de usuario ya está en uso');
                 }
-            })
-            .catch(error => {
             })
     }
 

@@ -64,7 +64,7 @@ class Register extends Component {
                 .then(response => {
                     this.linkToLogin(alert('Se ha registrado correctamente'));
                 })
-                .catch(error => {
+                .catch(() => {
                     alert('El usuario o el email ya existen, por favor use uno diferente');
                 });
         }

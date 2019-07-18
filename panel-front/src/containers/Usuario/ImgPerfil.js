@@ -21,8 +21,6 @@ class ImgPerfil extends Component {
                 let username = response.data.username
                 this.setState({ ...this.state, username: username })
             })
-            .catch(error => {
-            })
     }
 
     _getName(){

@@ -34,8 +34,6 @@ class Panel extends Component {
                 let tasks = getJSON(response.data);
                 this.setState({ ...this.state, tasks: tasks }, () => this.props.dispatch({ type: 'GET_POSTS', tasks: this.state.tasks }));
             })
-            .catch(error => {
-            })
     }
 
     render() {

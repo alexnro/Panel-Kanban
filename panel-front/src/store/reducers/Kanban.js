@@ -5,19 +5,11 @@ const addKanban = data => {
     let name = data.name;
     let queryParams = '?_id=' + _id + '&name=' + name;
     axios.post('/addKanban' + queryParams)
-        .then(response => {
-        })
-        .catch(error => {
-        });
 }
 
 const deleteKanban = name => {
     let queryParams = '?name=' + name;
     axios.post('/deleteKanban' + queryParams)
-        .then(response => {
-        })
-        .catch(error => {
-        })
 }
 
 const Kanban = (state = [], action) => {

@@ -28,14 +28,10 @@ class Sidebar extends Component {
                 let email = response.data.email;
                 this.setState({ ...this.state, username: username, email: email, cargo: cargo }, () => this.props.dispatch({ type: 'GET_USER', user: this.state }));
             })
-            .catch(error => {
-            })
         axios.get('/getKanban')
             .then(response => {
                 let kanbans = getJSON(response.data);
                 this.props.dispatch({ type: 'GET_KANBAN', kanbans: kanbans });
-            })
-            .catch(error => {
             })
     }
 
@@ -50,15 +46,15 @@ class Sidebar extends Component {
                 <hr />
                 <ModalPanel />
                 <p>Paneles disponibles</p>
-                {this.state.kanbans ?
-                <ul>
-                    {Array.from(this.props.kanbans.Kanban).map((kanban) => (
-                        <li key={kanban.name}>
-                            <Paneles kanban={kanban} name={kanban.name} />
-                        </li>
-                    ))}
-                </ul>
-                : <ul></ul>}
+                {this.props.kanbans ?
+                    <ul>
+                        {Array.from(this.props.kanbans).map((kanban) => (
+                            <li key={kanban.name}>
+                                <Paneles kanban={kanban} name={kanban.name} />
+                            </li>
+                        ))}
+                    </ul>
+                    : <ul></ul>}
             </Menu>
         );
     }
@@ -66,7 +62,7 @@ class Sidebar extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        kanbans: state,
+        kanbans: state.Kanban,
         user: state.User
     }
 }

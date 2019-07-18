@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Row, Col, Media} from 'react-bootstrap';
+import { Container, Row, Col, Media } from 'react-bootstrap';
 import { connect } from 'react-redux';
 
 import withAuth from '../../withAuth';
@@ -32,9 +32,7 @@ class Perfil extends Component {
                 let username = response.data.username
                 let email = response.data.email
                 let cargo = response.data.cargo
-        this.setState({ ...this.state, username: username, email: email, cargo: cargo })
-            })
-            .catch(error => {
+                this.setState({ ...this.state, username: username, email: email, cargo: cargo })
             })
     }
 

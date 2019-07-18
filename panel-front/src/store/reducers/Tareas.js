@@ -9,19 +9,11 @@ const addPostRequest = data => {
     let kanban = data.kanban;
     let queryParams = '?task_id=' + task_id + '&title=' + title + '&message=' + message + '&column=' + column + '&kanban=' + kanban;
     axios.post('/addTask' + queryParams)
-        .then(response => {
-        })
-        .catch(error => {
-        });
 }
 
 const deletePostRequest = post_id => {
     let queryParams = '?task_id=' + post_id;
     axios.post('/deleteTask' + queryParams)
-        .then(response => {
-        })
-        .catch(error => {
-        })
 }
 
 const updatePostRequest = data => {
@@ -31,10 +23,6 @@ const updatePostRequest = data => {
     let column = data.column;
     let queryParams = '?task_id=' + task_id + '&title=' + title + '&message=' + message + '&column=' + column;
     axios.post('/updateTask' + queryParams)
-        .then(response => {
-        })
-        .catch(error => {
-        })
 }
 
 

@@ -9,10 +9,6 @@ class Logout extends Component {
         let email = localStorage.getItem("email");
         const queryParams = '?email=' + email;
         axios.post('/logout' + queryParams)
-            .then(response => {
-            })
-            .catch(error => {
-            })
     }
     
     render() {
