@@ -45,7 +45,7 @@ class ModalTarea extends Component {
     render() {
         return (
             <>
-                <Button variant="secondary" onClick={this.handleShow}>
+                <Button variant="outline-dark" onClick={this.handleShow}>
                     Añadir Tarea
                 </Button>
 

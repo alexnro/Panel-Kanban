@@ -67,7 +67,7 @@ class ModalUsuario extends Component {
     render() {
         return (
             <>
-                <Button onClick={this.handleShow} variant="outline-secondary">
+                <Button onClick={this.handleShow} variant="outline-dark">
                     Modificar datos
                 </Button>
                 <Modal show={this.state.show} onHide={this.handleClose}>

@@ -34,7 +34,7 @@ class ModalAviso extends Component {
     render() {
         return (
             <>
-                <Button variant="secondary" onClick={this.handleShow}>
+                <Button variant="outline-dark" onClick={this.handleShow}>
                     Eliminar Kanban
                 </Button>
 
@@ -42,7 +42,7 @@ class ModalAviso extends Component {
                     <Modal.Header closeButton>
                     </Modal.Header>
                     <Modal.Body>
-                        <p>¿Estas seguro de querer borrar el panel Kanban?</p>
+                        <p>¿Estas seguro de querer eliminar este panel?</p>
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="outline-danger" onClick={this.handleDelete }>Eliminar</Button>

@@ -22,10 +22,10 @@ class Tareas extends Component {
                         <Card.Text>{this.props.post.message}</Card.Text>
                     </Card.Body>
                     <ButtonGroup aria-label="Basic example">
-                        <Button variant="outline-secondary" size="sm"
+                        <Button variant="outline-dark" size="sm"
                             onClick={this.editHandler}>
                             Editar</Button>
-                        <Button variant="outline-secondary" size="sm"
+                        <Button variant="outline-danger" size="sm"
                             onClick={this.deleteHandler}>
                             Eliminar</Button>
                     </ButtonGroup>
