@@ -35,7 +35,6 @@ class Perfil extends Component {
         this.setState({ ...this.state, username: username, email: email, cargo: cargo })
             })
             .catch(error => {
-                console.log(error);
             })
     }
 

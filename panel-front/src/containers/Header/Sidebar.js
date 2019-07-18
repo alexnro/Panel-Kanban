@@ -29,17 +29,13 @@ class Sidebar extends Component {
                 this.setState({ ...this.state, username: username, email: email, cargo: cargo }, () => this.props.dispatch({ type: 'GET_USER', user: this.state }));
             })
             .catch(error => {
-                console.log(error);
             })
         axios.get('/getKanban')
             .then(response => {
                 let kanbans = getJSON(response.data);
                 this.props.dispatch({ type: 'GET_KANBAN', kanbans: kanbans });
-                console.log(this.props.kanbans.Kanban);
             })
             .catch(error => {
-                console.log(error);
-                console.log(this.props.kanbans.kanbans);
             })
     }
 

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Row, Col } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { getJSON } from '../../shared/utility';
-import { Button } from 'react-bootstrap';
 
 import './Panel.css';
 
@@ -13,6 +12,7 @@ import ModalTarea from '../../components/UI/Modal/ModalTarea';
 import Sidebar from '../Header/Sidebar';
 import Navegacion from '../Header/Navegacion';
 import axios from 'axios';
+import ModalAviso from '../../components/UI/Modal/ModalAviso';
 
 
 class Panel extends Component {
@@ -35,15 +35,7 @@ class Panel extends Component {
                 this.setState({ ...this.state, tasks: tasks }, () => this.props.dispatch({ type: 'GET_POSTS', tasks: this.state.tasks }));
             })
             .catch(error => {
-                console.log(error);
             })
-    }
-
-    deleteHandler = () => {
-        this.props.dispatch({ type: 'DELETE_KANBAN', name: this.state.kanban });
-        console.log(this.props.kanbans);
-        window.location = '/perfil';
-        
     }
 
     render() {
@@ -166,8 +158,8 @@ class Panel extends Component {
                 <Sidebar />
                 <Navegacion />
                 <div className="Contenedor">
-                    <div className="Boton"><ModalTarea kanban={this.state.kanban} /></div>
-                    <Button variant="outline-danger" onClick={this.deleteHandler}>Eliminar Panel</Button>
+                    <div className="BotonA"><ModalTarea kanban={this.state.kanban} /></div>
+                    <div className="BotonE"><ModalAviso /></div>
                     {columnas}
                 </div>
             </div>

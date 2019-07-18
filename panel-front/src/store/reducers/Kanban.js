@@ -6,23 +6,17 @@ const addKanban = data => {
     let queryParams = '?_id=' + _id + '&name=' + name;
     axios.post('/addKanban' + queryParams)
         .then(response => {
-            console.log(response);
         })
         .catch(error => {
-            console.log(error);
-            console.log(queryParams);
         });
 }
 
 const deleteKanban = name => {
     let queryParams = '?name=' + name;
-    console.log(name)
     axios.post('/deleteKanban' + queryParams)
         .then(response => {
-            console.log(response);
         })
         .catch(error => {
-            console.log(error);
         })
 }
 

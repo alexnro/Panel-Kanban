@@ -10,22 +10,17 @@ const addPostRequest = data => {
     let queryParams = '?task_id=' + task_id + '&title=' + title + '&message=' + message + '&column=' + column + '&kanban=' + kanban;
     axios.post('/addTask' + queryParams)
         .then(response => {
-            console.log(response);
         })
         .catch(error => {
-            console.log(error);
         });
 }
 
 const deletePostRequest = post_id => {
     let queryParams = '?task_id=' + post_id;
-    console.log(post_id)
     axios.post('/deleteTask' + queryParams)
         .then(response => {
-            console.log(response);
         })
         .catch(error => {
-            console.log(error);
         })
 }
 
@@ -37,10 +32,8 @@ const updatePostRequest = data => {
     let queryParams = '?task_id=' + task_id + '&title=' + title + '&message=' + message + '&column=' + column;
     axios.post('/updateTask' + queryParams)
         .then(response => {
-            console.log(response);
         })
         .catch(error => {
-            console.log(error);
         })
 }
 
@@ -59,10 +52,7 @@ const Tareas = (state = [], action) => {
         case 'EDIT_POST':
             return state.map((post) => post._id === action.id ? { ...post, editing: !post.editing } : post);
         case 'UPDATE':
-            console.log(action.id)
-            console.log(state)
             return state.map((post) => {
-                console.log(post)
                 if (post._id === action.id) {
                     let data = {
                         ...post,

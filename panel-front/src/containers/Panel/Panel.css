@@ -1,7 +1,11 @@
 .Contenedor{
-    margin: 0 7% 0 7%;
+    margin: 2% 7% 0 7%;
 }
 
-.Boton {
+.BotonA {
     margin-bottom: 2%;
+}
+
+.BotonE {
+    float: right;
 }

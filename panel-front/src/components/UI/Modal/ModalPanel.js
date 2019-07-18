@@ -40,9 +40,9 @@ class ModalPanel extends Component {
     render() {
         return (
             <>
-                <Button variant="secondary" onClick={this.handleShow}>
+                <Button variant="info" onClick={this.handleShow} size="sm">
                     Añadir Panel
-          </Button>
+                </Button>
 
                 <Modal show={this.state.show} onHide={this.handleClose}>
                     <Modal.Header closeButton>

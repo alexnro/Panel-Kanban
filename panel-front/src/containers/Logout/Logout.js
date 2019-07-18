@@ -10,10 +10,8 @@ class Logout extends Component {
         const queryParams = '?email=' + email;
         axios.post('/logout' + queryParams)
             .then(response => {
-                console.log(response);
             })
             .catch(error => {
-                console.log(error);
             })
     }
     

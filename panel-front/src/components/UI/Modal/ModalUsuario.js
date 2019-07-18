@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Modal, Button, Form, Alert } from 'react-bootstrap';
+import { Modal, Button, Form } from 'react-bootstrap';
 import { connect } from 'react-redux';
 
 import axios from 'axios';
@@ -38,7 +38,6 @@ class ModalUsuario extends Component {
                 this.setState({ ...this.state, username: username, email: email, cargo: cargo })
             })
             .catch(error => {
-                console.log(error);
             })
     }
 
@@ -54,7 +53,6 @@ class ModalUsuario extends Component {
         const queryParams = '?username=' + username + '&email=' + email + '&cargo=' + cargo;
         axios.post('/updateUser' + queryParams)
             .then(response => {
-                console.log(response);
                 if (response.data === 'User updated') {
                     this.props.dispatch({ type: 'UPDATE_USER', data: data });
                     this.setState({ ...this.state, getUsername: username, email: email, cargo: cargo });
@@ -63,14 +61,13 @@ class ModalUsuario extends Component {
                 }
             })
             .catch(error => {
-                console.log(error);
             })
     }
 
     render() {
         return (
             <>
-                <Button onClick={this.handleShow} variant="outline-secondary">
+                <Button onClick={this.handleShow} variant="outline-dark">
                     Modificar datos
                 </Button>
                 <Modal show={this.state.show} onHide={this.handleClose}>

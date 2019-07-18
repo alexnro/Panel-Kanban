@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 import classNames from 'classnames';
 import axios from 'axios';
 
@@ -23,7 +22,6 @@ class ImgPerfil extends Component {
                 this.setState({ ...this.state, username: username })
             })
             .catch(error => {
-                console.log(error);
             })
     }
 

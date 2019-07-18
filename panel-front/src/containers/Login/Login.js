@@ -47,7 +47,6 @@ class Login extends Component {
                 alert('Ha iniciado sesión correctamente')
             })
             .catch(error => {
-                console.log(error);
                 alert('Ha habido un problema. Vuelva a intentarlo')
             });
     }
