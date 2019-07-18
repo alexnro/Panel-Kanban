@@ -159,8 +159,8 @@ class Panel extends Component {
                 <Sidebar />
                 <Navegacion />
                 <div className="Contenedor">
-                    <div className="Boton"><ModalTarea kanban={this.state.kanban} /></div>
-                    <ModalAviso />
+                    <div className="BotonA"><ModalTarea kanban={this.state.kanban} /></div>
+                    <div className="BotonE"><ModalAviso /></div>
                     {columnas}
                 </div>
             </div>

@@ -48,7 +48,7 @@ class ModalAviso extends Component {
                         <p>¿Estas seguro de querer borrar el panel Kanban?</p>
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button variant="primary" onClick={this.handleDelete }>Eliminar</Button>
+                        <Button variant="outline-danger" onClick={this.handleDelete }>Eliminar</Button>
                     </Modal.Footer>
                 </Modal>
             </>
