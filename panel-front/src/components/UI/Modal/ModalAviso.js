@@ -27,9 +27,6 @@ class ModalAviso extends Component {
 
     handleDelete = () => {
         this.props.dispatch({ type: 'DELETE_KANBAN', name: this.state.kanban });
-        console.log(this.props.kanbans);
-        console.log(this.state.kanban);
-        
         window.location = '/perfil';
         
     }

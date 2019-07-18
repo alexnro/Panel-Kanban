@@ -35,7 +35,6 @@ class Panel extends Component {
                 this.setState({ ...this.state, tasks: tasks }, () => this.props.dispatch({ type: 'GET_POSTS', tasks: this.state.tasks }));
             })
             .catch(error => {
-                console.log(error);
             })
     }
 

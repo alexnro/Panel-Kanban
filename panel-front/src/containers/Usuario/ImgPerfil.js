@@ -22,7 +22,6 @@ class ImgPerfil extends Component {
                 this.setState({ ...this.state, username: username })
             })
             .catch(error => {
-                console.log(error);
             })
     }
 

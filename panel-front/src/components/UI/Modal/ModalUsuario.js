@@ -38,7 +38,6 @@ class ModalUsuario extends Component {
                 this.setState({ ...this.state, username: username, email: email, cargo: cargo })
             })
             .catch(error => {
-                console.log(error);
             })
     }
 
@@ -54,7 +53,6 @@ class ModalUsuario extends Component {
         const queryParams = '?username=' + username + '&email=' + email + '&cargo=' + cargo;
         axios.post('/updateUser' + queryParams)
             .then(response => {
-                console.log(response);
                 if (response.data === 'User updated') {
                     this.props.dispatch({ type: 'UPDATE_USER', data: data });
                     this.setState({ ...this.state, getUsername: username, email: email, cargo: cargo });
@@ -63,7 +61,6 @@ class ModalUsuario extends Component {
                 }
             })
             .catch(error => {
-                console.log(error);
             })
     }
 
